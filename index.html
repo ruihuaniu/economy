@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AU/IDX — Australia's Top Industries Board</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23faf6ee'/%3E%3Crect x='10' y='34' width='8' height='20' fill='%23b9702a'/%3E%3Crect x='22' y='24' width='8' height='30' fill='%232f8f6d'/%3E%3Crect x='34' y='16' width='8' height='38' fill='%23b9702a'/%3E%3Crect x='46' y='28' width='8' height='26' fill='%23b3492e'/%3E%3C/svg%3E">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg: #faf6ee;
+    --panel: #ffffff;
+    --panel-2: #f2ece0;
+    --tile: #ffffff;
+    --line: rgba(31,45,40,0.10);
+    --line-strong: rgba(31,45,40,0.20);
+    --paper: #1c2621;
+    --paper-dim: #5c6a63;
+    --amber: #b9702a;
+    --up: #2f8f6d;
+    --down: #b3492e;
+    --steel: #8a988f;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family: 'Inter','Helvetica Neue',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{
+    font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
+    font-variant-numeric:tabular-nums;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:999; pointer-events:none;
+    background:repeating-linear-gradient(180deg, rgba(0,0,0,0.008) 0px, rgba(0,0,0,0.008) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:multiply;
+  }
+
+  nav.board-nav{
+    position:sticky; top:0; z-index:60;
+    background:rgba(250,246,238,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 6vw;
+  }
+  nav.board-nav .brand{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.85rem;
+    color:var(--amber);
+    display:flex; align-items:center; gap:8px;
+  }
+  nav.board-nav .brand .dot{width:7px; height:7px; border-radius:50%; background:var(--up); box-shadow:0 0 8px var(--up); animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
+  nav.board-nav .links{display:flex; gap:1.8rem;}
+  nav.board-nav a{
+    color:var(--paper-dim);
+    text-decoration:none;
+    font-size:0.76rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-family:'Oswald',sans-serif;
+    border-bottom:2px solid transparent;
+    padding-bottom:4px;
+    transition:color 0.2s ease, border-color 0.2s ease;
+  }
+  nav.board-nav a:hover{color:var(--amber); border-color:var(--amber);}
+
+  .ticker-strip{
+    background:#f2ece0;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:0.55rem 0;
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation: scroll-left 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){ .ticker-track{animation:none;} }
+  .ticker-item{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:0 2rem;
+    font-size:0.8rem;
+    color:var(--paper-dim);
+    border-right:1px solid var(--line);
+  }
+  .ticker-item b{color:var(--paper); font-weight:600;}
+  .ticker-item .arrow.up{color:var(--up);}
+  .ticker-item .arrow.down{color:var(--down);}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  header.hero{
+    position:relative;
+    padding: 8vh 6vw 6vh;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(185,112,42,0.10), transparent 60%),
+      linear-gradient(180deg, #faf6ee 0%, #f3ecdd 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{
+    font-family:'Oswald',sans-serif;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.25em;
+    color:var(--amber);
+    margin-bottom:1.2rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{content:""; width:34px; height:1px; background:var(--amber);}
+
+  .country-select-wrap{
+    display:flex; align-items:center; gap:0.8rem;
+    margin-bottom:1.6rem;
+    flex-wrap:wrap;
+  }
+  .country-label{
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--paper-dim);
+  }
+  .country-select{
+    appearance:none;
+    -webkit-appearance:none;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    color:var(--paper);
+    font-size:0.92rem;
+    font-weight:600;
+    padding:0.55rem 2.4rem 0.55rem 1rem;
+    cursor:pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b9702a' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 0.8rem center;
+    background-size:16px;
+    transition:border-color 0.2s ease;
+  }
+  .country-select:hover, .country-select:focus{
+    border-color:var(--amber);
+    outline:none;
+  }
+  h1.hero-title{
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 6.4vw, 5rem);
+    line-height:1.02;
+    margin:0 0 1.4rem 0;
+    color:var(--paper);
+    max-width:16ch;
+    text-transform:uppercase;
+  }
+  h1.hero-title .accent{color:var(--amber);}
+  .hero-sub{
+    max-width:56ch;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:var(--paper-dim);
+  }
+
+  .board-readout{
+    margin-top:3.2rem;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line-strong);
+  }
+  @media (max-width:800px){.board-readout{grid-template-columns:repeat(2,1fr);}}
+  .readout-cell{
+    padding:1.4rem 1.5rem;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .readout-cell:nth-child(4n){border-right:none;}
+  .readout-cell .v{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(1.5rem,2.8vw,2.1rem);
+    color:var(--amber);
+    font-weight:700;
+  }
+  .readout-cell .k{
+    margin-top:0.4rem;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--paper-dim);
+    font-family:'Oswald',sans-serif;
+  }
+
+  main{max-width:1220px; margin:0 auto; padding:0 6vw;}
+  section{padding:5.5rem 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem; margin-bottom:2.6rem; flex-wrap:wrap;}
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--amber);
+    font-weight:600;
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+  }
+  h2{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-weight:600;
+    font-size:clamp(1.7rem,3vw,2.3rem);
+    margin:0.4rem 0 0 0;
+    color:var(--paper);
+    letter-spacing:0.01em;
+  }
+  .section-note{max-width:40ch; font-size:0.92rem; color:var(--paper-dim); line-height:1.6;}
+
+  .industry-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line-strong);
+  }
+  .tile{
+    background:var(--tile);
+    padding:1.7rem 1.6rem 1.5rem;
+    position:relative;
+    transition:background 0.25s ease;
+  }
+  .tile:hover{background:var(--panel-2);}
+  .tile .rank{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--steel);
+    letter-spacing:0.1em;
+  }
+  .tile h3{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-size:1.05rem;
+    font-weight:600;
+    margin:0.6rem 0 1rem 0;
+    color:var(--paper);
+    letter-spacing:0.01em;
+  }
+  .tile .metric-row{display:flex; gap:0 1.6rem; margin-bottom:1rem; justify-content:space-between;}
+  .tile .metric .v{font-size:1.7rem; font-weight:700; font-family:'JetBrains Mono',monospace; color:var(--amber);}
+  .tile .metric .k{font-size:0.66rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--steel); margin-top:0.15rem;}
+  .tile .bar-track{height:4px; background:rgba(31,45,40,0.08); margin:0.9rem 0 1rem; overflow:hidden;}
+  .tile .bar-fill{height:100%; background:var(--amber);}
+  .tile p{font-size:0.87rem; line-height:1.55; color:var(--paper-dim); margin:0;}
+
+  .subs-toggle{
+    appearance:none; -webkit-appearance:none;
+    background:none; border:none; padding:0;
+    margin-top:1rem;
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--amber);
+    cursor:pointer;
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .subs-toggle:hover{color:var(--paper);}
+  .subs-toggle-arrow{
+    display:inline-block;
+    transition:transform 0.2s ease;
+    font-size:0.7rem;
+  }
+  .subs-toggle.open .subs-toggle-arrow{transform:rotate(180deg);}
+
+  .subs-panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+  }
+  .subs-panel.open{max-height:400px; margin-top:0.9rem;}
+  .sub-row{margin-bottom:0.7rem;}
+  .sub-row:last-child{margin-bottom:0;}
+  .sub-row-top{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:0.76rem;
+    margin-bottom:0.3rem;
+  }
+  .sub-name{color:var(--paper-dim);}
+  .sub-pct{font-family:'JetBrains Mono',monospace; color:var(--paper); font-weight:600;}
+  .sub-bar-track{height:3px; background:rgba(31,45,40,0.08); overflow:hidden;}
+  .sub-bar-fill{height:100%; background:var(--steel);}
+  .tile .trend-chip{
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:0.76rem; font-weight:600; font-family:'JetBrains Mono',monospace;
+    padding:2px 8px;
+    border:1px solid currentColor;
+    margin-bottom:0.9rem;
+  }
+  .trend-chip.up{color:var(--up);}
+  .trend-chip.down{color:var(--down);}
+
+  .chart-panel{
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    padding:1.8rem;
+  }
+  .chart-grid{display:grid; grid-template-columns: 1.3fr 1fr; gap:1px; background:var(--line-strong); border:1px solid var(--line-strong);}
+  .chart-grid .chart-panel{border:none;}
+  @media (max-width:900px){.chart-grid{grid-template-columns:1fr;}}
+  .chart-title{
+    font-family:'Oswald',sans-serif;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--amber);
+    margin-bottom:1.2rem;
+  }
+  canvas{max-width:100%;}
+
+  .table-wrap{overflow-x:auto; border:1px solid var(--line-strong); background:var(--panel);}
+  table{width:100%; border-collapse:collapse; font-size:0.9rem;}
+  thead th{
+    text-align:left;
+    font-family:'Oswald',sans-serif;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--amber);
+    padding:0.9rem 1.1rem;
+    border-bottom:1px solid var(--line-strong);
+    background:var(--panel-2);
+    user-select:none;
+  }
+  thead th[data-sort]{cursor:pointer; transition:color 0.15s ease;}
+  thead th[data-sort]:hover{color:var(--paper);}
+  thead th .sort-arrow{
+    display:inline-block;
+    margin-left:4px;
+    font-size:0.7rem;
+    opacity:0.3;
+  }
+  thead th.sort-active{color:var(--paper);}
+  thead th.sort-active .sort-arrow{opacity:1; color:var(--amber);}
+  tbody td{
+    padding:0.9rem 1.1rem;
+    border-bottom:1px solid var(--line);
+    color:var(--paper-dim);
+  }
+  tbody tr:hover{background:var(--panel-2);}
+  tbody tr:hover td{color:var(--paper);}
+  td.num, th.num{text-align:right; font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums;}
+  .trend{display:inline-flex; align-items:center; gap:5px; font-size:0.82rem; font-weight:600; font-family:'JetBrains Mono',monospace;}
+  .trend.up{color:var(--up);}
+  .trend.down{color:var(--down);}
+
+  footer{
+    padding:2.6rem 6vw;
+    background:#efe7d6;
+    color:var(--steel);
+    font-size:0.78rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+    font-family:'JetBrains Mono',monospace;
+  }
+  footer a{color:var(--amber);}
+
+  @media (prefers-reduced-motion: reduce){
+    .tile, nav a{transition:none;}
+  }
+
+  /* ---------- MOBILE LAYOUT ---------- */
+  @media (max-width:640px){
+    nav.board-nav{
+      padding:0.8rem 5vw;
+      flex-wrap:wrap;
+      gap:0.6rem;
+    }
+    nav.board-nav .links{
+      gap:1rem;
+      width:100%;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    nav.board-nav .links::-webkit-scrollbar{display:none;}
+    nav.board-nav a{white-space:nowrap; font-size:0.7rem;}
+
+    .ticker-item{padding:0 1.2rem; font-size:0.72rem;}
+
+    header.hero{padding:5vh 5vw 4.5vh;}
+    .hero-eyebrow{font-size:0.68rem; letter-spacing:0.18em; margin-bottom:1rem;}
+    .hero-eyebrow::before{width:22px;}
+    h1.hero-title{max-width:100%; line-height:1.08;}
+    .hero-sub{font-size:0.96rem;}
+
+    .country-select-wrap{
+      flex-direction:column;
+      align-items:stretch;
+      gap:0.5rem;
+    }
+    .country-label{margin-top:0.4rem;}
+    .country-select{width:100%;}
+
+    .board-readout{
+      margin-top:2.2rem;
+      grid-template-columns:repeat(2,1fr);
+    }
+    .readout-cell{padding:1.1rem 1rem;}
+    .readout-cell:nth-child(4n){border-right:1px solid var(--line);}
+    .readout-cell:nth-child(2n){border-right:none;}
+
+    main{padding:0 5vw;}
+    section{padding:3.2rem 0;}
+    .section-head{margin-bottom:1.8rem; gap:0.8rem;}
+    .section-note{max-width:100%;}
+    h2{font-size:1.5rem;}
+
+    .industry-grid{grid-template-columns:1fr;}
+    .tile{padding:1.4rem 1.3rem 1.3rem;}
+    .tile .metric-row{gap:0 1rem;}
+    .tile .metric .v{font-size:1.4rem;}
+
+    .chart-panel{padding:1.1rem;}
+    .chart-title{font-size:0.72rem; margin-bottom:0.9rem;}
+
+    table{font-size:0.78rem;}
+    thead th, tbody td{padding:0.65rem 0.7rem;}
+    thead th{font-size:0.62rem;}
+    /* Hide the least-critical column on very small screens to reduce horizontal scroll */
+    #ledgerTable thead th:last-child, #ledgerTable tbody td:last-child{display:none;}
+
+    footer{padding:1.8rem 5vw; flex-direction:column; gap:0.5rem; font-size:0.7rem;}
+  }
+
+  @media (max-width:400px){
+    .board-readout{grid-template-columns:1fr 1fr;}
+    .readout-cell .v{font-size:1.3rem;}
+    h1.hero-title{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="board-nav">
+  <div class="brand"><span class="dot"></span>AU/IDX BOARD</div>
+  <div class="links">
+    <a href="#overview">Overview</a>
+    <a href="#industries">Board</a>
+    <a href="#charts">Charts</a>
+    <a href="#table">Ledger</a>
+  </div>
+</nav>
+
+<div class="ticker-strip">
+  <div class="ticker-track mono" id="tickerTrack"></div>
+</div>
+
+<header class="hero">
+  <div class="hero-eyebrow" id="heroEyebrow">ABS National Accounts · FY 2024–25</div>
+
+  <div class="country-select-wrap">
+    <label for="countrySelect" class="country-label">Viewing industries for</label>
+    <select id="countrySelect" class="country-select mono">
+      <option value="AU">🇦🇺 Australia</option>
+      <option value="US">🇺🇸 United States</option>
+      <option value="CN">🇨🇳 China</option>
+      <option value="NZ">🇳🇿 New Zealand</option>
+    </select>
+    <label for="yearSelect" class="country-label">Fiscal year</label>
+    <select id="yearSelect" class="country-select mono">
+      <option value="2025">2024–25</option>
+      <option value="2024">2023–24</option>
+      <option value="2023">2022–23</option>
+      <option value="all">⇄ Compare all years</option>
+    </select>
+  </div>
+
+  <h1 class="hero-title" id="heroTitle">The board that <span class="accent">runs</span> Australia</h1>
+  <p class="hero-sub" id="heroSub">Nine industries, read like an exchange board: what each one contributes to output, how many people it employs, and which way its earnings are moving.</p>
+
+  <div class="board-readout mono" id="boardReadout">
+    <div class="readout-cell"><div class="v">$21.4T</div><div class="k">National net worth</div></div>
+    <div class="readout-cell"><div class="v">+1.4%</div><div class="k">GDP growth FY24–25</div></div>
+    <div class="readout-cell"><div class="v">~75%</div><div class="k">Services share of GDP</div></div>
+    <div class="readout-cell"><div class="v">2.2M</div><div class="k">Jobs in health & social care</div></div>
+  </div>
+</header>
+
+<main>
+
+  <section id="overview">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 01 · READING THE BOARD</div>
+        <h2>Two economies, one ledger</h2>
+      </div>
+      <p class="section-note">Services carry the GDP. Resources carry the export invoice. The board rarely agrees on which industry matters most.</p>
+    </div>
+    <p style="max-width:72ch; line-height:1.75; color:var(--paper-dim); font-size:1rem;">
+      Services broadly account for roughly three-quarters of GDP, but the sharpest recent growth has come from a narrower band: <b style="color:var(--paper)">professional & technical services, construction and administrative services</b> drove private-sector wage growth, while <b style="color:var(--paper)">mining</b> stayed the largest single export earner despite falling profits. Manufacturing has been losing GDP share for three decades, and agriculture, though only 2–3% of GDP, still swings state-level growth on the back of a single good harvest.
+    </p>
+  </section>
+
+  <section id="industries" class="single-year-view">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 02 · SECTOR TILES</div>
+        <h2>Nine industries, ranked by GDP weight</h2>
+      </div>
+      <p class="section-note" id="industriesNote">Approximate GDP share, workforce share and earnings direction, FY 2024–25.</p>
+    </div>
+    <div class="industry-grid" id="industryGrid"></div>
+  </section>
+
+  <section id="charts" class="single-year-view">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 03 · VISUAL READOUT</div>
+        <h2>Output vs. people, side by side</h2>
+      </div>
+      <p class="section-note">GDP share doesn't track workforce share — services employ more than they produce per head; mining does the reverse.</p>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-title">GDP share by industry (%)</div>
+        <canvas id="gdpChart" height="300"></canvas>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title">GDP share vs. workforce share</div>
+        <canvas id="scatterChart" height="300"></canvas>
+      </div>
+    </div>
+    <div class="chart-panel" style="margin-top:1px;">
+      <div class="chart-title" id="earningsChartTitle">Earnings direction, FY 2024–25</div>
+      <canvas id="earningsChart" height="110"></canvas>
+    </div>
+  </section>
+
+  <section id="table" class="single-year-view">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 04 · FULL LEDGER</div>
+        <h2>Industry data table</h2>
+      </div>
+      <p class="section-note">Reference figures derived from ABS releases — approximations, not live data.</p>
+    </div>
+    <div class="table-wrap">
+      <table id="ledgerTable">
+        <thead>
+          <tr>
+            <th data-sort="name">Industry</th>
+            <th class="num sortable" data-sort="gdp">GDP Share <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="workforce">Workforce <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="gdp_trend">Earnings Trend <span class="sort-arrow"></span></th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="subsectorSection" class="single-year-view">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 05 · SUB-SECTOR LEDGER</div>
+        <h2>All sub-sectors, by industry</h2>
+      </div>
+      <p class="section-note" id="subsectorNote">Each industry's own output broken down into its constituent sub-sectors.</p>
+    </div>
+    <div class="table-wrap">
+      <table id="subsectorTable">
+        <thead>
+          <tr>
+            <th data-sort="industry">Industry</th>
+            <th data-sort="name">Sub-sector</th>
+            <th class="num sortable" data-sort="pct">Share of Industry <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="gdpContribution">Est. Share of GDP <span class="sort-arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="subsectorTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="compareView" class="compare-view" style="display:none;">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 05 · CROSS-YEAR COMPARISON</div>
+        <h2 id="compareHeading">Three years, side by side</h2>
+      </div>
+      <p class="section-note" id="compareNote">How each industry's GDP share has shifted across the last three fiscal years.</p>
+    </div>
+
+    <div class="chart-panel" style="margin-bottom:1.4rem;">
+      <div class="chart-title">GDP share by industry, grouped by year (%)</div>
+      <canvas id="compareBarChart" height="320"></canvas>
+    </div>
+
+    <div class="chart-panel" style="margin-bottom:2.6rem;">
+      <div class="chart-title">GDP share trend across years, by industry (%)</div>
+      <canvas id="compareLineChart" height="260"></canvas>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Industry</th>
+            <th class="num" id="compareColYear1">2022–23</th>
+            <th class="num" id="compareColYear2">2023–24</th>
+            <th class="num" id="compareColYear3">2024–25</th>
+            <th class="num">3-Yr Change</th>
+          </tr>
+        </thead>
+        <tbody id="compareTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>SOURCE: ABS NATIONAL ACCOUNTS &amp; AUSTRALIAN INDUSTRY RELEASES, FY24–25 · RBA COMPOSITION SNAPSHOT</div>
+  <div>ILLUSTRATIVE REFERENCE FIGURES ONLY</div>
+</footer>
+
+<script>
+const countryData = {
+  AU: {
+    flag:"🇦🇺", name:"Australia",
+    years:{
+      "2025":{
+        eyebrow:"ABS National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Australia',
+        sub:"Nine industries, read like an exchange board: what each one contributes to output, how many people it employs, and which way its earnings are moving.",
+        stats:[
+          {v:"$21.4T", k:"National net worth"},
+          {v:"+1.4%", k:"GDP growth FY24–25"},
+          {v:"~75%", k:"Services share of GDP"},
+          {v:"2.2M", k:"Jobs in health & social care"}
+        ],
+        footer:"SOURCE: ABS NATIONAL ACCOUNTS & AUSTRALIAN INDUSTRY RELEASES, FY24–25 · RBA COMPOSITION SNAPSHOT",
+        industries:[
+          {name:"Health Care & Social Assistance", gdp:8.5, workforce:14.7, trend:"up", trendVal:"+ demand", note:"Australia's largest employer at 2.2M+ jobs; demand kept climbing through a strong flu season."},
+          {name:"Mining", gdp:10.0, workforce:2.0, trend:"down", trendVal:"−20.5%", note:"Largest merchandise export earner despite a sharp profit fall as commodity prices softened."},
+          {name:"Construction", gdp:8.1, workforce:9.2, trend:"up", trendVal:"+9.0%", note:"Over $568B in annual output; strong in some states, contracting sharply in others (NSW −4.1%)."},
+          {name:"Professional, Scientific & Technical Services", gdp:7.0, workforce:8.4, trend:"up", trendVal:"+ wages", note:"Legal, accounting, engineering and computer-system design firms drove private wage growth."},
+          {name:"Financial & Insurance Services", gdp:8.9, workforce:3.6, trend:"up", trendVal:"+ steady", note:"Consistently one of the top contributors to state-level growth across the country."},
+          {name:"Manufacturing", gdp:5.6, workforce:6.4, trend:"down", trendVal:"−$3.6b", note:"Refinery closures and import competition have shrunk its GDP share for three decades."},
+          {name:"Transport, Postal & Warehousing", gdp:5.1, workforce:5.4, trend:"up", trendVal:"+$4.1b", note:"Second-largest single industry contributor to GDP behind mining in past accounts."},
+          {name:"Retail & Wholesale Trade", gdp:8.4, workforce:13.9, trend:"up", trendVal:"+ steady", note:"Large employer base; sensitive to household consumption and cost-of-living pressures."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.4, workforce:2.5, trend:"up", trendVal:"+25.5% NSW", note:"Small GDP share but outsized swings — NSW agriculture alone grew 25.5% on a good season."}
+        ]
+      },
+      "2024":{
+        eyebrow:"ABS National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Australia',
+        sub:"A year of cooling mining profits and resilient services growth, as construction costs bit into new housing supply.",
+        stats:[
+          {v:"$19.9T", k:"National net worth"},
+          {v:"+1.0%", k:"GDP growth FY23–24"},
+          {v:"~74%", k:"Services share of GDP"},
+          {v:"2.1M", k:"Jobs in health & social care"}
+        ],
+        footer:"SOURCE: ABS NATIONAL ACCOUNTS & AUSTRALIAN INDUSTRY RELEASES, FY23–24 · RBA COMPOSITION SNAPSHOT",
+        industries:[
+          {name:"Health Care & Social Assistance", gdp:8.2, workforce:14.2, trend:"up", trendVal:"+ demand", note:"Continued to add jobs faster than any other sector as aged-care demand grew."},
+          {name:"Mining", gdp:11.4, workforce:2.1, trend:"down", trendVal:"−12.0%", note:"Profits began sliding from record 2022–23 highs as commodity prices eased."},
+          {name:"Construction", gdp:7.9, workforce:9.0, trend:"down", trendVal:"−2.3%", note:"High material and labour costs slowed completions despite strong demand."},
+          {name:"Professional, Scientific & Technical Services", gdp:6.8, workforce:8.1, trend:"up", trendVal:"+ wages", note:"Steady growth in consulting and technical services work continued."},
+          {name:"Financial & Insurance Services", gdp:8.7, workforce:3.5, trend:"up", trendVal:"+ steady", note:"Remained a stable contributor as interest-rate settings peaked."},
+          {name:"Manufacturing", gdp:5.8, workforce:6.6, trend:"down", trendVal:"−$2.1b", note:"Kept losing ground to imports, though the decline was gradual."},
+          {name:"Transport, Postal & Warehousing", gdp:4.9, workforce:5.3, trend:"up", trendVal:"+$3.2b", note:"Freight volumes grew alongside a resilient consumer sector."},
+          {name:"Retail & Wholesale Trade", gdp:8.2, workforce:13.7, trend:"down", trendVal:"− cost pressure", note:"Cost-of-living pressures began weighing on discretionary spending."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.8, workforce:2.6, trend:"up", trendVal:"+ good season", note:"A strong east-coast harvest lifted output after a wetter prior year."}
+        ]
+      },
+      "2023":{
+        eyebrow:"ABS National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Australia',
+        sub:"The peak of the commodity boom: mining profits at record highs while rate rises began cooling household spending.",
+        stats:[
+          {v:"$18.5T", k:"National net worth"},
+          {v:"+2.1%", k:"GDP growth FY22–23"},
+          {v:"~73%", k:"Services share of GDP"},
+          {v:"1.9M", k:"Jobs in health & social care"}
+        ],
+        footer:"SOURCE: ABS NATIONAL ACCOUNTS & AUSTRALIAN INDUSTRY RELEASES, FY22–23 · RBA COMPOSITION SNAPSHOT",
+        industries:[
+          {name:"Mining", gdp:13.5, workforce:2.2, trend:"up", trendVal:"+ record profit", note:"Recorded its most profitable year on record as energy and metal prices surged."},
+          {name:"Health Care & Social Assistance", gdp:7.8, workforce:13.6, trend:"up", trendVal:"+ demand", note:"Kept expanding steadily as an ageing population lifted demand for care."},
+          {name:"Financial & Insurance Services", gdp:8.5, workforce:3.4, trend:"up", trendVal:"+ rate-cycle gains", note:"Benefited from a rising interest-rate cycle that lifted net interest margins."},
+          {name:"Construction", gdp:7.6, workforce:8.9, trend:"up", trendVal:"+ backlog", note:"Worked through a large post-pandemic project backlog despite rising costs."},
+          {name:"Retail & Wholesale Trade", gdp:8.5, workforce:13.9, trend:"up", trendVal:"+ post-COVID rebound", note:"Consumer spending remained strong early in the year before rate rises bit."},
+          {name:"Professional, Scientific & Technical Services", gdp:6.5, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Business investment in consulting and technical services held up well."},
+          {name:"Manufacturing", gdp:6.0, workforce:6.8, trend:"down", trendVal:"−$1.8b", note:"Continued a long-run structural decline in GDP share."},
+          {name:"Transport, Postal & Warehousing", gdp:4.7, workforce:5.2, trend:"up", trendVal:"+ steady", note:"Logistics demand stayed firm amid a strong import and export cycle."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.6, workforce:2.7, trend:"down", trendVal:"− wet season", note:"Flooding across eastern states disrupted several crop and livestock regions."}
+        ]
+      }
+    }
+  },
+  US: {
+    flag:"🇺🇸", name:"United States",
+    years:{
+      "2025":{
+        eyebrow:"BEA National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> the United States',
+        sub:"A services-heavy giant: finance, real estate and professional services set the pace, while manufacturing and government still anchor huge workforces.",
+        stats:[
+          {v:"$29.2T", k:"Nominal GDP"},
+          {v:"+2.8%", k:"GDP growth FY24–25"},
+          {v:"~80%", k:"Services share of GDP"},
+          {v:"22M", k:"Jobs in government"}
+        ],
+        footer:"SOURCE: US BUREAU OF ECONOMIC ANALYSIS & BUREAU OF LABOR STATISTICS, FY24–25",
+        industries:[
+          {name:"Real Estate & Rental", gdp:13.0, workforce:2.2, trend:"up", trendVal:"+ steady", note:"Largest single contributor to GDP, driven by owners' imputed rent and commercial leasing."},
+          {name:"Professional & Business Services", gdp:12.8, workforce:9.9, trend:"up", trendVal:"+ hiring", note:"Legal, consulting, and admin-support firms continue to outpace broader economic growth."},
+          {name:"Government", gdp:11.6, workforce:14.5, trend:"up", trendVal:"+ steady", note:"Federal, state and local government remains the largest single employer category."},
+          {name:"Manufacturing", gdp:10.2, workforce:8.1, trend:"down", trendVal:"− reshoring lag", note:"Still a top-three sector by output, though its GDP share has slid for decades."},
+          {name:"Finance & Insurance", gdp:7.4, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Wall Street and insurance underwriting remain outsized relative to headcount."},
+          {name:"Health Care & Social Assistance", gdp:7.4, workforce:11.2, trend:"up", trendVal:"+ demand", note:"Fastest-growing major employer, adding jobs almost every month post-pandemic."},
+          {name:"Retail Trade", gdp:5.6, workforce:10.0, trend:"up", trendVal:"+ steady", note:"Large, low-margin employer base sensitive to consumer spending swings."},
+          {name:"Information (Tech & Media)", gdp:5.5, workforce:2.1, trend:"up", trendVal:"+ AI capex", note:"Software, data processing and media punch far above their workforce weight."},
+          {name:"Construction", gdp:4.3, workforce:5.3, trend:"up", trendVal:"+ infra spend", note:"Boosted by infrastructure spending and a multi-year housing supply shortfall."}
+        ]
+      },
+      "2024":{
+        eyebrow:"BEA National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> the United States',
+        sub:"Disinflation took hold while AI-driven capital spending on information and technology infrastructure surged.",
+        stats:[
+          {v:"$27.7T", k:"Nominal GDP"},
+          {v:"+2.9%", k:"GDP growth FY23–24"},
+          {v:"~79%", k:"Services share of GDP"},
+          {v:"23M", k:"Jobs in government"}
+        ],
+        footer:"SOURCE: US BUREAU OF ECONOMIC ANALYSIS & BUREAU OF LABOR STATISTICS, FY23–24",
+        industries:[
+          {name:"Real Estate & Rental", gdp:13.2, workforce:2.2, trend:"up", trendVal:"+ steady", note:"Held its position as the largest GDP contributor despite high mortgage rates."},
+          {name:"Professional & Business Services", gdp:12.5, workforce:9.7, trend:"up", trendVal:"+ hiring", note:"Consulting and admin-support demand stayed firm through the rate-hike cycle."},
+          {name:"Government", gdp:11.4, workforce:14.4, trend:"up", trendVal:"+ steady", note:"Federal outlays on infrastructure and defense supported public-sector growth."},
+          {name:"Manufacturing", gdp:10.0, workforce:8.2, trend:"down", trendVal:"− soft orders", note:"New orders softened as higher borrowing costs weighed on capital spending."},
+          {name:"Health Care & Social Assistance", gdp:7.3, workforce:11.0, trend:"up", trendVal:"+ demand", note:"Continued its multi-year run as the fastest-growing major employer."},
+          {name:"Finance & Insurance", gdp:7.2, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Higher interest rates lifted bank net interest income through the year."},
+          {name:"Retail Trade", gdp:5.7, workforce:10.1, trend:"up", trendVal:"+ steady", note:"Resilient consumer spending kept retail growth ahead of expectations."},
+          {name:"Information (Tech & Media)", gdp:5.2, workforce:2.0, trend:"up", trendVal:"+ AI buildout", note:"Early AI infrastructure investment began lifting data-center construction."},
+          {name:"Construction", gdp:4.1, workforce:5.2, trend:"up", trendVal:"+ steady", note:"Public infrastructure funding partly offset a slower housing market."}
+        ]
+      },
+      "2023":{
+        eyebrow:"BEA National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> the United States',
+        sub:"The Fed's steepest hiking cycle in decades cooled housing and manufacturing, while services held up on strong consumer spending.",
+        stats:[
+          {v:"$26.0T", k:"Nominal GDP"},
+          {v:"+2.5%", k:"GDP growth FY22–23"},
+          {v:"~78%", k:"Services share of GDP"},
+          {v:"22.5M", k:"Jobs in government"}
+        ],
+        footer:"SOURCE: US BUREAU OF ECONOMIC ANALYSIS & BUREAU OF LABOR STATISTICS, FY22–23",
+        industries:[
+          {name:"Real Estate & Rental", gdp:13.3, workforce:2.3, trend:"down", trendVal:"− rate shock", note:"Rapid rate rises sharply cooled home sales and refinancing activity."},
+          {name:"Professional & Business Services", gdp:12.6, workforce:9.6, trend:"up", trendVal:"+ hiring", note:"Business demand for consulting and technical services stayed strong."},
+          {name:"Government", gdp:11.2, workforce:14.3, trend:"up", trendVal:"+ steady", note:"Pandemic-era relief spending continued flowing through into 2023."},
+          {name:"Manufacturing", gdp:10.5, workforce:8.4, trend:"up", trendVal:"+ reshoring", note:"CHIPS Act incentives began drawing new semiconductor investment onshore."},
+          {name:"Finance & Insurance", gdp:7.0, workforce:4.1, trend:"down", trendVal:"− bank stress", note:"Regional bank failures in early 2023 briefly weighed on sector confidence."},
+          {name:"Health Care & Social Assistance", gdp:7.2, workforce:10.8, trend:"up", trendVal:"+ demand", note:"Employment growth remained the strongest of any major industry."},
+          {name:"Retail Trade", gdp:5.8, workforce:10.2, trend:"up", trendVal:"+ resilient spend", note:"Consumers kept spending despite high inflation eroding real wages."},
+          {name:"Information (Tech & Media)", gdp:5.4, workforce:2.0, trend:"down", trendVal:"− tech layoffs", note:"A wave of tech-sector layoffs followed the 2021–22 hiring boom."},
+          {name:"Construction", gdp:4.0, workforce:5.1, trend:"down", trendVal:"− housing slump", note:"Higher mortgage rates sharply slowed new residential starts."}
+        ]
+      }
+    }
+  },
+  CN: {
+    flag:"🇨🇳", name:"China",
+    years:{
+      "2025":{
+        eyebrow:"NBS National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> China',
+        sub:"Still the world's factory: manufacturing dwarfs every other sector, with real estate and construction cooling after years of rapid expansion.",
+        stats:[
+          {v:"$18.9T", k:"Nominal GDP"},
+          {v:"+5.0%", k:"GDP growth FY24–25"},
+          {v:"~56%", k:"Services share of GDP"},
+          {v:"~180M", k:"Manufacturing workers"}
+        ],
+        footer:"SOURCE: NATIONAL BUREAU OF STATISTICS OF CHINA, FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:27.0, workforce:22.0, trend:"up", trendVal:"+ exports", note:"By far the largest sector; China remains the dominant global manufacturing hub."},
+          {name:"Wholesale & Retail Trade", gdp:10.0, workforce:12.5, trend:"up", trendVal:"+ steady", note:"Large domestic distribution sector supporting both exports and consumption."},
+          {name:"Finance", gdp:8.0, workforce:1.5, trend:"up", trendVal:"+ steady", note:"Banking and insurance sector has grown alongside capital-market reforms."},
+          {name:"Construction", gdp:6.9, workforce:9.0, trend:"down", trendVal:"− property slump", note:"Slowed sharply as the property-sector correction weighed on new starts."},
+          {name:"Real Estate", gdp:6.0, workforce:2.0, trend:"down", trendVal:"− correction", note:"Still recovering from a multi-year downturn in developer financing and home sales."},
+          {name:"Agriculture, Forestry & Fishing", gdp:7.0, workforce:22.5, trend:"up", trendVal:"+ steady", note:"Employs a vast rural workforce despite a shrinking share of total output."},
+          {name:"Transport, Storage & Postal", gdp:4.5, workforce:6.0, trend:"up", trendVal:"+ e-commerce", note:"Logistics network expansion tracks the growth of domestic e-commerce."},
+          {name:"Information & Software Services", gdp:3.8, workforce:1.8, trend:"up", trendVal:"+ tech push", note:"Fastest-growing sector as the state prioritises tech self-sufficiency."},
+          {name:"Mining & Quarrying", gdp:2.3, workforce:1.2, trend:"down", trendVal:"− demand cool", note:"Coal and metals output steady but growth has cooled with slower construction."}
+        ]
+      },
+      "2024":{
+        eyebrow:"NBS National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> China',
+        sub:"Manufacturing exports carried growth while a deepening property-sector downturn dragged on construction and real estate.",
+        stats:[
+          {v:"$17.9T", k:"Nominal GDP"},
+          {v:"+5.2%", k:"GDP growth FY23–24"},
+          {v:"~55%", k:"Services share of GDP"},
+          {v:"~185M", k:"Manufacturing workers"}
+        ],
+        footer:"SOURCE: NATIONAL BUREAU OF STATISTICS OF CHINA, FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:26.5, workforce:22.3, trend:"up", trendVal:"+ EV exports", note:"Electric-vehicle and battery exports helped offset softer domestic demand."},
+          {name:"Wholesale & Retail Trade", gdp:9.8, workforce:12.4, trend:"up", trendVal:"+ steady", note:"Domestic consumption grew modestly as households stayed cautious."},
+          {name:"Finance", gdp:7.8, workforce:1.5, trend:"up", trendVal:"+ steady", note:"State-directed lending supported credit growth despite property stress."},
+          {name:"Construction", gdp:7.4, workforce:9.4, trend:"down", trendVal:"− new-start decline", note:"New construction starts fell further as developer defaults continued."},
+          {name:"Real Estate", gdp:6.5, workforce:2.1, trend:"down", trendVal:"− deepening slump", note:"Home prices kept falling in most tier-2 and tier-3 cities through the year."},
+          {name:"Agriculture, Forestry & Fishing", gdp:7.1, workforce:23.0, trend:"up", trendVal:"+ steady", note:"A stable harvest kept rural output broadly flat year-on-year."},
+          {name:"Transport, Storage & Postal", gdp:4.4, workforce:5.9, trend:"up", trendVal:"+ e-commerce", note:"Parcel delivery volumes kept rising on the back of livestream shopping."},
+          {name:"Information & Software Services", gdp:3.5, workforce:1.7, trend:"up", trendVal:"+ tech push", note:"Continued state investment in semiconductors and AI infrastructure."},
+          {name:"Mining & Quarrying", gdp:2.5, workforce:1.3, trend:"down", trendVal:"− soft demand", note:"Coal demand growth slowed as renewable generation capacity expanded."}
+        ]
+      },
+      "2023":{
+        eyebrow:"NBS National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> China',
+        sub:"The post-lockdown reopening year: consumption rebounded unevenly while the property crisis first became acute.",
+        stats:[
+          {v:"$17.0T", k:"Nominal GDP"},
+          {v:"+5.2%", k:"GDP growth FY22–23"},
+          {v:"~54%", k:"Services share of GDP"},
+          {v:"~190M", k:"Manufacturing workers"}
+        ],
+        footer:"SOURCE: NATIONAL BUREAU OF STATISTICS OF CHINA, FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:27.7, workforce:23.0, trend:"up", trendVal:"+ reopening", note:"Factory output rebounded quickly once zero-COVID restrictions ended."},
+          {name:"Wholesale & Retail Trade", gdp:10.3, workforce:12.6, trend:"up", trendVal:"+ rebound", note:"Consumption recovered from 2022 lockdowns but stayed below pre-2020 trend."},
+          {name:"Real Estate", gdp:7.8, workforce:2.3, trend:"down", trendVal:"− Evergrande shock", note:"Major developer defaults triggered a sharp confidence shock in housing."},
+          {name:"Finance", gdp:7.6, workforce:1.4, trend:"up", trendVal:"+ steady", note:"Policy easing supported credit expansion to cushion the property downturn."},
+          {name:"Construction", gdp:7.6, workforce:9.6, trend:"down", trendVal:"− starts fall", note:"New residential starts fell sharply as developer liquidity dried up."},
+          {name:"Agriculture, Forestry & Fishing", gdp:7.3, workforce:23.8, trend:"up", trendVal:"+ steady", note:"Grain output rose slightly, supporting food-security policy goals."},
+          {name:"Transport, Storage & Postal", gdp:4.2, workforce:5.7, trend:"up", trendVal:"+ reopening", note:"Passenger and freight transport rebounded as travel restrictions lifted."},
+          {name:"Information & Software Services", gdp:3.2, workforce:1.6, trend:"up", trendVal:"+ steady", note:"Software and IT services grew despite a broader tech-sector regulatory crackdown."},
+          {name:"Mining & Quarrying", gdp:2.6, workforce:1.3, trend:"up", trendVal:"+ energy security", note:"Coal output was pushed higher on energy-security policy priorities."}
+        ]
+      }
+    }
+  },
+  NZ: {
+    flag:"🇳🇿", name:"New Zealand",
+    years:{
+      "2025":{
+        eyebrow:"Stats NZ National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> New Zealand',
+        sub:"A small, trade-exposed economy where dairy and tourism swing growth far more than their GDP share suggests.",
+        stats:[
+          {v:"$253B", k:"Nominal GDP"},
+          {v:"+0.3%", k:"GDP growth FY24–25"},
+          {v:"~70%", k:"Services share of GDP"},
+          {v:"~$21B", k:"Dairy export revenue"}
+        ],
+        footer:"SOURCE: STATS NZ NATIONAL ACCOUNTS & MPI INDUSTRY RELEASES, FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate & Rental Services", gdp:13.0, workforce:2.5, trend:"up", trendVal:"+ steady", note:"Owner-occupied housing imputed rent makes this the single largest GDP contributor."},
+          {name:"Manufacturing", gdp:9.5, workforce:9.0, trend:"down", trendVal:"− soft demand", note:"Food processing (especially dairy) dominates, but broader manufacturing has softened."},
+          {name:"Health Care & Social Assistance", gdp:7.2, workforce:11.5, trend:"up", trendVal:"+ demand", note:"One of the largest and fastest-growing employers as the population ages."},
+          {name:"Financial & Insurance Services", gdp:7.0, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Small but efficient sector, heavily weighted toward banking and insurance."},
+          {name:"Professional, Scientific & Technical Services", gdp:6.5, workforce:8.0, trend:"up", trendVal:"+ steady", note:"Growing steadily as firms expand consulting and technical export services."},
+          {name:"Construction", gdp:6.0, workforce:9.5, trend:"down", trendVal:"− housing slowdown", note:"Cooling after a multi-year residential building boom driven by past housing shortages."},
+          {name:"Retail & Wholesale Trade", gdp:6.0, workforce:13.0, trend:"up", trendVal:"+ tourism-linked", note:"Large employer base closely tied to tourism recovery and household spending."},
+          {name:"Agriculture, Forestry & Fishing", gdp:5.5, workforce:6.0, trend:"up", trendVal:"+ dairy prices", note:"Only ~5–6% of GDP but dominates exports — dairy alone earns roughly $21B a year."},
+          {name:"Accommodation & Food Services", gdp:3.0, workforce:6.5, trend:"up", trendVal:"+ tourism rebound", note:"Tourism-linked hospitality sector still recovering toward pre-2020 visitor levels."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Stats NZ National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> New Zealand',
+        sub:"A technical recession year: high interest rates cooled construction and retail while dairy prices stayed under pressure.",
+        stats:[
+          {v:"$247B", k:"Nominal GDP"},
+          {v:"−0.2%", k:"GDP growth FY23–24"},
+          {v:"~70%", k:"Services share of GDP"},
+          {v:"~$19B", k:"Dairy export revenue"}
+        ],
+        footer:"SOURCE: STATS NZ NATIONAL ACCOUNTS & MPI INDUSTRY RELEASES, FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate & Rental Services", gdp:13.2, workforce:2.5, trend:"down", trendVal:"− rate pressure", note:"High mortgage rates weighed on housing turnover and rental market activity."},
+          {name:"Manufacturing", gdp:9.3, workforce:9.1, trend:"down", trendVal:"− weak orders", note:"Export-oriented manufacturers faced softer demand from key trading partners."},
+          {name:"Health Care & Social Assistance", gdp:7.0, workforce:11.3, trend:"up", trendVal:"+ demand", note:"Stayed one of the few sectors adding jobs through the downturn."},
+          {name:"Financial & Insurance Services", gdp:6.9, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Higher interest rates supported bank margins despite weaker loan demand."},
+          {name:"Construction", gdp:6.4, workforce:9.8, trend:"down", trendVal:"− consent slump", note:"Building consents fell sharply from their post-2021 peak."},
+          {name:"Professional, Scientific & Technical Services", gdp:6.3, workforce:7.8, trend:"down", trendVal:"− client caution", note:"Business consulting demand softened as clients delayed discretionary spend."},
+          {name:"Retail & Wholesale Trade", gdp:5.8, workforce:12.8, trend:"down", trendVal:"− cost pressure", note:"Households cut discretionary spending as living costs stayed elevated."},
+          {name:"Agriculture, Forestry & Fishing", gdp:5.3, workforce:6.1, trend:"down", trendVal:"− soft payout", note:"Lower global dairy prices reduced farmer payouts from the prior year."},
+          {name:"Accommodation & Food Services", gdp:2.9, workforce:6.4, trend:"up", trendVal:"+ tourism rebound", note:"International visitor numbers kept recovering toward pre-pandemic levels."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Stats NZ National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> New Zealand',
+        sub:"Record dairy payouts and a reopening tourism sector drove growth, before rising interest rates began to bite late in the year.",
+        stats:[
+          {v:"$247B", k:"Nominal GDP"},
+          {v:"+1.8%", k:"GDP growth FY22–23"},
+          {v:"~69%", k:"Services share of GDP"},
+          {v:"~$22B", k:"Dairy export revenue"}
+        ],
+        footer:"SOURCE: STATS NZ NATIONAL ACCOUNTS & MPI INDUSTRY RELEASES, FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate & Rental Services", gdp:13.6, workforce:2.4, trend:"up", trendVal:"+ steady", note:"Housing activity stayed firm for most of the year before rate rises cooled it."},
+          {name:"Manufacturing", gdp:9.8, workforce:8.8, trend:"up", trendVal:"+ record payout", note:"Dairy processors benefited from a near-record farmgate milk price."},
+          {name:"Agriculture, Forestry & Fishing", gdp:6.0, workforce:6.2, trend:"up", trendVal:"+ record dairy", note:"Dairy export revenue hit a record high on strong global milk prices."},
+          {name:"Health Care & Social Assistance", gdp:6.8, workforce:10.9, trend:"up", trendVal:"+ demand", note:"Continued steady growth in demand for aged and community care."},
+          {name:"Financial & Insurance Services", gdp:6.7, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Rising interest rates began lifting bank lending margins."},
+          {name:"Construction", gdp:6.8, workforce:9.9, trend:"up", trendVal:"+ backlog", note:"Builders worked through a large pipeline of pandemic-era consents."},
+          {name:"Professional, Scientific & Technical Services", gdp:6.6, workforce:7.7, trend:"up", trendVal:"+ steady", note:"Business services demand held up well through most of the year."},
+          {name:"Retail & Wholesale Trade", gdp:6.2, workforce:12.9, trend:"up", trendVal:"+ reopening", note:"Consumer spending was boosted by returning international tourists."},
+          {name:"Accommodation & Food Services", gdp:2.6, workforce:6.1, trend:"up", trendVal:"+ border reopening", note:"The reopening of New Zealand's border drove a sharp rebound in visitor spend."}
+        ]
+      }
+    }
+  }
+};
+
+let gdpChartInstance, scatterChartInstance, earningsChartInstance, compareBarInstance, compareLineInstance;
+const palette = ['#b9702a','#2f8f6d','#b3492e','#5c6a63','#8a6a3e','#3d5b52','#c98f52','#4a9d82','#a85f42'];
+const YEAR_ORDER = ["2023","2024","2025"];
+const YEAR_LABEL = {"2023":"2022–23","2024":"2023–24","2025":"2024–25"};
+
+let currentTableIndustries = [];
+let tableSortState = {key:null, dir:1};
+
+// Approximate within-industry sub-sector breakdowns, matched by keyword.
+// Percentages are of that industry's own output, not of total GDP.
+const SUBCATEGORY_MAP = [
+  { match:["health"], subs:[
+    {name:"Hospitals", pct:38},
+    {name:"Aged & residential care", pct:24},
+    {name:"Allied health & primary care", pct:20},
+    {name:"Social assistance services", pct:18}
+  ]},
+  { match:["mining"], subs:[
+    {name:"Iron ore & metal ores", pct:36},
+    {name:"Coal", pct:24},
+    {name:"Oil & gas extraction", pct:26},
+    {name:"Other mining & quarrying", pct:14}
+  ]},
+  { match:["construction"], subs:[
+    {name:"Residential building", pct:34},
+    {name:"Non-residential building", pct:26},
+    {name:"Heavy & civil infrastructure", pct:28},
+    {name:"Trade services & fit-out", pct:12}
+  ]},
+  { match:["professional","business services"], subs:[
+    {name:"Legal & accounting", pct:26},
+    {name:"Consulting & management", pct:24},
+    {name:"Engineering & technical", pct:28},
+    {name:"Computer systems design", pct:22}
+  ]},
+  { match:["financial","finance"], subs:[
+    {name:"Banking & lending", pct:44},
+    {name:"Insurance & superannuation", pct:30},
+    {name:"Capital markets & funds", pct:26}
+  ]},
+  { match:["manufacturing"], subs:[
+    {name:"Food & beverage processing", pct:26},
+    {name:"Machinery & equipment", pct:22},
+    {name:"Chemicals & materials", pct:20},
+    {name:"Electronics & vehicles", pct:32}
+  ]},
+  { match:["transport"], subs:[
+    {name:"Road freight & logistics", pct:34},
+    {name:"Rail & maritime", pct:22},
+    {name:"Air transport", pct:18},
+    {name:"Postal & warehousing", pct:26}
+  ]},
+  { match:["retail","wholesale"], subs:[
+    {name:"Food & grocery retail", pct:30},
+    {name:"General & department retail", pct:24},
+    {name:"Wholesale trade", pct:32},
+    {name:"E-commerce & online retail", pct:14}
+  ]},
+  { match:["agriculture"], subs:[
+    {name:"Livestock & dairy", pct:36},
+    {name:"Crops & grains", pct:30},
+    {name:"Forestry & logging", pct:14},
+    {name:"Fishing & aquaculture", pct:20}
+  ]},
+  { match:["real estate"], subs:[
+    {name:"Owner-occupied housing (imputed rent)", pct:48},
+    {name:"Commercial leasing", pct:28},
+    {name:"Real estate services & agents", pct:24}
+  ]},
+  { match:["government"], subs:[
+    {name:"Public administration", pct:38},
+    {name:"Defence", pct:22},
+    {name:"Education (public)", pct:24},
+    {name:"Public safety & justice", pct:16}
+  ]},
+  { match:["information","software","tech"], subs:[
+    {name:"Software & IT services", pct:40},
+    {name:"Data processing & hosting", pct:22},
+    {name:"Telecommunications", pct:22},
+    {name:"Publishing & media", pct:16}
+  ]},
+  { match:["accommodation","food services"], subs:[
+    {name:"Hotels & accommodation", pct:42},
+    {name:"Cafes & restaurants", pct:38},
+    {name:"Catering & takeaway", pct:20}
+  ]}
+];
+const DEFAULT_SUBS = [
+  {name:"Core operations", pct:55},
+  {name:"Support & ancillary services", pct:28},
+  {name:"Other activities", pct:17}
+];
+
+function getSubcategories(industryName){
+  const lower = industryName.toLowerCase();
+  const found = SUBCATEGORY_MAP.find(entry=> entry.match.some(k=> lower.includes(k)));
+  return found ? found.subs : DEFAULT_SUBS;
+}
+
+function trendNumeric(ind){ return ind.trend === 'up' ? 1 : -1; }
+
+function renderTableBody(){
+  let arr = [...currentTableIndustries];
+  if(tableSortState.key){
+    arr.sort((a,b)=>{
+      let av, bv;
+      if(tableSortState.key === 'name'){
+        return tableSortState.dir * a.name.localeCompare(b.name);
+      } else if(tableSortState.key === 'gdp_trend'){
+        av = trendNumeric(a); bv = trendNumeric(b);
+      } else {
+        av = a[tableSortState.key]; bv = b[tableSortState.key];
+      }
+      return tableSortState.dir * (av - bv);
+    });
+  }
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = arr.map(ind=>`
+    <tr>
+      <td style="color:var(--paper)">${ind.name}</td>
+      <td class="num">${ind.gdp}%</td>
+      <td class="num">${ind.workforce}%</td>
+      <td class="num"><span class="trend ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span></td>
+      <td>${ind.note}</td>
+    </tr>
+  `).join('');
+}
+
+document.querySelectorAll('#ledgerTable thead th[data-sort]').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const key = th.getAttribute('data-sort');
+    if(tableSortState.key === key){
+      tableSortState.dir *= -1;
+    } else {
+      tableSortState.key = key;
+      tableSortState.dir = 1;
+    }
+    document.querySelectorAll('#ledgerTable thead th[data-sort]').forEach(h=>{
+      h.classList.remove('sort-active');
+      const arrow = h.querySelector('.sort-arrow');
+      if(arrow) arrow.textContent = '';
+    });
+    th.classList.add('sort-active');
+    const arrow = th.querySelector('.sort-arrow');
+    if(arrow) arrow.textContent = tableSortState.dir === 1 ? '▲' : '▼';
+    renderTableBody();
+  });
+});
+
+let currentSubsectorRows = [];
+let subsectorSortState = {key:null, dir:1};
+
+function renderSubsectorTableBody(){
+  let arr = [...currentSubsectorRows];
+  if(subsectorSortState.key){
+    arr.sort((a,b)=>{
+      const key = subsectorSortState.key;
+      if(key === 'industry' || key === 'name'){
+        return subsectorSortState.dir * a[key].localeCompare(b[key]);
+      }
+      return subsectorSortState.dir * (a[key] - b[key]);
+    });
+  }
+  const tbody = document.getElementById('subsectorTableBody');
+  tbody.innerHTML = arr.map(row=>`
+    <tr>
+      <td style="color:var(--paper)">${row.industry}</td>
+      <td>${row.name}</td>
+      <td class="num">${row.pct}%</td>
+      <td class="num">${row.gdpContribution}%</td>
+    </tr>
+  `).join('');
+}
+
+document.querySelectorAll('#subsectorTable thead th[data-sort]').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const key = th.getAttribute('data-sort');
+    if(subsectorSortState.key === key){
+      subsectorSortState.dir *= -1;
+    } else {
+      subsectorSortState.key = key;
+      subsectorSortState.dir = 1;
+    }
+    document.querySelectorAll('#subsectorTable thead th[data-sort]').forEach(h=>{
+      h.classList.remove('sort-active');
+      const arrow = h.querySelector('.sort-arrow');
+      if(arrow) arrow.textContent = '';
+    });
+    th.classList.add('sort-active');
+    const arrow = th.querySelector('.sort-arrow');
+    if(arrow) arrow.textContent = subsectorSortState.dir === 1 ? '▲' : '▼';
+    renderSubsectorTableBody();
+  });
+});
+
+Chart.defaults.color = '#5c6a63';
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.borderColor = 'rgba(31,45,40,0.1)';
+
+function renderSingleYear(code, year){
+  const country = countryData[code];
+  const data = country.years[year];
+  const industries = [...data.industries].sort((a,b)=>b.gdp-a.gdp);
+
+  // Hero text
+  document.getElementById('heroEyebrow').textContent = data.eyebrow;
+  document.title = `${country.name} Top Industries · FY ${YEAR_LABEL[year]} — AU/IDX Board`;
+  document.getElementById('heroTitle').innerHTML = data.titleHtml;
+  document.getElementById('heroSub').textContent = data.sub;
+  const readout = document.getElementById('boardReadout');
+  readout.innerHTML = data.stats.map(s=>`<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${s.k}</div></div>`).join('');
+  document.querySelector('footer div:first-child').textContent = data.footer;
+  document.querySelector('nav .brand').innerHTML = `<span class="dot"></span>${code}/IDX BOARD`;
+  document.getElementById('industriesNote').textContent = `Approximate GDP share, workforce share and earnings direction, FY ${YEAR_LABEL[year]}.`;
+  document.getElementById('earningsChartTitle').textContent = `Earnings direction, FY ${YEAR_LABEL[year]}`;
+
+  // Ticker
+  const tickerTrack = document.getElementById('tickerTrack');
+  let tickerHtml='';
+  for(let r=0;r<2;r++){
+    industries.forEach(ind=>{
+      tickerHtml += `<span class="ticker-item">${ind.name} <b>${ind.gdp}%</b> <span class="arrow ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span></span>`;
+    });
+  }
+  tickerTrack.innerHTML = tickerHtml;
+
+  // Tiles
+  const grid = document.getElementById('industryGrid');
+  const maxGdp = Math.max(...industries.map(i=>i.gdp));
+  grid.innerHTML = industries.map((ind, idx)=>{
+    const subs = getSubcategories(ind.name);
+    const subsHtml = subs.map(s=>`
+      <div class="sub-row">
+        <div class="sub-row-top"><span class="sub-name">${s.name}</span><span class="sub-pct">${s.pct}%</span></div>
+        <div class="sub-bar-track"><div class="sub-bar-fill" style="width:${s.pct}%"></div></div>
+      </div>
+    `).join('');
+    return `
+    <div class="tile">
+      <div class="rank">NO. ${String(idx+1).padStart(2,'0')}</div>
+      <h3>${ind.name}</h3>
+      <span class="trend-chip ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span>
+      <div class="metric-row">
+        <div class="metric"><div class="v">${ind.gdp}%</div><div class="k">GDP share</div></div>
+        <div class="metric"><div class="v">${ind.workforce}%</div><div class="k">Workforce</div></div>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(ind.gdp/maxGdp*100).toFixed(0)}%"></div></div>
+      <p>${ind.note}</p>
+      <button class="subs-toggle" type="button" aria-expanded="false">Sub-sector breakdown <span class="subs-toggle-arrow">▾</span></button>
+      <div class="subs-panel">${subsHtml}</div>
+    </div>
+  `;
+  }).join('');
+
+  // Table
+  currentTableIndustries = industries;
+  renderTableBody();
+
+  // Sub-sector table
+  currentSubsectorRows = [];
+  industries.forEach(ind=>{
+    const subs = getSubcategories(ind.name);
+    subs.forEach(s=>{
+      currentSubsectorRows.push({
+        industry: ind.name,
+        name: s.name,
+        pct: s.pct,
+        gdpContribution: +(ind.gdp * s.pct / 100).toFixed(2)
+      });
+    });
+  });
+  document.getElementById('subsectorNote').textContent = `Each industry's own output broken down into its constituent sub-sectors, FY ${YEAR_LABEL[year]}.`;
+  renderSubsectorTableBody();
+
+  // Charts — destroy old instances first
+  if(gdpChartInstance) gdpChartInstance.destroy();
+  if(scatterChartInstance) scatterChartInstance.destroy();
+  if(earningsChartInstance) earningsChartInstance.destroy();
+
+  gdpChartInstance = new Chart(document.getElementById('gdpChart'), {
+    type:'bar',
+    data:{
+      labels: industries.map(i=>i.name.length>26? i.name.slice(0,24)+'…': i.name),
+      datasets:[{
+        label:'GDP share (%)',
+        data: industries.map(i=>i.gdp),
+        backgroundColor: '#b9702a',
+        borderRadius:2,
+        barThickness:16
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'% of GDP'}}},
+      scales:{
+        x:{ticks:{callback:v=>v+'%'}, grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{grid:{display:false}}
+      }
+    }
+  });
+
+  scatterChartInstance = new Chart(document.getElementById('scatterChart'), {
+    type:'scatter',
+    data:{
+      datasets:[{
+        label:'Industries',
+        data: industries.map((i)=>({x:i.workforce, y:i.gdp, name:i.name})),
+        backgroundColor: palette,
+        pointRadius:8,
+        pointHoverRadius:11,
+        pointBorderColor:'#faf6ee',
+        pointBorderWidth:1
+      }]
+    },
+    options:{
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:(c)=>`${c.raw.name}: ${c.raw.x}% workforce, ${c.raw.y}% GDP`}}
+      },
+      scales:{
+        x:{title:{display:true,text:'Workforce share (%)', color:'#5c6a63'}, grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{title:{display:true,text:'GDP share (%)', color:'#5c6a63'}, grid:{color:'rgba(31,45,40,0.08)'}}
+      }
+    }
+  });
+
+  earningsChartInstance = new Chart(document.getElementById('earningsChart'), {
+    type:'bar',
+    data:{
+      labels: industries.map(i=>i.name),
+      datasets:[{
+        label:'Trend',
+        data: industries.map(i=> i.trend==='up' ? 1 : -1),
+        backgroundColor: industries.map(i=> i.trend==='up' ? '#2f8f6d' : '#b3492e'),
+        borderRadius:2
+      }]
+    },
+    options:{
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          label:(c)=> industries[c.dataIndex].trendVal + ' earnings change'
+        }}
+      },
+      scales:{
+        y:{ticks:{callback:v=> v===1?'Growth':(v===-1?'Decline':'')}, grid:{color:'rgba(31,45,40,0.08)'}},
+        x:{ticks:{autoSkip:false, maxRotation:45, minRotation:30, font:{size:10}}, grid:{display:false}}
+      }
+    }
+  });
+}
+
+function renderCompare(code){
+  const country = countryData[code];
+  const years = YEAR_ORDER.filter(y=>country.years[y]);
+  const latestYear = years[years.length-1];
+  const latest = country.years[latestYear];
+
+  // Hero text — use latest year framing, note it's a comparison
+  document.getElementById('heroEyebrow').textContent = `${country.name} · Comparing FY ${YEAR_LABEL[years[0]]} – FY ${YEAR_LABEL[latestYear]}`;
+  document.title = `${country.name} Industries · ${YEAR_LABEL[years[0]]}–${YEAR_LABEL[latestYear]} Compared — AU/IDX Board`;
+  document.getElementById('heroTitle').innerHTML = `Three years of <span class="accent">${country.name}</span>, compared`;
+  document.getElementById('heroSub').textContent = `How every major industry's GDP share and workforce share has shifted across the last three fiscal years.`;
+  const readout = document.getElementById('boardReadout');
+  readout.innerHTML = latest.stats.map(s=>`<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${s.k}</div></div>`).join('');
+  document.querySelector('footer div:first-child').textContent = latest.footer + ' · MULTI-YEAR COMPARISON VIEW';
+  document.querySelector('nav .brand').innerHTML = `<span class="dot"></span>${code}/IDX BOARD`;
+
+  // Ticker — show latest year's GDP shares with a "3yr" delta
+  const industryNames = country.years[latestYear].industries.map(i=>i.name);
+  const byYearByName = {};
+  years.forEach(y=>{
+    byYearByName[y] = {};
+    country.years[y].industries.forEach(i=>{ byYearByName[y][i.name] = i; });
+  });
+  const tickerTrack = document.getElementById('tickerTrack');
+  let tickerHtml='';
+  for(let r=0;r<2;r++){
+    industryNames.forEach(name=>{
+      const first = byYearByName[years[0]][name].gdp;
+      const last = byYearByName[latestYear][name].gdp;
+      const delta = (last-first).toFixed(1);
+      const dir = delta >= 0 ? 'up' : 'down';
+      tickerHtml += `<span class="ticker-item">${name} <b>${last}%</b> <span class="arrow ${dir}">${dir==='up'?'▲':'▼'} ${delta>=0?'+':''}${delta}pp 3yr</span></span>`;
+    });
+  }
+  tickerTrack.innerHTML = tickerHtml;
+
+  // Toggle sections
+  document.querySelectorAll('.single-year-view').forEach(el=> el.style.display='none');
+  document.getElementById('compareView').style.display='';
+
+  document.getElementById('compareHeading').textContent = `${country.name}: ${YEAR_LABEL[years[0]]} through ${YEAR_LABEL[latestYear]}`;
+  document.getElementById('compareNote').textContent = `GDP share by industry across the last three fiscal years — sorted by ${YEAR_LABEL[latestYear]} weight.`;
+  document.getElementById('compareColYear1').textContent = YEAR_LABEL[years[0]];
+  document.getElementById('compareColYear2').textContent = YEAR_LABEL[years[1]];
+  document.getElementById('compareColYear3').textContent = YEAR_LABEL[years[2]];
+
+  // Sort industries by latest year GDP share
+  const sortedNames = [...industryNames].sort((a,b)=> byYearByName[latestYear][b].gdp - byYearByName[latestYear][a].gdp);
+
+  // Comparison table
+  const tbody = document.getElementById('compareTableBody');
+  tbody.innerHTML = sortedNames.map(name=>{
+    const v1 = byYearByName[years[0]][name].gdp;
+    const v2 = byYearByName[years[1]][name].gdp;
+    const v3 = byYearByName[years[2]][name].gdp;
+    const delta = (v3-v1).toFixed(1);
+    const dir = delta >= 0 ? 'up' : 'down';
+    return `
+      <tr>
+        <td style="color:var(--paper)">${name}</td>
+        <td class="num">${v1}%</td>
+        <td class="num">${v2}%</td>
+        <td class="num">${v3}%</td>
+        <td class="num"><span class="trend ${dir}">${dir==='up'?'▲':'▼'} ${delta>=0?'+':''}${delta}pp</span></td>
+      </tr>
+    `;
+  }).join('');
+
+  // Grouped bar chart: industries x years
+  if(compareBarInstance) compareBarInstance.destroy();
+  if(compareLineInstance) compareLineInstance.destroy();
+
+  const yearColors = {[years[0]]:'#8a6a3e', [years[1]]:'#5c6a63', [years[2]]:'#b9702a'};
+
+  compareBarInstance = new Chart(document.getElementById('compareBarChart'), {
+    type:'bar',
+    data:{
+      labels: sortedNames.map(n=> n.length>24? n.slice(0,22)+'…': n),
+      datasets: years.map(y=>({
+        label: YEAR_LABEL[y],
+        data: sortedNames.map(n=> byYearByName[y][n].gdp),
+        backgroundColor: yearColors[y],
+        borderRadius:2
+      }))
+    },
+    options:{
+      indexAxis:'y',
+      plugins:{
+        legend:{display:true, position:'top', labels:{boxWidth:12, font:{size:11}}},
+        tooltip:{callbacks:{label:(c)=>`${c.dataset.label}: ${c.parsed.x}%`}}
+      },
+      scales:{
+        x:{ticks:{callback:v=>v+'%'}, grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{grid:{display:false}}
+      }
+    }
+  });
+
+  compareLineInstance = new Chart(document.getElementById('compareLineChart'), {
+    type:'line',
+    data:{
+      labels: years.map(y=>YEAR_LABEL[y]),
+      datasets: sortedNames.map((name, idx)=>({
+        label: name.length>28? name.slice(0,26)+'…': name,
+        data: years.map(y=> byYearByName[y][name].gdp),
+        borderColor: palette[idx % palette.length],
+        backgroundColor: palette[idx % palette.length],
+        tension:0.3,
+        pointRadius:4,
+        pointHoverRadius:6,
+        borderWidth:2
+      }))
+    },
+    options:{
+      plugins:{
+        legend:{display:true, position:'bottom', labels:{boxWidth:10, font:{size:10}}},
+        tooltip:{callbacks:{label:(c)=>`${c.dataset.label}: ${c.parsed.y}%`}}
+      },
+      scales:{
+        x:{grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{ticks:{callback:v=>v+'%'}, grid:{color:'rgba(31,45,40,0.08)'}}
+      }
+    }
+  });
+}
+
+function render(code, year){
+  if(year === 'all'){
+    renderCompare(code);
+  } else {
+    document.getElementById('compareView').style.display='none';
+    document.querySelectorAll('.single-year-view').forEach(el=> el.style.display='');
+    renderSingleYear(code, year);
+  }
+}
+
+document.getElementById('countrySelect').addEventListener('change', ()=>{
+  render(document.getElementById('countrySelect').value, document.getElementById('yearSelect').value);
+});
+document.getElementById('yearSelect').addEventListener('change', ()=>{
+  render(document.getElementById('countrySelect').value, document.getElementById('yearSelect').value);
+});
+
+document.getElementById('industryGrid').addEventListener('click', (e)=>{
+  const btn = e.target.closest('.subs-toggle');
+  if(!btn) return;
+  const tile = btn.closest('.tile');
+  const panel = tile.querySelector('.subs-panel');
+  const isOpen = panel.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  btn.classList.toggle('open', isOpen);
+});
+
+render('AU','2025');
+</script>
+
+</body>
+</html>
