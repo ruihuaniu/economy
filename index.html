@@ -152,6 +152,35 @@
     border-color:var(--amber);
     outline:none;
   }
+
+  .country-checklist{
+    display:flex; flex-wrap:wrap; align-items:center; gap:0.9rem;
+    margin-bottom:1.6rem;
+    padding:0.9rem 1.1rem;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+  }
+  .country-checklist-label{
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--paper-dim);
+    width:100%;
+    margin-bottom:0.2rem;
+  }
+  .country-check{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.85rem;
+    color:var(--paper);
+    cursor:pointer;
+    user-select:none;
+  }
+  .country-check input{
+    accent-color:var(--amber);
+    width:15px; height:15px;
+    cursor:pointer;
+  }
   h1.hero-title{
     font-family:'Oswald',sans-serif;
     font-weight:600;
@@ -469,6 +498,13 @@
       <option value="US">🇺🇸 United States</option>
       <option value="CN">🇨🇳 China</option>
       <option value="NZ">🇳🇿 New Zealand</option>
+      <option value="JP">🇯🇵 Japan</option>
+      <option value="KR">🇰🇷 South Korea</option>
+      <option value="SG">🇸🇬 Singapore</option>
+      <option value="DE">🇩🇪 Germany</option>
+      <option value="GB">🇬🇧 United Kingdom</option>
+      <option value="FR">🇫🇷 France</option>
+      <option value="compare">⇄ Compare Countries</option>
     </select>
     <label for="yearSelect" class="country-label">Fiscal year</label>
     <select id="yearSelect" class="country-select mono">
@@ -477,6 +513,20 @@
       <option value="2023">2022–23</option>
       <option value="all">⇄ Compare all years</option>
     </select>
+  </div>
+
+  <div class="country-checklist" id="countryChecklist" style="display:none;">
+    <span class="country-checklist-label">Countries to compare:</span>
+    <label class="country-check"><input type="checkbox" value="AU" checked> 🇦🇺 Australia</label>
+    <label class="country-check"><input type="checkbox" value="US" checked> 🇺🇸 United States</label>
+    <label class="country-check"><input type="checkbox" value="CN" checked> 🇨🇳 China</label>
+    <label class="country-check"><input type="checkbox" value="NZ" checked> 🇳🇿 New Zealand</label>
+    <label class="country-check"><input type="checkbox" value="JP"> 🇯🇵 Japan</label>
+    <label class="country-check"><input type="checkbox" value="KR"> 🇰🇷 South Korea</label>
+    <label class="country-check"><input type="checkbox" value="SG"> 🇸🇬 Singapore</label>
+    <label class="country-check"><input type="checkbox" value="DE"> 🇩🇪 Germany</label>
+    <label class="country-check"><input type="checkbox" value="GB"> 🇬🇧 United Kingdom</label>
+    <label class="country-check"><input type="checkbox" value="FR"> 🇫🇷 France</label>
   </div>
 
   <h1 class="hero-title" id="heroTitle">The board that <span class="accent">runs</span> Australia</h1>
@@ -620,6 +670,38 @@
         <tbody id="compareTableBody"></tbody>
       </table>
     </div>
+  </section>
+
+  <section id="countryCompareView" class="compare-view" style="display:none;">
+    <div class="section-head">
+      <div>
+        <div class="section-num">// 06 · CROSS-COUNTRY COMPARISON</div>
+        <h2 id="countryCompareHeading">Economies, side by side</h2>
+      </div>
+      <p class="section-note" id="countryCompareNote">GDP share by broad industry category, compared across selected countries.</p>
+    </div>
+
+    <div class="chart-panel" style="margin-bottom:1.4rem;">
+      <div class="chart-title">GDP share by category, grouped by country (%)</div>
+      <canvas id="countryCompareBarChart" height="340"></canvas>
+    </div>
+
+    <div class="chart-panel" style="margin-bottom:2.6rem;">
+      <div class="chart-title">Headline snapshot by country</div>
+      <canvas id="countryCompareStatChart" height="220"></canvas>
+    </div>
+
+    <div class="table-wrap">
+      <table id="countryCompareTable">
+        <thead>
+          <tr id="countryCompareTableHead">
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody id="countryCompareTableBody"></tbody>
+      </table>
+    </div>
+    <p class="section-note" style="margin-top:1rem; max-width:60ch;">"—" means that category didn't rank among that country's top nine industries for the selected year — not that it's zero.</p>
   </section>
 
 </main>
@@ -926,6 +1008,450 @@ const countryData = {
         ]
       }
     }
+  },
+  JP: {
+    flag:"🇯🇵", name:"Japan",
+    years:{
+      "2025":{
+        eyebrow:"Cabinet Office National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Japan',
+        sub:"A manufacturing and export powerhouse leaning on a weak yen, with an ageing population reshaping health care and retail demand.",
+        stats:[
+          {v:"$4.1T", k:"Nominal GDP"},
+          {v:"+0.9%", k:"GDP growth FY24–25"},
+          {v:"~71%", k:"Services share of GDP"},
+          {v:"29%", k:"Population aged 65+"}
+        ],
+        footer:"SOURCE: CABINET OFFICE OF JAPAN NATIONAL ACCOUNTS, FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:19.5, workforce:15.0, trend:"up", trendVal:"+ weak yen", note:"A weak yen kept export manufacturers, especially autos and machinery, highly competitive."},
+          {name:"Wholesale & Retail Trade", gdp:13.0, workforce:16.0, trend:"up", trendVal:"+ steady", note:"Inbound tourism spending gave retail an unusual boost this year."},
+          {name:"Real Estate", gdp:12.0, workforce:2.5, trend:"up", trendVal:"+ steady", note:"Tokyo commercial property stayed a rare bright spot versus other advanced economies."},
+          {name:"Health Care & Social Assistance", gdp:8.0, workforce:13.0, trend:"up", trendVal:"+ ageing demand", note:"The world's oldest population keeps structurally lifting health and elder-care spending."},
+          {name:"Finance & Insurance", gdp:5.0, workforce:2.8, trend:"up", trendVal:"+ rate normalization", note:"The Bank of Japan's exit from negative rates began lifting bank margins."},
+          {name:"Construction", gdp:5.5, workforce:7.3, trend:"down", trendVal:"− labour shortage", note:"Chronic labour shortages continue to constrain project completion rates."},
+          {name:"Transport & Postal Services", gdp:5.2, workforce:5.5, trend:"up", trendVal:"+ tourism", note:"Record inbound visitor numbers lifted rail, air and logistics volumes."},
+          {name:"Professional & Scientific Services", gdp:6.8, workforce:6.5, trend:"up", trendVal:"+ steady", note:"R&D-intensive firms kept investing despite broader economic stagnation."},
+          {name:"Agriculture & Fisheries", gdp:1.0, workforce:3.2, trend:"down", trendVal:"− ageing farmers", note:"An ageing, shrinking farming workforce continues to weigh on rural output."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Cabinet Office National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Japan',
+        sub:"Japan formally exited deflation this year, as import costs from a sliding yen fed through to consumer prices.",
+        stats:[
+          {v:"$4.2T", k:"Nominal GDP"},
+          {v:"+1.2%", k:"GDP growth FY23–24"},
+          {v:"~71%", k:"Services share of GDP"},
+          {v:"29%", k:"Population aged 65+"}
+        ],
+        footer:"SOURCE: CABINET OFFICE OF JAPAN NATIONAL ACCOUNTS, FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:19.8, workforce:15.2, trend:"up", trendVal:"+ export gains", note:"Auto exports rebounded as global supply-chain disruptions finally eased."},
+          {name:"Wholesale & Retail Trade", gdp:12.7, workforce:16.1, trend:"up", trendVal:"+ steady", note:"Consumer spending held up despite rising import-driven inflation."},
+          {name:"Real Estate", gdp:11.8, workforce:2.5, trend:"up", trendVal:"+ steady", note:"Foreign buyers took advantage of the weak yen to invest in Japanese property."},
+          {name:"Health Care & Social Assistance", gdp:7.8, workforce:12.8, trend:"up", trendVal:"+ ageing demand", note:"Elder-care spending continued its long-run structural rise."},
+          {name:"Finance & Insurance", gdp:4.7, workforce:2.8, trend:"up", trendVal:"+ policy shift", note:"Markets priced in the Bank of Japan's eventual exit from ultra-low rates."},
+          {name:"Construction", gdp:5.7, workforce:7.4, trend:"down", trendVal:"− labour shortage", note:"A shrinking construction workforce kept project timelines stretched."},
+          {name:"Transport & Postal Services", gdp:4.9, workforce:5.4, trend:"up", trendVal:"+ tourism rebound", note:"Inbound tourism recovered past pre-pandemic levels for the first time."},
+          {name:"Professional & Scientific Services", gdp:6.6, workforce:6.4, trend:"up", trendVal:"+ steady", note:"Corporate R&D spending stayed resilient despite a soft domestic economy."},
+          {name:"Agriculture & Fisheries", gdp:1.1, workforce:3.3, trend:"down", trendVal:"− shrinking workforce", note:"Farmer numbers kept falling, one of the fastest declines among major economies."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Cabinet Office National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Japan',
+        sub:"A weak yen and reopening borders defined the year, as Japan emerged from years of pandemic-era restrictions.",
+        stats:[
+          {v:"$4.3T", k:"Nominal GDP"},
+          {v:"+1.5%", k:"GDP growth FY22–23"},
+          {v:"~70%", k:"Services share of GDP"},
+          {v:"29%", k:"Population aged 65+"}
+        ],
+        footer:"SOURCE: CABINET OFFICE OF JAPAN NATIONAL ACCOUNTS, FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:20.2, workforce:15.5, trend:"up", trendVal:"+ yen tailwind", note:"A rapidly weakening yen gave exporters their strongest competitive edge in years."},
+          {name:"Wholesale & Retail Trade", gdp:12.5, workforce:16.3, trend:"up", trendVal:"+ reopening", note:"Border reopening drove a strong rebound in tourist-linked retail spending."},
+          {name:"Real Estate", gdp:11.5, workforce:2.4, trend:"up", trendVal:"+ steady", note:"Low domestic interest rates kept property investment attractive."},
+          {name:"Health Care & Social Assistance", gdp:7.6, workforce:12.6, trend:"up", trendVal:"+ ageing demand", note:"Continued its multi-decade rise as Japan's population kept ageing."},
+          {name:"Construction", gdp:5.9, workforce:7.6, trend:"up", trendVal:"+ Olympics legacy", note:"Public infrastructure projects kept activity elevated."},
+          {name:"Finance & Insurance", gdp:4.6, workforce:2.9, trend:"down", trendVal:"− ultra-low rates", note:"Persistently negative interest rates kept bank margins under pressure."},
+          {name:"Transport & Postal Services", gdp:4.5, workforce:5.3, trend:"up", trendVal:"+ border reopening", note:"Passenger transport rebounded sharply once entry restrictions were lifted."},
+          {name:"Professional & Scientific Services", gdp:6.4, workforce:6.3, trend:"up", trendVal:"+ steady", note:"Technology and R&D services grew steadily through the recovery."},
+          {name:"Agriculture & Fisheries", gdp:1.2, workforce:3.4, trend:"down", trendVal:"− structural decline", note:"Rural depopulation continued to erode the farming and fishing workforce."}
+        ]
+      }
+    }
+  },
+  KR: {
+    flag:"🇰🇷", name:"South Korea",
+    years:{
+      "2025":{
+        eyebrow:"Bank of Korea National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> South Korea',
+        sub:"A semiconductor supercycle is driving growth, while construction and domestic retail stay subdued under high household debt.",
+        stats:[
+          {v:"$1.9T", k:"Nominal GDP"},
+          {v:"+2.3%", k:"GDP growth FY24–25"},
+          {v:"~62%", k:"Services share of GDP"},
+          {v:"~$150B", k:"Semiconductor exports"}
+        ],
+        footer:"SOURCE: BANK OF KOREA NATIONAL ACCOUNTS, FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:27.5, workforce:16.0, trend:"up", trendVal:"+ chip supercycle", note:"Memory-chip demand from AI data centres drove a sharp export rebound."},
+          {name:"Wholesale & Retail Trade", gdp:9.0, workforce:12.5, trend:"down", trendVal:"− household debt", note:"High household debt levels kept a lid on discretionary consumer spending."},
+          {name:"Construction", gdp:6.5, workforce:7.0, trend:"down", trendVal:"− project defaults", note:"A wave of project-financing defaults slowed new residential starts."},
+          {name:"Finance & Insurance", gdp:6.8, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Export strength and a resilient won supported bank profitability."},
+          {name:"Real Estate", gdp:7.5, workforce:2.0, trend:"down", trendVal:"− price correction", note:"Property prices in some regions kept correcting from 2021 highs."},
+          {name:"Health & Social Welfare", gdp:7.0, workforce:11.5, trend:"up", trendVal:"+ ageing demand", note:"One of the fastest-ageing populations globally kept lifting care demand."},
+          {name:"Information & Communication", gdp:6.0, workforce:3.5, trend:"up", trendVal:"+ AI investment", note:"Domestic tech giants ramped up AI and cloud infrastructure spending."},
+          {name:"Transport & Storage", gdp:4.8, workforce:5.2, trend:"up", trendVal:"+ export logistics", note:"Container throughput at Busan rose alongside the export rebound."},
+          {name:"Agriculture, Forestry & Fishing", gdp:1.8, workforce:4.5, trend:"down", trendVal:"− rural decline", note:"A shrinking, ageing rural workforce continued to weigh on farm output."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Bank of Korea National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> South Korea',
+        sub:"The chip cycle troughed early in the year before rebounding sharply on AI-driven memory demand.",
+        stats:[
+          {v:"$1.8T", k:"Nominal GDP"},
+          {v:"+1.4%", k:"GDP growth FY23–24"},
+          {v:"~62%", k:"Services share of GDP"},
+          {v:"~$120B", k:"Semiconductor exports"}
+        ],
+        footer:"SOURCE: BANK OF KOREA NATIONAL ACCOUNTS, FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:26.0, workforce:16.2, trend:"up", trendVal:"+ recovery", note:"Chip exports recovered in the second half after a weak start to the year."},
+          {name:"Wholesale & Retail Trade", gdp:9.3, workforce:12.6, trend:"down", trendVal:"− weak spending", note:"High interest rates continued to weigh on household consumption."},
+          {name:"Real Estate", gdp:7.8, workforce:2.0, trend:"down", trendVal:"− ongoing correction", note:"Regional property markets stayed weak through most of the year."},
+          {name:"Construction", gdp:6.8, workforce:7.1, trend:"down", trendVal:"− PF crisis", note:"A project-financing liquidity crisis stalled several major developments."},
+          {name:"Finance & Insurance", gdp:6.5, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Banks stayed profitable despite construction-sector credit stress."},
+          {name:"Health & Social Welfare", gdp:6.8, workforce:11.2, trend:"up", trendVal:"+ ageing demand", note:"Continued its steady structural rise as the population aged further."},
+          {name:"Information & Communication", gdp:5.6, workforce:3.4, trend:"up", trendVal:"+ steady", note:"Software and platform firms kept growing despite the broader chip slump."},
+          {name:"Transport & Storage", gdp:4.5, workforce:5.1, trend:"down", trendVal:"− trade slowdown", note:"Weaker global trade volumes early in the year hit logistics activity."},
+          {name:"Agriculture, Forestry & Fishing", gdp:1.9, workforce:4.6, trend:"down", trendVal:"− rural decline", note:"Farm output stayed roughly flat amid a continuing rural workforce decline."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Bank of Korea National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> South Korea',
+        sub:"A sharp global memory-chip downturn hit exports hard, pulling overall growth down to one of its weakest rates in decades.",
+        stats:[
+          {v:"$1.7T", k:"Nominal GDP"},
+          {v:"+1.4%", k:"GDP growth FY22–23"},
+          {v:"~61%", k:"Services share of GDP"},
+          {v:"~$100B", k:"Semiconductor exports"}
+        ],
+        footer:"SOURCE: BANK OF KOREA NATIONAL ACCOUNTS, FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:25.0, workforce:16.5, trend:"down", trendVal:"− chip downturn", note:"A steep global memory-chip price crash dragged export revenue down sharply."},
+          {name:"Wholesale & Retail Trade", gdp:9.6, workforce:12.8, trend:"down", trendVal:"− rate hikes", note:"Aggressive rate hikes to tame inflation curbed household spending."},
+          {name:"Real Estate", gdp:8.2, workforce:2.1, trend:"down", trendVal:"− sharp correction", note:"One of the sharpest property downturns in decades hit major cities."},
+          {name:"Construction", gdp:7.0, workforce:7.3, trend:"up", trendVal:"+ backlog", note:"Builders worked through a large pipeline of pre-approved projects."},
+          {name:"Finance & Insurance", gdp:6.2, workforce:2.9, trend:"down", trendVal:"− bond market stress", note:"A brief bond-market liquidity scare rattled financial institutions."},
+          {name:"Health & Social Welfare", gdp:6.5, workforce:10.9, trend:"up", trendVal:"+ ageing demand", note:"Kept expanding steadily, insulated from the broader export downturn."},
+          {name:"Information & Communication", gdp:5.2, workforce:3.3, trend:"down", trendVal:"− tech pullback", note:"Global tech-sector layoffs reached Korean platform and software firms."},
+          {name:"Transport & Storage", gdp:4.7, workforce:5.0, trend:"down", trendVal:"− trade slump", note:"Falling export volumes weighed heavily on shipping and freight demand."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.0, workforce:4.7, trend:"down", trendVal:"− rural decline", note:"Continued a long-run structural decline in workforce and output share."}
+        ]
+      }
+    }
+  },
+  SG: {
+    flag:"🇸🇬", name:"Singapore",
+    years:{
+      "2025":{
+        eyebrow:"Singapore Dept of Statistics · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Singapore',
+        sub:"A finance, trade and logistics hub punching far above its size, with electronics manufacturing and shipping anchoring the goods side.",
+        stats:[
+          {v:"$530B", k:"Nominal GDP"},
+          {v:"+3.0%", k:"GDP growth FY24–25"},
+          {v:"~75%", k:"Services share of GDP"},
+          {v:"#2", k:"Global container port by volume"}
+        ],
+        footer:"SOURCE: SINGAPORE DEPARTMENT OF STATISTICS, FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Financial & Insurance Services", gdp:14.5, workforce:6.0, trend:"up", trendVal:"+ wealth inflows", note:"Continued to attract wealth-management inflows amid regional financial-hub competition."},
+          {name:"Manufacturing", gdp:18.0, workforce:12.0, trend:"up", trendVal:"+ electronics upcycle", note:"Semiconductor and electronics production benefited from the global chip upcycle."},
+          {name:"Wholesale & Retail Trade", gdp:16.0, workforce:14.0, trend:"up", trendVal:"+ entrepot trade", note:"Singapore's role as a regional entrepot trade hub kept volumes elevated."},
+          {name:"Transport & Storage", gdp:8.5, workforce:6.5, trend:"up", trendVal:"+ port volumes", note:"The port handled record container throughput as global trade rebounded."},
+          {name:"Business Services", gdp:14.0, workforce:15.0, trend:"up", trendVal:"+ steady", note:"Professional and administrative services grew alongside regional HQ relocations."},
+          {name:"Information & Communications", gdp:6.0, workforce:4.0, trend:"up", trendVal:"+ tech hub growth", note:"Continued to draw regional tech headquarters and data-centre investment."},
+          {name:"Construction", gdp:3.5, workforce:5.5, trend:"up", trendVal:"+ steady", note:"Public housing and infrastructure projects kept activity elevated."},
+          {name:"Accommodation & Food Services", gdp:2.2, workforce:6.0, trend:"up", trendVal:"+ tourism rebound", note:"Visitor arrivals continued recovering toward pre-pandemic levels."},
+          {name:"Real Estate", gdp:4.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Prime commercial and residential property stayed in strong demand."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Singapore Dept of Statistics · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Singapore',
+        sub:"Trade and manufacturing cooled with the global electronics downturn, while financial services stayed resilient.",
+        stats:[
+          {v:"$500B", k:"Nominal GDP"},
+          {v:"+1.1%", k:"GDP growth FY23–24"},
+          {v:"~75%", k:"Services share of GDP"},
+          {v:"#2", k:"Global container port by volume"}
+        ],
+        footer:"SOURCE: SINGAPORE DEPARTMENT OF STATISTICS, FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Financial & Insurance Services", gdp:14.2, workforce:6.0, trend:"up", trendVal:"+ steady", note:"Stayed resilient even as the broader trade-dependent economy slowed."},
+          {name:"Wholesale & Retail Trade", gdp:15.8, workforce:14.1, trend:"down", trendVal:"− soft trade", note:"Slower global electronics trade weighed on entrepot volumes."},
+          {name:"Manufacturing", gdp:16.5, workforce:12.2, trend:"down", trendVal:"− chip downturn", note:"Global semiconductor downturn cut into electronics output for most of the year."},
+          {name:"Business Services", gdp:13.8, workforce:14.9, trend:"up", trendVal:"+ steady", note:"Continued attracting regional headquarters and professional service firms."},
+          {name:"Transport & Storage", gdp:8.0, workforce:6.4, trend:"down", trendVal:"− soft trade", note:"Container throughput growth slowed alongside weaker global trade."},
+          {name:"Information & Communications", gdp:5.7, workforce:3.9, trend:"up", trendVal:"+ steady", note:"Data-centre and tech investment kept flowing in despite the trade slowdown."},
+          {name:"Construction", gdp:3.6, workforce:5.6, trend:"up", trendVal:"+ steady", note:"Public infrastructure projects continued largely on schedule."},
+          {name:"Real Estate", gdp:4.1, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Property demand held firm despite cooling measures on residential purchases."},
+          {name:"Accommodation & Food Services", gdp:2.1, workforce:5.9, trend:"up", trendVal:"+ tourism rebound", note:"Visitor numbers kept climbing back toward pre-pandemic levels."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Singapore Dept of Statistics · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Singapore',
+        sub:"Post-reopening momentum carried services and tourism, while high inflation and rising rates began to weigh on households.",
+        stats:[
+          {v:"$470B", k:"Nominal GDP"},
+          {v:"+3.6%", k:"GDP growth FY22–23"},
+          {v:"~74%", k:"Services share of GDP"},
+          {v:"#1", k:"Global container port by volume"}
+        ],
+        footer:"SOURCE: SINGAPORE DEPARTMENT OF STATISTICS, FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:19.5, workforce:12.5, trend:"up", trendVal:"+ steady", note:"Electronics manufacturing stayed strong through most of the year."},
+          {name:"Wholesale & Retail Trade", gdp:16.2, workforce:14.3, trend:"up", trendVal:"+ reopening", note:"Trade volumes benefited from a broad post-pandemic global reopening."},
+          {name:"Financial & Insurance Services", gdp:13.8, workforce:5.9, trend:"up", trendVal:"+ wealth inflows", note:"Regional wealth-management inflows accelerated amid global market volatility."},
+          {name:"Business Services", gdp:13.2, workforce:14.7, trend:"up", trendVal:"+ steady", note:"Corporate relocations to Singapore continued at a brisk pace."},
+          {name:"Transport & Storage", gdp:8.6, workforce:6.6, trend:"up", trendVal:"+ record port volume", note:"The port recorded some of its highest-ever container throughput figures."},
+          {name:"Accommodation & Food Services", gdp:2.0, workforce:5.8, trend:"up", trendVal:"+ border reopening", note:"Tourism rebounded sharply as regional travel restrictions were lifted."},
+          {name:"Information & Communications", gdp:5.3, workforce:3.8, trend:"up", trendVal:"+ steady", note:"Tech-sector investment stayed strong despite global rate hikes."},
+          {name:"Construction", gdp:3.7, workforce:5.7, trend:"up", trendVal:"+ steady", note:"Construction activity rebounded as pandemic-era labour restrictions eased."},
+          {name:"Real Estate", gdp:3.9, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Property prices stayed firm despite successive rounds of cooling measures."}
+        ]
+      }
+    }
+  },
+  DE: {
+    flag:"🇩🇪", name:"Germany",
+    years:{
+      "2025":{
+        eyebrow:"Destatis National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Germany',
+        sub:"Europe's largest economy, still working through an energy-cost shock and a painful transition in its flagship auto industry.",
+        stats:[
+          {v:"$4.7T", k:"Nominal GDP"},
+          {v:"+0.2%", k:"GDP growth FY24–25"},
+          {v:"~70%", k:"Services share of GDP"},
+          {v:"~4.7M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: DESTATIS (FEDERAL STATISTICAL OFFICE OF GERMANY), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:20.5, workforce:18.0, trend:"down", trendVal:"− auto transition", note:"Automakers kept struggling with the costly shift to EVs amid Chinese competition."},
+          {name:"Public Administration & Defence", gdp:9.5, workforce:8.0, trend:"up", trendVal:"+ defence spending", note:"A major increase in defence spending lifted public-sector output."},
+          {name:"Real Estate", gdp:10.5, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Higher borrowing costs continued weighing on commercial property values."},
+          {name:"Wholesale & Retail Trade", gdp:9.8, workforce:13.5, trend:"down", trendVal:"− weak consumption", note:"Cautious consumer spending kept retail growth subdued."},
+          {name:"Health & Social Work", gdp:8.0, workforce:12.5, trend:"up", trendVal:"+ demand", note:"An ageing population kept structurally lifting health and care spending."},
+          {name:"Professional, Scientific & Technical Services", gdp:7.5, workforce:8.5, trend:"up", trendVal:"+ steady", note:"Engineering and R&D-intensive services stayed a relative bright spot."},
+          {name:"Construction", gdp:5.5, workforce:7.0, trend:"down", trendVal:"− high rates", note:"Higher interest rates continued to suppress new residential building."},
+          {name:"Finance & Insurance", gdp:4.2, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Higher rates for longer supported bank net interest margins."},
+          {name:"Transport & Storage", gdp:4.8, workforce:5.0, trend:"down", trendVal:"− export slowdown", note:"Weaker export volumes weighed on freight and logistics activity."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Destatis National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Germany',
+        sub:"Germany tipped into a mild recession as energy-intensive industry output kept contracting after the 2022 gas-price shock.",
+        stats:[
+          {v:"$4.5T", k:"Nominal GDP"},
+          {v:"−0.3%", k:"GDP growth FY23–24"},
+          {v:"~70%", k:"Services share of GDP"},
+          {v:"~4.8M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: DESTATIS (FEDERAL STATISTICAL OFFICE OF GERMANY), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:21.2, workforce:18.3, trend:"down", trendVal:"− energy costs", note:"Energy-intensive chemical and industrial output kept contracting through the year."},
+          {name:"Real Estate", gdp:10.8, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Commercial real estate values fell further as financing costs stayed high."},
+          {name:"Public Administration & Defence", gdp:9.2, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Public spending stayed a stabilising force amid private-sector weakness."},
+          {name:"Wholesale & Retail Trade", gdp:10.0, workforce:13.6, trend:"down", trendVal:"− inflation squeeze", note:"High inflation eroded real household spending power through the year."},
+          {name:"Health & Social Work", gdp:7.8, workforce:12.3, trend:"up", trendVal:"+ demand", note:"Continued its steady structural rise as care demand kept increasing."},
+          {name:"Professional, Scientific & Technical Services", gdp:7.3, workforce:8.4, trend:"up", trendVal:"+ steady", note:"Engineering services stayed relatively resilient versus heavy industry."},
+          {name:"Construction", gdp:5.8, workforce:7.2, trend:"down", trendVal:"− housing slump", note:"New housing starts fell sharply from their 2021 peak."},
+          {name:"Finance & Insurance", gdp:4.0, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Higher interest rates continued lifting bank profitability."},
+          {name:"Transport & Storage", gdp:5.0, workforce:5.1, trend:"down", trendVal:"− weak exports", note:"Falling industrial exports weighed heavily on freight volumes."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Destatis National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Germany',
+        sub:"The immediate aftermath of the energy shock: gas rationing fears, a scramble to diversify supply, and industrial output down sharply.",
+        stats:[
+          {v:"$4.3T", k:"Nominal GDP"},
+          {v:"−0.1%", k:"GDP growth FY22–23"},
+          {v:"~69%", k:"Services share of GDP"},
+          {v:"~5.0M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: DESTATIS (FEDERAL STATISTICAL OFFICE OF GERMANY), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:22.0, workforce:18.7, trend:"down", trendVal:"− energy shock", note:"The 2022 gas-price shock forced some energy-intensive plants to curb output."},
+          {name:"Real Estate", gdp:11.2, workforce:2.1, trend:"up", trendVal:"+ steady", note:"Property values held up early in the year before rate hikes began to bite."},
+          {name:"Wholesale & Retail Trade", gdp:10.3, workforce:13.8, trend:"down", trendVal:"− inflation shock", note:"Surging energy and food prices sharply cut into real consumer spending."},
+          {name:"Public Administration & Defence", gdp:8.9, workforce:7.8, trend:"up", trendVal:"+ energy subsidies", note:"Government energy-relief packages lifted public-sector spending."},
+          {name:"Health & Social Work", gdp:7.6, workforce:12.1, trend:"up", trendVal:"+ demand", note:"Kept growing steadily, largely insulated from the energy crisis."},
+          {name:"Professional, Scientific & Technical Services", gdp:7.1, workforce:8.3, trend:"up", trendVal:"+ steady", note:"Business and engineering services stayed a relative bright spot."},
+          {name:"Construction", gdp:6.2, workforce:7.4, trend:"up", trendVal:"+ backlog", note:"Builders worked through a large pipeline of pre-crisis approvals."},
+          {name:"Finance & Insurance", gdp:3.8, workforce:2.7, trend:"up", trendVal:"+ rate normalization", note:"Rising ECB rates began lifting bank net interest income."},
+          {name:"Transport & Storage", gdp:5.3, workforce:5.2, trend:"down", trendVal:"− energy costs", note:"Higher fuel and energy costs squeezed freight and logistics margins."}
+        ]
+      }
+    }
+  },
+  GB: {
+    flag:"🇬🇧", name:"United Kingdom",
+    years:{
+      "2025":{
+        eyebrow:"ONS National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> the United Kingdom',
+        sub:"A financial-services-led economy still adjusting to post-Brexit trade frictions, with London anchoring a services-heavy structure.",
+        stats:[
+          {v:"$3.6T", k:"Nominal GDP"},
+          {v:"+1.1%", k:"GDP growth FY24–25"},
+          {v:"~81%", k:"Services share of GDP"},
+          {v:"~1.1M", k:"Jobs in financial services"}
+        ],
+        footer:"SOURCE: OFFICE FOR NATIONAL STATISTICS (ONS), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Financial & Insurance Services", gdp:12.0, workforce:3.5, trend:"up", trendVal:"+ steady", note:"London retained its position as Europe's largest financial-services hub."},
+          {name:"Real Estate", gdp:13.0, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Owner-occupied housing imputed rent remains the single largest GDP contributor."},
+          {name:"Professional, Scientific & Technical Services", gdp:9.5, workforce:9.0, trend:"up", trendVal:"+ steady", note:"Legal, consulting and technical services kept growing faster than the broader economy."},
+          {name:"Manufacturing", gdp:8.8, workforce:7.5, trend:"down", trendVal:"− trade friction", note:"Post-Brexit customs friction continued to weigh on manufacturing exports to the EU."},
+          {name:"Health & Social Work", gdp:8.0, workforce:13.0, trend:"up", trendVal:"+ NHS demand", note:"NHS and social-care demand kept rising alongside a growing waiting-list backlog."},
+          {name:"Wholesale & Retail Trade", gdp:8.5, workforce:13.5, trend:"down", trendVal:"− cost pressure", note:"Cost-of-living pressures kept discretionary consumer spending subdued."},
+          {name:"Information & Communication", gdp:6.5, workforce:4.5, trend:"up", trendVal:"+ tech investment", note:"London's tech sector kept attracting venture capital despite broader caution."},
+          {name:"Construction", gdp:6.0, workforce:7.0, trend:"up", trendVal:"+ steady", note:"Public infrastructure projects helped offset a slower private housing market."},
+          {name:"Education", gdp:5.5, workforce:8.5, trend:"up", trendVal:"+ steady", note:"Higher-education exports via international student enrolment stayed a key earner."}
+        ]
+      },
+      "2024":{
+        eyebrow:"ONS National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> the United Kingdom',
+        sub:"The UK narrowly avoided recession as high interest rates cooled housing and retail, while financial services stayed resilient.",
+        stats:[
+          {v:"$3.3T", k:"Nominal GDP"},
+          {v:"+0.3%", k:"GDP growth FY23–24"},
+          {v:"~81%", k:"Services share of GDP"},
+          {v:"~1.1M", k:"Jobs in financial services"}
+        ],
+        footer:"SOURCE: OFFICE FOR NATIONAL STATISTICS (ONS), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:13.3, workforce:1.8, trend:"down", trendVal:"− rate pressure", note:"Higher mortgage rates sharply cooled housing transactions through the year."},
+          {name:"Financial & Insurance Services", gdp:11.8, workforce:3.5, trend:"up", trendVal:"+ steady", note:"Higher interest rates supported bank margins despite broader economic softness."},
+          {name:"Professional, Scientific & Technical Services", gdp:9.3, workforce:8.9, trend:"up", trendVal:"+ steady", note:"Business and legal services stayed resilient amid the wider slowdown."},
+          {name:"Wholesale & Retail Trade", gdp:8.7, workforce:13.6, trend:"down", trendVal:"− cost pressure", note:"Persistent inflation kept squeezing household discretionary spending."},
+          {name:"Manufacturing", gdp:9.0, workforce:7.6, trend:"down", trendVal:"− trade friction", note:"EU trade friction and weak export demand kept output subdued."},
+          {name:"Health & Social Work", gdp:7.8, workforce:12.8, trend:"up", trendVal:"+ NHS demand", note:"NHS waiting lists kept growing, adding pressure on social-care services."},
+          {name:"Construction", gdp:6.2, workforce:7.1, trend:"down", trendVal:"− high rates", note:"High borrowing costs continued to slow new residential building."},
+          {name:"Information & Communication", gdp:6.1, workforce:4.3, trend:"up", trendVal:"+ steady", note:"Tech investment held up better than most other sectors."},
+          {name:"Education", gdp:5.6, workforce:8.6, trend:"up", trendVal:"+ steady", note:"International student numbers stayed a resilient source of export revenue."}
+        ]
+      },
+      "2023":{
+        eyebrow:"ONS National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> the United Kingdom',
+        sub:"Soaring energy prices and the fastest inflation in decades squeezed households, as the Bank of England raised rates sharply.",
+        stats:[
+          {v:"$3.1T", k:"Nominal GDP"},
+          {v:"+0.4%", k:"GDP growth FY22–23"},
+          {v:"~80%", k:"Services share of GDP"},
+          {v:"~1.0M", k:"Jobs in financial services"}
+        ],
+        footer:"SOURCE: OFFICE FOR NATIONAL STATISTICS (ONS), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:13.6, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Housing activity held up early in the year before rate rises took hold."},
+          {name:"Financial & Insurance Services", gdp:11.5, workforce:3.4, trend:"up", trendVal:"+ rate-cycle gains", note:"Rising interest rates began lifting bank net interest margins."},
+          {name:"Wholesale & Retail Trade", gdp:9.0, workforce:13.8, trend:"down", trendVal:"− energy shock", note:"Soaring energy bills sharply cut into household discretionary spending."},
+          {name:"Manufacturing", gdp:9.3, workforce:7.8, trend:"down", trendVal:"− energy costs", note:"High energy costs weighed heavily on energy-intensive manufacturers."},
+          {name:"Professional, Scientific & Technical Services", gdp:9.0, workforce:8.7, trend:"up", trendVal:"+ steady", note:"Business services stayed relatively insulated from the cost-of-living crisis."},
+          {name:"Health & Social Work", gdp:7.5, workforce:12.5, trend:"up", trendVal:"+ NHS demand", note:"Post-pandemic care backlogs kept demand for health services elevated."},
+          {name:"Construction", gdp:6.5, workforce:7.3, trend:"up", trendVal:"+ backlog", note:"Builders worked through a pipeline of projects approved before rate hikes began."},
+          {name:"Information & Communication", gdp:5.8, workforce:4.1, trend:"up", trendVal:"+ steady", note:"Tech-sector investment stayed strong despite the broader cost-of-living crisis."},
+          {name:"Education", gdp:5.4, workforce:8.4, trend:"up", trendVal:"+ steady", note:"International student enrolment rebounded strongly post-pandemic."}
+        ]
+      }
+    }
+  },
+  FR: {
+    flag:"🇫🇷", name:"France",
+    years:{
+      "2025":{
+        eyebrow:"INSEE National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> France',
+        sub:"A large, diversified economy with a sizeable public sector, where manufacturing and agriculture remain more prominent than in most European peers.",
+        stats:[
+          {v:"$3.2T", k:"Nominal GDP"},
+          {v:"+0.8%", k:"GDP growth FY24–25"},
+          {v:"~72%", k:"Services share of GDP"},
+          {v:"~57%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: INSEE (FRENCH NATIONAL INSTITUTE OF STATISTICS), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:13.5, workforce:10.5, trend:"up", trendVal:"+ aerospace demand", note:"Aerospace and luxury-goods exporters kept output growing despite a soft eurozone backdrop."},
+          {name:"Real Estate", gdp:12.5, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Higher mortgage rates continued to weigh on residential property transactions."},
+          {name:"Public Administration & Defence", gdp:11.0, workforce:9.5, trend:"up", trendVal:"+ deficit spending", note:"Elevated public spending kept the budget deficit above EU targets."},
+          {name:"Wholesale & Retail Trade", gdp:9.8, workforce:13.0, trend:"down", trendVal:"− weak spending", note:"Cautious household spending kept retail growth below the eurozone average."},
+          {name:"Professional, Scientific & Technical Services", gdp:8.5, workforce:8.8, trend:"up", trendVal:"+ steady", note:"Consulting and engineering services stayed a relative bright spot."},
+          {name:"Health & Social Work", gdp:8.2, workforce:13.5, trend:"up", trendVal:"+ demand", note:"An ageing population kept structurally lifting health and social-care spending."},
+          {name:"Finance & Insurance", gdp:4.3, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Higher-for-longer ECB rates continued supporting bank margins."},
+          {name:"Construction", gdp:5.5, workforce:6.8, trend:"down", trendVal:"− housing slump", note:"New housing starts fell to some of their lowest levels in over a decade."},
+          {name:"Agriculture, Forestry & Fishing", gdp:1.7, workforce:2.5, trend:"down", trendVal:"− farmer protests", note:"Falling farm incomes fuelled nationwide farmer protests over EU trade rules."}
+        ]
+      },
+      "2024":{
+        eyebrow:"INSEE National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> France',
+        sub:"Growth stayed sluggish across the eurozone's second-largest economy, weighed down by high rates and political uncertainty.",
+        stats:[
+          {v:"$3.1T", k:"Nominal GDP"},
+          {v:"+0.9%", k:"GDP growth FY23–24"},
+          {v:"~72%", k:"Services share of GDP"},
+          {v:"~57%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: INSEE (FRENCH NATIONAL INSTITUTE OF STATISTICS), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:13.2, workforce:10.6, trend:"up", trendVal:"+ steady", note:"Aerospace order backlogs kept factory output growing steadily."},
+          {name:"Real Estate", gdp:12.9, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Property transaction volumes fell to their lowest level in over a decade."},
+          {name:"Public Administration & Defence", gdp:10.8, workforce:9.4, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated amid political pressure to protect services."},
+          {name:"Wholesale & Retail Trade", gdp:10.0, workforce:13.1, trend:"down", trendVal:"− inflation squeeze", note:"Persistent inflation kept eroding real household purchasing power."},
+          {name:"Health & Social Work", gdp:8.0, workforce:13.3, trend:"up", trendVal:"+ demand", note:"Continued its steady structural rise as care demand kept increasing."},
+          {name:"Professional, Scientific & Technical Services", gdp:8.3, workforce:8.7, trend:"up", trendVal:"+ steady", note:"Business services growth outpaced the broader stagnant economy."},
+          {name:"Construction", gdp:5.8, workforce:7.0, trend:"down", trendVal:"− high rates", note:"High borrowing costs kept new housing starts near multi-year lows."},
+          {name:"Finance & Insurance", gdp:4.1, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Bank margins benefited from rates staying higher for longer."},
+          {name:"Agriculture, Forestry & Fishing", gdp:1.8, workforce:2.6, trend:"down", trendVal:"− cost pressure", note:"Rising input costs squeezed farm incomes across most regions."}
+        ]
+      },
+      "2023":{
+        eyebrow:"INSEE National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> France',
+        sub:"Energy-price shocks and inflation dominated the year, with government price caps cushioning households from the worst of the impact.",
+        stats:[
+          {v:"$2.9T", k:"Nominal GDP"},
+          {v:"+1.1%", k:"GDP growth FY22–23"},
+          {v:"~71%", k:"Services share of GDP"},
+          {v:"~58%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: INSEE (FRENCH NATIONAL INSTITUTE OF STATISTICS), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:13.3, workforce:2.1, trend:"up", trendVal:"+ steady", note:"Property activity held up in the first half before rate hikes began to bite."},
+          {name:"Manufacturing", gdp:13.0, workforce:10.8, trend:"up", trendVal:"+ steady", note:"Aerospace and defence manufacturing stayed resilient through the energy shock."},
+          {name:"Public Administration & Defence", gdp:11.2, workforce:9.6, trend:"up", trendVal:"+ energy subsidies", note:"Government energy price-cap schemes lifted public-sector spending."},
+          {name:"Wholesale & Retail Trade", gdp:10.3, workforce:13.3, trend:"down", trendVal:"− energy shock", note:"Surging energy costs cut into real household spending power."},
+          {name:"Health & Social Work", gdp:7.8, workforce:13.1, trend:"up", trendVal:"+ demand", note:"Kept expanding steadily, largely insulated from the energy-price shock."},
+          {name:"Professional, Scientific & Technical Services", gdp:8.0, workforce:8.6, trend:"up", trendVal:"+ steady", note:"Business and consulting services stayed a relative bright spot."},
+          {name:"Construction", gdp:6.2, workforce:7.2, trend:"up", trendVal:"+ backlog", note:"Builders worked through a pipeline of pre-crisis approvals."},
+          {name:"Finance & Insurance", gdp:3.9, workforce:2.7, trend:"up", trendVal:"+ rate normalization", note:"Rising ECB rates began lifting bank net interest income."},
+          {name:"Agriculture, Forestry & Fishing", gdp:1.9, workforce:2.7, trend:"down", trendVal:"− input costs", note:"Soaring fertiliser and energy costs squeezed farm profitability."}
+        ]
+      }
+    }
   }
 };
 
@@ -940,77 +1466,83 @@ let tableSortState = {key:null, dir:1};
 // Approximate within-industry sub-sector breakdowns, matched by keyword.
 // Percentages are of that industry's own output, not of total GDP.
 const SUBCATEGORY_MAP = [
-  { match:["health"], subs:[
+  { match:["health"], label:"Health & Social Care", subs:[
     {name:"Hospitals", pct:38},
     {name:"Aged & residential care", pct:24},
     {name:"Allied health & primary care", pct:20},
     {name:"Social assistance services", pct:18}
   ]},
-  { match:["mining"], subs:[
+  { match:["mining"], label:"Mining & Resources", subs:[
     {name:"Iron ore & metal ores", pct:36},
     {name:"Coal", pct:24},
     {name:"Oil & gas extraction", pct:26},
     {name:"Other mining & quarrying", pct:14}
   ]},
-  { match:["construction"], subs:[
+  { match:["construction"], label:"Construction", subs:[
     {name:"Residential building", pct:34},
     {name:"Non-residential building", pct:26},
     {name:"Heavy & civil infrastructure", pct:28},
     {name:"Trade services & fit-out", pct:12}
   ]},
-  { match:["professional","business services"], subs:[
+  { match:["professional","business services"], label:"Professional & Business Services", subs:[
     {name:"Legal & accounting", pct:26},
     {name:"Consulting & management", pct:24},
     {name:"Engineering & technical", pct:28},
     {name:"Computer systems design", pct:22}
   ]},
-  { match:["financial","finance"], subs:[
+  { match:["financial","finance"], label:"Financial Services", subs:[
     {name:"Banking & lending", pct:44},
     {name:"Insurance & superannuation", pct:30},
     {name:"Capital markets & funds", pct:26}
   ]},
-  { match:["manufacturing"], subs:[
+  { match:["manufacturing"], label:"Manufacturing", subs:[
     {name:"Food & beverage processing", pct:26},
     {name:"Machinery & equipment", pct:22},
     {name:"Chemicals & materials", pct:20},
     {name:"Electronics & vehicles", pct:32}
   ]},
-  { match:["transport"], subs:[
+  { match:["transport"], label:"Transport & Logistics", subs:[
     {name:"Road freight & logistics", pct:34},
     {name:"Rail & maritime", pct:22},
     {name:"Air transport", pct:18},
     {name:"Postal & warehousing", pct:26}
   ]},
-  { match:["retail","wholesale"], subs:[
+  { match:["retail","wholesale"], label:"Retail & Wholesale Trade", subs:[
     {name:"Food & grocery retail", pct:30},
     {name:"General & department retail", pct:24},
     {name:"Wholesale trade", pct:32},
     {name:"E-commerce & online retail", pct:14}
   ]},
-  { match:["agriculture"], subs:[
+  { match:["agriculture"], label:"Agriculture & Fisheries", subs:[
     {name:"Livestock & dairy", pct:36},
     {name:"Crops & grains", pct:30},
     {name:"Forestry & logging", pct:14},
     {name:"Fishing & aquaculture", pct:20}
   ]},
-  { match:["real estate"], subs:[
+  { match:["real estate"], label:"Real Estate", subs:[
     {name:"Owner-occupied housing (imputed rent)", pct:48},
     {name:"Commercial leasing", pct:28},
     {name:"Real estate services & agents", pct:24}
   ]},
-  { match:["government"], subs:[
+  { match:["government","public administration","defence"], label:"Government & Public Admin", subs:[
     {name:"Public administration", pct:38},
     {name:"Defence", pct:22},
     {name:"Education (public)", pct:24},
     {name:"Public safety & justice", pct:16}
   ]},
-  { match:["information","software","tech"], subs:[
+  { match:["education"], label:"Education", subs:[
+    {name:"Primary & secondary schooling", pct:36},
+    {name:"Higher education & universities", pct:34},
+    {name:"Vocational & technical training", pct:18},
+    {name:"International student services", pct:12}
+  ]},
+  { match:["information","software","tech"], label:"Information & Technology", subs:[
     {name:"Software & IT services", pct:40},
     {name:"Data processing & hosting", pct:22},
     {name:"Telecommunications", pct:22},
     {name:"Publishing & media", pct:16}
   ]},
-  { match:["accommodation","food services"], subs:[
+  { match:["accommodation","food services"], label:"Accommodation & Food Services", subs:[
     {name:"Hotels & accommodation", pct:42},
     {name:"Cafes & restaurants", pct:38},
     {name:"Catering & takeaway", pct:20}
@@ -1026,6 +1558,12 @@ function getSubcategories(industryName){
   const lower = industryName.toLowerCase();
   const found = SUBCATEGORY_MAP.find(entry=> entry.match.some(k=> lower.includes(k)));
   return found ? found.subs : DEFAULT_SUBS;
+}
+
+function getCategoryLabel(industryName){
+  const lower = industryName.toLowerCase();
+  const found = SUBCATEGORY_MAP.find(entry=> entry.match.some(k=> lower.includes(k)));
+  return found ? found.label : industryName;
 }
 
 function trendNumeric(ind){ return ind.trend === 'up' ? 1 : -1; }
@@ -1407,10 +1945,158 @@ function renderCompare(code){
   });
 }
 
+let countryCompareBarInstance, countryCompareStatInstance;
+
+function renderCountryCompare(codes, year){
+  const yr = (year === 'all') ? '2025' : year;
+  const selected = codes.filter(c=> countryData[c]);
+  if(selected.length === 0){ return; }
+
+  // Hero
+  const names = selected.map(c=> countryData[c].name);
+  document.getElementById('heroEyebrow').textContent = `Cross-country comparison · FY ${YEAR_LABEL[yr]}`;
+  document.getElementById('heroTitle').innerHTML = `Economies, <span class="accent">compared</span>`;
+  document.getElementById('heroSub').textContent = `${names.join(', ')} — GDP share by broad industry category, side by side for FY ${YEAR_LABEL[yr]}.`;
+  const readout = document.getElementById('boardReadout');
+  readout.innerHTML = selected.slice(0,4).map(c=>{
+    const s = countryData[c].years[yr].stats[1]; // GDP growth stat
+    return `<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${countryData[c].flag} ${countryData[c].name} — ${s.k}</div></div>`;
+  }).join('');
+  document.querySelector('footer div:first-child').textContent = `MULTI-COUNTRY COMPARISON · FY ${YEAR_LABEL[yr]} · FIGURES ARE ILLUSTRATIVE APPROXIMATIONS`;
+  document.querySelector('nav .brand').innerHTML = `<span class="dot"></span>CMP/IDX BOARD`;
+  document.title = `Compare ${selected.join('-')} Industries · FY ${YEAR_LABEL[yr]} — AU/IDX Board`;
+
+  // Ticker — top category per country
+  const tickerTrack = document.getElementById('tickerTrack');
+  let tickerHtml='';
+  for(let r=0;r<2;r++){
+    selected.forEach(c=>{
+      const top = [...countryData[c].years[yr].industries].sort((a,b)=>b.gdp-a.gdp)[0];
+      tickerHtml += `<span class="ticker-item">${countryData[c].flag} ${countryData[c].name} <b>${top.gdp}%</b> <span class="arrow up">${getCategoryLabel(top.name)}</span></span>`;
+    });
+  }
+  tickerTrack.innerHTML = tickerHtml;
+
+  // Toggle sections
+  document.querySelectorAll('.single-year-view').forEach(el=> el.style.display='none');
+  document.getElementById('compareView').style.display='none';
+  document.getElementById('countryCompareView').style.display='';
+
+  document.getElementById('countryCompareHeading').textContent = `${names.join(' · ')} — FY ${YEAR_LABEL[yr]}`;
+  document.getElementById('countryCompareNote').textContent = `GDP share by broad industry category, compared across ${selected.length} selected countries.`;
+
+  // Build category -> country -> gdp map
+  const allCategories = [];
+  const categoryData = {};
+  selected.forEach(c=>{
+    countryData[c].years[yr].industries.forEach(ind=>{
+      const label = getCategoryLabel(ind.name);
+      if(!categoryData[label]) categoryData[label] = {};
+      categoryData[label][c] = ind.gdp;
+      if(!allCategories.includes(label)) allCategories.push(label);
+    });
+  });
+  // Sort categories by average GDP share across countries that have them, descending
+  allCategories.sort((a,b)=>{
+    const avg = (label)=>{
+      const vals = Object.values(categoryData[label]);
+      return vals.reduce((x,y)=>x+y,0) / vals.length;
+    };
+    return avg(b) - avg(a);
+  });
+
+  // Table head
+  const thead = document.getElementById('countryCompareTableHead');
+  thead.innerHTML = `<th>Category</th>` + selected.map(c=>`<th class="num">${countryData[c].flag} ${c}</th>`).join('');
+
+  // Table body
+  const tbody = document.getElementById('countryCompareTableBody');
+  tbody.innerHTML = allCategories.map(cat=>{
+    const cells = selected.map(c=>{
+      const v = categoryData[cat][c];
+      return `<td class="num">${v !== undefined ? v+'%' : '—'}</td>`;
+    }).join('');
+    return `<tr><td style="color:var(--paper)">${cat}</td>${cells}</tr>`;
+  }).join('');
+
+  // Charts
+  if(countryCompareBarInstance) countryCompareBarInstance.destroy();
+  if(countryCompareStatInstance) countryCompareStatInstance.destroy();
+
+  const countryColors = {
+    AU:'#b9702a', US:'#2f8f6d', CN:'#b3492e', NZ:'#5c6a63',
+    JP:'#8a6a3e', KR:'#3d5b52', SG:'#c98f52', DE:'#4a9d82', GB:'#a85f42', FR:'#7d8f89'
+  };
+
+  countryCompareBarInstance = new Chart(document.getElementById('countryCompareBarChart'), {
+    type:'bar',
+    data:{
+      labels: allCategories,
+      datasets: selected.map(c=>({
+        label: `${countryData[c].flag} ${c}`,
+        data: allCategories.map(cat=> categoryData[cat][c] !== undefined ? categoryData[cat][c] : 0),
+        backgroundColor: countryColors[c] || '#8a988f',
+        borderRadius:2
+      }))
+    },
+    options:{
+      indexAxis:'y',
+      plugins:{
+        legend:{display:true, position:'top', labels:{boxWidth:12, font:{size:11}}},
+        tooltip:{callbacks:{label:(c)=>`${c.dataset.label}: ${c.parsed.x}%`}}
+      },
+      scales:{
+        x:{ticks:{callback:v=>v+'%'}, grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{grid:{display:false}}
+      }
+    }
+  });
+
+  // Stat chart: GDP growth rate per country (parsed from stats[1].v, which is a % string)
+  const statLabels = selected.map(c=> `${countryData[c].flag} ${countryData[c].name}`);
+  const statValues = selected.map(c=>{
+    const raw = countryData[c].years[yr].stats[1].v; // e.g. "+1.4%" or "−0.3%"
+    const num = parseFloat(raw.replace('−','-').replace('%',''));
+    return isNaN(num) ? 0 : num;
+  });
+
+  countryCompareStatInstance = new Chart(document.getElementById('countryCompareStatChart'), {
+    type:'bar',
+    data:{
+      labels: statLabels,
+      datasets:[{
+        label:'GDP growth (%)',
+        data: statValues,
+        backgroundColor: selected.map(c=> statValues[selected.indexOf(c)] >= 0 ? '#2f8f6d' : '#b3492e'),
+        borderRadius:2
+      }]
+    },
+    options:{
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:(c)=>`GDP growth: ${c.parsed.y}%`}}
+      },
+      scales:{
+        y:{ticks:{callback:v=>v+'%'}, grid:{color:'rgba(31,45,40,0.08)'}},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+}
+
 function render(code, year){
-  if(year === 'all'){
+  if(code === 'compare'){
+    document.getElementById('countryChecklist').style.display='flex';
+    document.getElementById('compareView').style.display='none';
+    const checked = Array.from(document.querySelectorAll('#countryChecklist input:checked')).map(el=>el.value);
+    renderCountryCompare(checked.length ? checked : ['AU','US','CN','NZ'], year);
+  } else if(year === 'all'){
+    document.getElementById('countryChecklist').style.display='none';
+    document.getElementById('countryCompareView').style.display='none';
     renderCompare(code);
   } else {
+    document.getElementById('countryChecklist').style.display='none';
+    document.getElementById('countryCompareView').style.display='none';
     document.getElementById('compareView').style.display='none';
     document.querySelectorAll('.single-year-view').forEach(el=> el.style.display='');
     renderSingleYear(code, year);
@@ -1422,6 +2108,9 @@ document.getElementById('countrySelect').addEventListener('change', ()=>{
 });
 document.getElementById('yearSelect').addEventListener('change', ()=>{
   render(document.getElementById('countrySelect').value, document.getElementById('yearSelect').value);
+});
+document.getElementById('countryChecklist').addEventListener('change', ()=>{
+  render('compare', document.getElementById('yearSelect').value);
 });
 
 document.getElementById('industryGrid').addEventListener('click', (e)=>{
