@@ -74,6 +74,39 @@
   }
   nav.board-nav a:hover{color:var(--amber); border-color:var(--amber);}
 
+  .lang-toggle{
+    display:flex; border:1px solid var(--line-strong); overflow:hidden; flex-shrink:0;
+  }
+  .lang-btn{
+    appearance:none; -webkit-appearance:none;
+    background:var(--panel); border:none;
+    color:var(--paper-dim);
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    padding:0.4rem 0.7rem;
+    cursor:pointer;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .lang-btn + .lang-btn{border-left:1px solid var(--line-strong);}
+  .lang-btn:hover{color:var(--paper);}
+  .lang-btn.active{background:var(--amber); color:#faf6ee;}
+
+  /* CJK-safe font stack applied when Chinese is active */
+  body.lang-zh{
+    font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC','Helvetica Neue',Arial,sans-serif;
+  }
+  body.lang-zh .flap,
+  body.lang-zh h1, body.lang-zh h2, body.lang-zh h3,
+  body.lang-zh nav.board-nav a, body.lang-zh .brand,
+  body.lang-zh .hero-eyebrow, body.lang-zh .section-num,
+  body.lang-zh .country-label, body.lang-zh .lang-btn,
+  body.lang-zh thead th, body.lang-zh .chart-title,
+  body.lang-zh .k, body.lang-zh .subs-toggle{
+    font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC','Helvetica Neue',Arial,sans-serif;
+    letter-spacing:normal;
+  }
+
   .ticker-strip{
     background:#f2ece0;
     border-bottom:1px solid var(--line);
@@ -477,10 +510,14 @@
 <nav class="board-nav">
   <div class="brand"><span class="dot"></span>AU/IDX BOARD</div>
   <div class="links">
-    <a href="#overview">Overview</a>
-    <a href="#industries">Board</a>
-    <a href="#charts">Charts</a>
-    <a href="#table">Ledger</a>
+    <a href="#overview" data-i18n="nav_overview">Overview</a>
+    <a href="#industries" data-i18n="nav_board">Board</a>
+    <a href="#charts" data-i18n="nav_charts">Charts</a>
+    <a href="#table" data-i18n="nav_ledger">Ledger</a>
+  </div>
+  <div class="lang-toggle" id="langToggle">
+    <button type="button" data-lang="en" class="lang-btn active">EN</button>
+    <button type="button" data-lang="zh" class="lang-btn">中文</button>
   </div>
 </nav>
 
@@ -492,41 +529,41 @@
   <div class="hero-eyebrow" id="heroEyebrow">ABS National Accounts · FY 2024–25</div>
 
   <div class="country-select-wrap">
-    <label for="countrySelect" class="country-label">Viewing industries for</label>
+    <label for="countrySelect" class="country-label" data-i18n="viewing_for">Viewing industries for</label>
     <select id="countrySelect" class="country-select mono">
-      <option value="AU">🇦🇺 Australia</option>
-      <option value="US">🇺🇸 United States</option>
-      <option value="CN">🇨🇳 China</option>
-      <option value="NZ">🇳🇿 New Zealand</option>
-      <option value="JP">🇯🇵 Japan</option>
-      <option value="KR">🇰🇷 South Korea</option>
-      <option value="SG">🇸🇬 Singapore</option>
-      <option value="DE">🇩🇪 Germany</option>
-      <option value="GB">🇬🇧 United Kingdom</option>
-      <option value="FR">🇫🇷 France</option>
-      <option value="compare">⇄ Compare Countries</option>
+      <option value="AU" data-flag="🇦🇺" data-country="AU">🇦🇺 Australia</option>
+      <option value="US" data-flag="🇺🇸" data-country="US">🇺🇸 United States</option>
+      <option value="CN" data-flag="🇨🇳" data-country="CN">🇨🇳 China</option>
+      <option value="DE" data-flag="🇩🇪" data-country="DE">🇩🇪 Germany</option>
+      <option value="JP" data-flag="🇯🇵" data-country="JP">🇯🇵 Japan</option>
+      <option value="GB" data-flag="🇬🇧" data-country="GB">🇬🇧 United Kingdom</option>
+      <option value="FR" data-flag="🇫🇷" data-country="FR">🇫🇷 France</option>
+      <option value="KR" data-flag="🇰🇷" data-country="KR">🇰🇷 South Korea</option>
+      <option value="SG" data-flag="🇸🇬" data-country="SG">🇸🇬 Singapore</option>
+      <option value="NZ" data-flag="🇳🇿" data-country="NZ">🇳🇿 New Zealand</option>
+      <option value="compare" data-i18n="opt_compare_countries">⇄ Compare Countries</option>
     </select>
-    <label for="yearSelect" class="country-label">Fiscal year</label>
+    <label for="yearSelect" class="country-label" data-i18n="fiscal_year">Fiscal year</label>
     <select id="yearSelect" class="country-select mono">
       <option value="2025">2024–25</option>
       <option value="2024">2023–24</option>
       <option value="2023">2022–23</option>
-      <option value="all">⇄ Compare all years</option>
+      <option value="all" data-i18n="opt_compare_all_years">⇄ Compare all years</option>
     </select>
   </div>
 
   <div class="country-checklist" id="countryChecklist" style="display:none;">
-    <span class="country-checklist-label">Countries to compare:</span>
-    <label class="country-check"><input type="checkbox" value="AU" checked> 🇦🇺 Australia</label>
-    <label class="country-check"><input type="checkbox" value="US" checked> 🇺🇸 United States</label>
-    <label class="country-check"><input type="checkbox" value="CN" checked> 🇨🇳 China</label>
-    <label class="country-check"><input type="checkbox" value="NZ" checked> 🇳🇿 New Zealand</label>
-    <label class="country-check"><input type="checkbox" value="JP"> 🇯🇵 Japan</label>
-    <label class="country-check"><input type="checkbox" value="KR"> 🇰🇷 South Korea</label>
-    <label class="country-check"><input type="checkbox" value="SG"> 🇸🇬 Singapore</label>
-    <label class="country-check"><input type="checkbox" value="DE"> 🇩🇪 Germany</label>
-    <label class="country-check"><input type="checkbox" value="GB"> 🇬🇧 United Kingdom</label>
-    <label class="country-check"><input type="checkbox" value="FR"> 🇫🇷 France</label>
+    <span class="country-checklist-label" data-i18n="countries_to_compare">Countries to compare:</span>
+    <label class="country-check"><input type="checkbox" value="AU" checked> <span data-flag="🇦🇺" data-country="AU">🇦🇺 Australia</span></label>
+    <label class="country-check"><input type="checkbox" value="US" checked> <span data-flag="🇺🇸" data-country="US">🇺🇸 United States</span></label>
+    <label class="country-check"><input type="checkbox" value="CN" checked> <span data-flag="🇨🇳" data-country="CN">🇨🇳 China</span></label>
+    <label class="country-check"><input type="checkbox" value="DE" checked> <span data-flag="🇩🇪" data-country="DE">🇩🇪 Germany</span></label>
+    <label class="country-check"><input type="checkbox" value="JP" checked> <span data-flag="🇯🇵" data-country="JP">🇯🇵 Japan</span></label>
+    <label class="country-check"><input type="checkbox" value="GB"> <span data-flag="🇬🇧" data-country="GB">🇬🇧 United Kingdom</span></label>
+    <label class="country-check"><input type="checkbox" value="FR"> <span data-flag="🇫🇷" data-country="FR">🇫🇷 France</span></label>
+    <label class="country-check"><input type="checkbox" value="KR"> <span data-flag="🇰🇷" data-country="KR">🇰🇷 South Korea</span></label>
+    <label class="country-check"><input type="checkbox" value="SG"> <span data-flag="🇸🇬" data-country="SG">🇸🇬 Singapore</span></label>
+    <label class="country-check"><input type="checkbox" value="NZ"> <span data-flag="🇳🇿" data-country="NZ">🇳🇿 New Zealand</span></label>
   </div>
 
   <h1 class="hero-title" id="heroTitle">The board that <span class="accent">runs</span> Australia</h1>
@@ -545,12 +582,12 @@
   <section id="overview">
     <div class="section-head">
       <div>
-        <div class="section-num">// 01 · READING THE BOARD</div>
-        <h2>Two economies, one ledger</h2>
+        <div class="section-num" data-i18n="s01_num">// 01 · READING THE BOARD</div>
+        <h2 data-i18n="s01_title">Two economies, one ledger</h2>
       </div>
-      <p class="section-note">Services carry the GDP. Resources carry the export invoice. The board rarely agrees on which industry matters most.</p>
+      <p class="section-note" data-i18n="s01_note">Services carry the GDP. Resources carry the export invoice. The board rarely agrees on which industry matters most.</p>
     </div>
-    <p style="max-width:72ch; line-height:1.75; color:var(--paper-dim); font-size:1rem;">
+    <p style="max-width:72ch; line-height:1.75; color:var(--paper-dim); font-size:1rem;" data-i18n-html="s01_body">
       Services broadly account for roughly three-quarters of GDP, but the sharpest recent growth has come from a narrower band: <b style="color:var(--paper)">professional & technical services, construction and administrative services</b> drove private-sector wage growth, while <b style="color:var(--paper)">mining</b> stayed the largest single export earner despite falling profits. Manufacturing has been losing GDP share for three decades, and agriculture, though only 2–3% of GDP, still swings state-level growth on the back of a single good harvest.
     </p>
   </section>
@@ -558,8 +595,8 @@
   <section id="industries" class="single-year-view">
     <div class="section-head">
       <div>
-        <div class="section-num">// 02 · SECTOR TILES</div>
-        <h2>Nine industries, ranked by GDP weight</h2>
+        <div class="section-num" data-i18n="s02_num">// 02 · SECTOR TILES</div>
+        <h2 data-i18n="s02_title">Nine industries, ranked by GDP weight</h2>
       </div>
       <p class="section-note" id="industriesNote">Approximate GDP share, workforce share and earnings direction, FY 2024–25.</p>
     </div>
@@ -569,18 +606,18 @@
   <section id="charts" class="single-year-view">
     <div class="section-head">
       <div>
-        <div class="section-num">// 03 · VISUAL READOUT</div>
-        <h2>Output vs. people, side by side</h2>
+        <div class="section-num" data-i18n="s03_num">// 03 · VISUAL READOUT</div>
+        <h2 data-i18n="s03_title">Output vs. people, side by side</h2>
       </div>
-      <p class="section-note">GDP share doesn't track workforce share — services employ more than they produce per head; mining does the reverse.</p>
+      <p class="section-note" data-i18n="s03_note">GDP share doesn't track workforce share — services employ more than they produce per head; mining does the reverse.</p>
     </div>
     <div class="chart-grid">
       <div class="chart-panel">
-        <div class="chart-title">GDP share by industry (%)</div>
+        <div class="chart-title" data-i18n="chart_gdp_title">GDP share by industry (%)</div>
         <canvas id="gdpChart" height="300"></canvas>
       </div>
       <div class="chart-panel">
-        <div class="chart-title">GDP share vs. workforce share</div>
+        <div class="chart-title" data-i18n="chart_scatter_title">GDP share vs. workforce share</div>
         <canvas id="scatterChart" height="300"></canvas>
       </div>
     </div>
@@ -593,20 +630,20 @@
   <section id="table" class="single-year-view">
     <div class="section-head">
       <div>
-        <div class="section-num">// 04 · FULL LEDGER</div>
-        <h2>Industry data table</h2>
+        <div class="section-num" data-i18n="s04_num">// 04 · FULL LEDGER</div>
+        <h2 data-i18n="s04_title">Industry data table</h2>
       </div>
-      <p class="section-note">Reference figures derived from ABS releases — approximations, not live data.</p>
+      <p class="section-note" data-i18n="s04_note">Reference figures derived from ABS releases — approximations, not live data.</p>
     </div>
     <div class="table-wrap">
       <table id="ledgerTable">
         <thead>
           <tr>
-            <th data-sort="name">Industry</th>
-            <th class="num sortable" data-sort="gdp">GDP Share <span class="sort-arrow"></span></th>
-            <th class="num sortable" data-sort="workforce">Workforce <span class="sort-arrow"></span></th>
-            <th class="num sortable" data-sort="gdp_trend">Earnings Trend <span class="sort-arrow"></span></th>
-            <th>Note</th>
+            <th data-sort="name" data-i18n="col_industry">Industry</th>
+            <th class="num sortable" data-sort="gdp" data-i18n="col_gdp_share">GDP Share <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="workforce" data-i18n="col_workforce">Workforce <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="gdp_trend" data-i18n="col_earnings_trend">Earnings Trend <span class="sort-arrow"></span></th>
+            <th data-i18n="col_note">Note</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -617,8 +654,8 @@
   <section id="subsectorSection" class="single-year-view">
     <div class="section-head">
       <div>
-        <div class="section-num">// 05 · SUB-SECTOR LEDGER</div>
-        <h2>All sub-sectors, by industry</h2>
+        <div class="section-num" data-i18n="s05_num">// 05 · SUB-SECTOR LEDGER</div>
+        <h2 data-i18n="s05_title">All sub-sectors, by industry</h2>
       </div>
       <p class="section-note" id="subsectorNote">Each industry's own output broken down into its constituent sub-sectors.</p>
     </div>
@@ -626,10 +663,10 @@
       <table id="subsectorTable">
         <thead>
           <tr>
-            <th data-sort="industry">Industry</th>
-            <th data-sort="name">Sub-sector</th>
-            <th class="num sortable" data-sort="pct">Share of Industry <span class="sort-arrow"></span></th>
-            <th class="num sortable" data-sort="gdpContribution">Est. Share of GDP <span class="sort-arrow"></span></th>
+            <th data-sort="industry" data-i18n="col_industry">Industry</th>
+            <th data-sort="name" data-i18n="col_subsector">Sub-sector</th>
+            <th class="num sortable" data-sort="pct" data-i18n="col_share_industry">Share of Industry <span class="sort-arrow"></span></th>
+            <th class="num sortable" data-sort="gdpContribution" data-i18n="col_share_gdp">Est. Share of GDP <span class="sort-arrow"></span></th>
           </tr>
         </thead>
         <tbody id="subsectorTableBody"></tbody>
@@ -640,19 +677,19 @@
   <section id="compareView" class="compare-view" style="display:none;">
     <div class="section-head">
       <div>
-        <div class="section-num">// 05 · CROSS-YEAR COMPARISON</div>
+        <div class="section-num" data-i18n="s05b_num">// 05 · CROSS-YEAR COMPARISON</div>
         <h2 id="compareHeading">Three years, side by side</h2>
       </div>
       <p class="section-note" id="compareNote">How each industry's GDP share has shifted across the last three fiscal years.</p>
     </div>
 
     <div class="chart-panel" style="margin-bottom:1.4rem;">
-      <div class="chart-title">GDP share by industry, grouped by year (%)</div>
+      <div class="chart-title" data-i18n="chart_compare_bar_title">GDP share by industry, grouped by year (%)</div>
       <canvas id="compareBarChart" height="320"></canvas>
     </div>
 
     <div class="chart-panel" style="margin-bottom:2.6rem;">
-      <div class="chart-title">GDP share trend across years, by industry (%)</div>
+      <div class="chart-title" data-i18n="chart_compare_line_title">GDP share trend across years, by industry (%)</div>
       <canvas id="compareLineChart" height="260"></canvas>
     </div>
 
@@ -660,11 +697,11 @@
       <table>
         <thead>
           <tr>
-            <th>Industry</th>
+            <th data-i18n="col_industry">Industry</th>
             <th class="num" id="compareColYear1">2022–23</th>
             <th class="num" id="compareColYear2">2023–24</th>
             <th class="num" id="compareColYear3">2024–25</th>
-            <th class="num">3-Yr Change</th>
+            <th class="num" data-i18n="col_3yr_change">3-Yr Change</th>
           </tr>
         </thead>
         <tbody id="compareTableBody"></tbody>
@@ -675,19 +712,19 @@
   <section id="countryCompareView" class="compare-view" style="display:none;">
     <div class="section-head">
       <div>
-        <div class="section-num">// 06 · CROSS-COUNTRY COMPARISON</div>
+        <div class="section-num" data-i18n="s06_num">// 06 · CROSS-COUNTRY COMPARISON</div>
         <h2 id="countryCompareHeading">Economies, side by side</h2>
       </div>
       <p class="section-note" id="countryCompareNote">GDP share by broad industry category, compared across selected countries.</p>
     </div>
 
     <div class="chart-panel" style="margin-bottom:1.4rem;">
-      <div class="chart-title">GDP share by category, grouped by country (%)</div>
+      <div class="chart-title" data-i18n="chart_country_bar_title">GDP share by category, grouped by country (%)</div>
       <canvas id="countryCompareBarChart" height="340"></canvas>
     </div>
 
     <div class="chart-panel" style="margin-bottom:2.6rem;">
-      <div class="chart-title">Headline snapshot by country</div>
+      <div class="chart-title" data-i18n="chart_country_stat_title">Headline snapshot by country</div>
       <canvas id="countryCompareStatChart" height="220"></canvas>
     </div>
 
@@ -695,20 +732,20 @@
       <table id="countryCompareTable">
         <thead>
           <tr id="countryCompareTableHead">
-            <th>Category</th>
+            <th data-i18n="col_category">Category</th>
           </tr>
         </thead>
         <tbody id="countryCompareTableBody"></tbody>
       </table>
     </div>
-    <p class="section-note" style="margin-top:1rem; max-width:60ch;">"—" means that category didn't rank among that country's top nine industries for the selected year — not that it's zero.</p>
+    <p class="section-note" style="margin-top:1rem; max-width:60ch;" data-i18n="country_compare_footnote">"—" means that category didn't rank among that country's top nine industries for the selected year — not that it's zero.</p>
   </section>
 
 </main>
 
 <footer>
   <div>SOURCE: ABS NATIONAL ACCOUNTS &amp; AUSTRALIAN INDUSTRY RELEASES, FY24–25 · RBA COMPOSITION SNAPSHOT</div>
-  <div>ILLUSTRATIVE REFERENCE FIGURES ONLY</div>
+  <div id="footerSub" data-i18n="footer_illustrative">ILLUSTRATIVE REFERENCE FIGURES ONLY</div>
 </footer>
 
 <script>
@@ -1670,6 +1707,712 @@ function getCategoryLabel(industryName){
 
 function trendNumeric(ind){ return ind.trend === 'up' ? 1 : -1; }
 
+// ============ INTERNATIONALIZATION (EN / ZH) ============
+let LANG = 'en';
+
+const UI_STRINGS = {
+  en: {
+    nav_overview:'Overview', nav_board:'Board', nav_charts:'Charts', nav_ledger:'Ledger',
+    viewing_for:'Viewing industries for', fiscal_year:'Fiscal year',
+    countries_to_compare:'Countries to compare:',
+    s01_num:'// 01 · READING THE BOARD', s01_title:'Two economies, one ledger',
+    s01_note:"Services carry the GDP. Resources carry the export invoice. The board rarely agrees on which industry matters most.",
+    s01_body:`Services broadly account for roughly three-quarters of GDP, but the sharpest recent growth has come from a narrower band: <b style="color:var(--paper)">professional & technical services, construction and administrative services</b> drove private-sector wage growth, while <b style="color:var(--paper)">mining</b> stayed the largest single export earner despite falling profits. Manufacturing has been losing GDP share for three decades, and agriculture, though only 2–3% of GDP, still swings state-level growth on the back of a single good harvest.`,
+    s02_num:'// 02 · SECTOR TILES', s02_title:'Nine industries, ranked by GDP weight',
+    s03_num:'// 03 · VISUAL READOUT', s03_title:'Output vs. people, side by side',
+    s03_note:"GDP share doesn't track workforce share — services employ more than they produce per head; mining does the reverse.",
+    chart_gdp_title:'GDP share by industry (%)', chart_scatter_title:'GDP share vs. workforce share',
+    s04_num:'// 04 · FULL LEDGER', s04_title:'Industry data table',
+    s04_note:'Reference figures derived from ABS releases — approximations, not live data.',
+    col_industry:'Industry', col_gdp_share:'GDP Share', col_workforce:'Workforce',
+    col_earnings_trend:'Earnings Trend', col_note:'Note',
+    s05_num:'// 05 · SUB-SECTOR LEDGER', s05_title:'All sub-sectors, by industry',
+    col_subsector:'Sub-sector', col_share_industry:'Share of Industry', col_share_gdp:'Est. Share of GDP',
+    s05b_num:'// 05 · CROSS-YEAR COMPARISON',
+    chart_compare_bar_title:'GDP share by industry, grouped by year (%)',
+    chart_compare_line_title:'GDP share trend across years, by industry (%)',
+    col_3yr_change:'3-Yr Change',
+    s06_num:'// 06 · CROSS-COUNTRY COMPARISON',
+    chart_country_bar_title:'GDP share by category, grouped by country (%)',
+    chart_country_stat_title:'Headline snapshot by country',
+    col_category:'Category',
+    country_compare_footnote:'"—" means that category didn\'t rank among that country\'s top nine industries for the selected year — not that it\'s zero.',
+    footer_illustrative:'ILLUSTRATIVE REFERENCE FIGURES ONLY',
+    doc_title_top_industries:'Top Industries', doc_title_industries:'Industries', doc_title_compared:'Compared',
+    doc_title_compare:'Compare',
+    industries_note_prefix:'Approximate GDP share, workforce share and earnings direction,',
+    earnings_direction_prefix:'Earnings direction,',
+    subsector_note_prefix:"Each industry's own output broken down into its constituent sub-sectors,",
+    no_prefix:'NO.', tile_gdp_share:'GDP share', tile_workforce:'Workforce',
+    subs_toggle_label:'Sub-sector breakdown',
+    of_gdp:'of GDP', workforce_share_axis:'Workforce share (%)', gdp_share_axis:'GDP share (%)',
+    growth_label:'Growth', decline_label:'Decline',
+    comparing_prefix:'Comparing', compare_years_sub:"How every major industry's GDP share and workforce share has shifted across the last three fiscal years.",
+    multi_year_view_label:'MULTI-YEAR COMPARISON VIEW', yr_suffix:'3yr', through_label:'through',
+    compare_note_prefix:'GDP share by industry across the last three fiscal years — sorted by', weight_suffix:'weight.',
+    cross_country_prefix:'Cross-country comparison',
+    country_compare_sub_suffix:'GDP share by broad industry category, side by side for',
+    multi_country_view_label:'MULTI-COUNTRY COMPARISON', 
+    country_compare_note_prefix:'GDP share by broad industry category, compared across',
+    country_compare_note_suffix:'selected countries.',
+    gdp_growth_label:'GDP growth (%)',
+    hero_sub_generic:'Key industries, ranked by GDP contribution, with workforce share and year-on-year direction.',
+    opt_compare_countries:'⇄ Compare Countries',
+    opt_compare_all_years:'⇄ Compare all years'
+  },
+  zh: {
+    nav_overview:'概览', nav_board:'产业板', nav_charts:'图表', nav_ledger:'台账',
+    viewing_for:'当前查看国家/地区', fiscal_year:'财政年度',
+    countries_to_compare:'选择要比较的国家/地区：',
+    s01_num:'// 01 · 解读产业板', s01_title:'两种经济，一本账',
+    s01_note:'服务业撑起GDP，资源业撑起出口。哪个产业最重要，产业板给不出统一答案。',
+    s01_body:`服务业大致占GDP的四分之三，但近期增长最快的其实是更窄的一部分：<b style="color:var(--paper)">专业技术服务、建筑业和行政服务</b>带动了私营部门的薪资增长，而<b style="color:var(--paper)">矿业</b>虽然利润下滑，仍是最大的单一出口创汇产业。制造业占GDP比重已连续三十年下滑，农业虽仅占GDP的2%–3%，却常因一次丰收就能左右地区增长数据。`,
+    s02_num:'// 02 · 产业板块', s02_title:'九大产业，按GDP占比排序',
+    s03_num:'// 03 · 数据可视化', s03_title:'产出与就业，并排对比',
+    s03_note:'GDP占比与就业占比并不同步——服务业吸纳的就业远超其产出比重；矿业则相反。',
+    chart_gdp_title:'各产业GDP占比（%）', chart_scatter_title:'GDP占比 vs 就业占比',
+    s04_num:'// 04 · 完整台账', s04_title:'产业数据表',
+    s04_note:'数据参考自官方统计发布——为近似值，非实时数据。',
+    col_industry:'产业', col_gdp_share:'GDP占比', col_workforce:'就业占比',
+    col_earnings_trend:'盈利趋势', col_note:'说明',
+    s05_num:'// 05 · 细分产业台账', s05_title:'各产业细分子行业',
+    col_subsector:'细分子行业', col_share_industry:'占产业比重', col_share_gdp:'占GDP比重（估算）',
+    s05b_num:'// 05 · 跨年度对比',
+    chart_compare_bar_title:'各产业GDP占比，按年度分组（%）',
+    chart_compare_line_title:'各产业GDP占比历年趋势（%）',
+    col_3yr_change:'三年变化',
+    s06_num:'// 06 · 跨国比较',
+    chart_country_bar_title:'各类别GDP占比，按国家分组（%）',
+    chart_country_stat_title:'各国概览快照',
+    col_category:'类别',
+    country_compare_footnote:'"—" 表示该类别未进入该国当年GDP占比前九大产业之列——并非占比为零。',
+    footer_illustrative:'仅供参考的示意性数据',
+    doc_title_top_industries:'主要产业', doc_title_industries:'产业', doc_title_compared:'对比',
+    doc_title_compare:'比较',
+    industries_note_prefix:'各产业GDP占比、就业占比及盈利趋势（近似值），',
+    earnings_direction_prefix:'盈利趋势，',
+    subsector_note_prefix:'各产业内部细分子行业构成，',
+    no_prefix:'第', tile_gdp_share:'GDP占比', tile_workforce:'就业占比',
+    subs_toggle_label:'查看细分子行业',
+    of_gdp:'占GDP', workforce_share_axis:'就业占比（%）', gdp_share_axis:'GDP占比（%）',
+    growth_label:'增长', decline_label:'下滑',
+    comparing_prefix:'对比', compare_years_sub:'过去三个财政年度，各主要产业GDP占比与就业占比的变化情况。',
+    multi_year_view_label:'跨年度对比视图', yr_suffix:'三年',  through_label:'至',
+    compare_note_prefix:'过去三个财政年度各产业GDP占比——按', weight_suffix:'占比排序。',
+    cross_country_prefix:'跨国比较',
+    country_compare_sub_suffix:'各广义产业类别GDP占比对比，财政年度为',
+    multi_country_view_label:'跨国比较视图',
+    country_compare_note_prefix:'各广义产业类别GDP占比，对比',
+    country_compare_note_suffix:'个所选国家/地区。',
+    gdp_growth_label:'GDP增长率（%）',
+    hero_sub_generic:'按GDP贡献排序的主要产业，附就业占比与同比变化方向。',
+    opt_compare_countries:'⇄ 比较国家/地区',
+    opt_compare_all_years:'⇄ 比较所有年度'
+  }
+};
+
+function t(key){
+  return (UI_STRINGS[LANG] && UI_STRINGS[LANG][key]) || UI_STRINGS.en[key] || key;
+}
+
+const COUNTRY_NAME_ZH = {
+  AU:'澳大利亚', US:'美国', CN:'中国', DE:'德国', JP:'日本',
+  GB:'英国', FR:'法国', KR:'韩国', SG:'新加坡', NZ:'新西兰'
+};
+function trCountry(code){
+  if(LANG === 'zh') return COUNTRY_NAME_ZH[code] || (countryData[code] && countryData[code].name) || code;
+  return (countryData[code] && countryData[code].name) || code;
+}
+
+const CATEGORY_LABEL_ZH = {
+  'Health & Social Care':'医疗与社会服务',
+  'Mining & Resources':'矿业与资源',
+  'Construction':'建筑业',
+  'Professional & Business Services':'专业与商业服务',
+  'Financial Services':'金融服务',
+  'Manufacturing':'制造业',
+  'Transport & Logistics':'交通运输与物流',
+  'Retail & Wholesale Trade':'零售与批发贸易',
+  'Agriculture & Fisheries':'农业与渔业',
+  'Real Estate':'房地产',
+  'Government & Public Admin':'政府与公共管理',
+  'Education':'教育',
+  'Information & Technology':'信息与科技',
+  'Accommodation & Food Services':'住宿与餐饮服务'
+};
+function trCategory(label){
+  if(LANG === 'zh') return CATEGORY_LABEL_ZH[label] || label;
+  return label;
+}
+
+const INDUSTRY_NAME_ZH = {
+  "Health Care & Social Assistance":"医疗保健与社会救助",
+  "Mining":"矿业",
+  "Construction":"建筑业",
+  "Professional, Scientific & Technical Services":"专业、科学与技术服务",
+  "Financial & Insurance Services":"金融与保险服务",
+  "Manufacturing":"制造业",
+  "Transport, Postal & Warehousing":"交通运输、邮政与仓储",
+  "Retail & Wholesale Trade":"零售与批发贸易",
+  "Agriculture, Forestry & Fishing":"农业、林业与渔业",
+  "Rental, Hiring & Real Estate Services":"租赁与房地产服务",
+  "Public Administration & Safety":"公共管理与安全",
+  "Information Media & Telecommunications":"信息媒体与电信",
+  "Real Estate & Rental":"房地产与租赁",
+  "Professional & Business Services":"专业与商业服务",
+  "Government":"政府部门",
+  "Finance & Insurance":"金融与保险",
+  "Retail Trade":"零售贸易",
+  "Information (Tech & Media)":"信息（科技与媒体）",
+  "Transportation & Warehousing":"交通运输与仓储",
+  "Accommodation & Food Services":"住宿与餐饮服务",
+  "Wholesale & Retail Trade":"批发与零售贸易",
+  "Finance":"金融业",
+  "Real Estate":"房地产",
+  "Transport, Storage & Postal":"交通运输、仓储与邮政",
+  "Information & Software Services":"信息与软件服务",
+  "Mining & Quarrying":"采矿与采石",
+  "Health & Social Welfare":"医疗与社会福利",
+  "Leasing & Business Services":"租赁与商业服务",
+  "Public Administration":"公共行政管理",
+  "Real Estate & Rental Services":"房地产与租赁服务",
+  "Financial & Insurance Services ":"金融与保险服务",
+  "Public Administration & Safety ":"公共管理与安全",
+  "Education & Training":"教育与培训",
+  "Agriculture & Fisheries":"农业与渔业",
+  "Public Administration & Defence":"公共行政与国防",
+  "Information & Communications":"信息与通信",
+  "Education":"教育",
+  "Business Services":"商业服务",
+  "Health & Social Services":"医疗与社会服务",
+  "Transport & Storage":"交通运输与仓储",
+  "Information & Communication":"信息与通信",
+  "Transport & Postal Services":"交通运输与邮政服务",
+  "Professional & Scientific Services":"专业与科学服务",
+  "Health & Social Work":"医疗与社会工作"
+};
+function trIndustry(name){
+  if(LANG === 'zh') return INDUSTRY_NAME_ZH[name] || name;
+  return name;
+}
+
+const NOTE_ZH = {
+"Recorded its most profitable year on record as energy and metal prices surged.":"受能源和金属价格飙升推动，创下了有史以来利润最高的一年。",
+"Kept expanding steadily as an ageing population lifted demand for care.":"随着人口老龄化推高护理需求，该行业持续稳步扩张。",
+"Benefited from a rising interest-rate cycle that lifted net interest margins.":"受益于加息周期，净息差有所提升。",
+"Worked through a large post-pandemic project backlog despite rising costs.":"尽管成本上升，仍在消化疫情后积压的大量项目。",
+"Consumer spending remained strong early in the year before rate rises bit.":"年初消费支出保持强劲，随后加息影响逐渐显现。",
+"Business investment in consulting and technical services held up well.":"企业在咨询和技术服务方面的投资保持稳健。",
+"Continued a long-run structural decline in GDP share.":"GDP占比持续呈长期结构性下滑趋势。",
+"Logistics demand stayed firm amid a strong import and export cycle.":"在进出口周期强劲的背景下，物流需求保持坚挺。",
+"Flooding across eastern states disrupted several crop and livestock regions.":"东部各州洪灾扰乱了多个农作物和畜牧业区域。",
+"Low interest rates through most of the year kept property investment attractive.":"全年大部分时间低利率维持了房地产投资的吸引力。",
+"Pandemic-era government programs continued flowing through into the economy.":"疫情时期的政府计划持续对经济产生影响。",
+"Digital media and telco demand held up well through the post-pandemic recovery.":"数字媒体与电信需求在疫情后复苏期间保持良好。",
+"Continued to add jobs faster than any other sector as aged-care demand grew.":"随着养老护理需求增长，该行业新增就业速度超过其他所有行业。",
+"Profits began sliding from record 2022–23 highs as commodity prices eased.":"随着大宗商品价格回落，利润从2022–23年度的历史高点开始下滑。",
+"High material and labour costs slowed completions despite strong demand.":"尽管需求强劲，高企的材料和人工成本拖慢了项目完工速度。",
+"Steady growth in consulting and technical services work continued.":"咨询与技术服务业务持续稳定增长。",
+"Remained a stable contributor as interest-rate settings peaked.":"在利率见顶之际，该行业仍保持稳定贡献。",
+"Kept losing ground to imports, though the decline was gradual.":"持续被进口产品挤压份额，但下滑较为缓慢。",
+"Freight volumes grew alongside a resilient consumer sector.":"随着消费领域保持韧性，货运量随之增长。",
+"Cost-of-living pressures began weighing on discretionary spending.":"生活成本压力开始拖累可自由支配支出。",
+"A strong east-coast harvest lifted output after a wetter prior year.":"在上一年多雨之后，东海岸迎来丰收，带动产出提升。",
+"Kept growing steadily as population growth supported rental demand.":"随着人口增长支撑租赁需求，该行业保持稳步增长。",
+"Government spending stayed a stabilising force through the rate-hike cycle.":"在加息周期中，政府支出持续发挥稳定器作用。",
+"Streaming and telecommunications demand continued its steady rise.":"流媒体与电信需求持续稳步上升。",
+"Australia's largest employer at 2.2M+ jobs; demand kept climbing through a strong flu season.":"作为澳大利亚最大的雇主行业，就业人数超220万；在流感高发季，需求持续攀升。",
+"Largest merchandise export earner despite a sharp profit fall as commodity prices softened.":"尽管大宗商品价格走软导致利润大幅下滑，该行业仍是最大的商品出口创汇产业。",
+"Over $568B in annual output; strong in some states, contracting sharply in others (NSW −4.1%).":"年产值超5680亿澳元；部分州表现强劲，另一些州（如新南威尔士州）则大幅萎缩4.1%。",
+"Legal, accounting, engineering and computer-system design firms drove private wage growth.":"法律、会计、工程及计算机系统设计企业带动了私营部门薪资增长。",
+"Consistently one of the top contributors to state-level growth across the country.":"持续成为全国各州经济增长的主要贡献行业之一。",
+"Refinery closures and import competition have shrunk its GDP share for three decades.":"炼油厂关闭及进口竞争已使其GDP占比连续萎缩三十年。",
+"Second-largest single industry contributor to GDP behind mining in past accounts.":"根据历史数据，是仅次于矿业的第二大GDP贡献行业。",
+"Large employer base; sensitive to household consumption and cost-of-living pressures.":"就业规模庞大，对家庭消费和生活成本压力较为敏感。",
+"Small GDP share but outsized swings — NSW agriculture alone grew 25.5% on a good season.":"GDP占比虽小但波动巨大——仅新南威尔士州农业就因丰收增长25.5%。",
+"Owner-occupied housing imputed rent and commercial leasing keep this a top contributor.":"自住房屋虚拟租金与商业租赁使其始终是主要贡献行业。",
+"Federal and state government services expanded alongside population growth.":"随着人口增长，联邦与州政府服务持续扩张。",
+"Telecommunications and digital media kept growing faster than the broader economy.":"电信与数字媒体的增速持续超过整体经济。"
+};
+
+Object.assign(NOTE_ZH, {
+"Rapid rate rises sharply cooled home sales and refinancing activity.":"快速加息大幅降温了房屋销售和再融资活动。",
+"Business demand for consulting and technical services stayed strong.":"企业对咨询和技术服务的需求保持强劲。",
+"Pandemic-era relief spending continued flowing through into 2023.":"疫情时期的救助支出持续影响2023年经济。",
+"CHIPS Act incentives began drawing new semiconductor investment onshore.":"《芯片法案》激励措施开始吸引半导体投资回流本土。",
+"Regional bank failures in early 2023 briefly weighed on sector confidence.":"2023年初的地区银行倒闭事件短暂打击了行业信心。",
+"Employment growth remained the strongest of any major industry.":"就业增长速度在所有主要行业中仍居首位。",
+"Consumers kept spending despite high inflation eroding real wages.":"尽管高通胀侵蚀实际工资，消费者仍持续支出。",
+"A wave of tech-sector layoffs followed the 2021–22 hiring boom.":"继2021–22年招聘热潮之后，科技行业出现了一波裁员潮。",
+"Higher mortgage rates sharply slowed new residential starts.":"抵押贷款利率上升大幅拖慢了新建住宅开工。",
+"A prolonged freight-sector downturn hit trucking and rail volumes.":"货运行业长期低迷，冲击了公路和铁路运输量。",
+"Strong grain exports supported farm incomes for much of the year.":"强劲的谷物出口在全年大部分时间支撑了农业收入。",
+"Consumers kept prioritising travel and dining despite high inflation.":"尽管通胀高企，消费者仍优先选择旅游和餐饮消费。",
+"Held its position as the largest GDP contributor despite high mortgage rates.":"尽管抵押贷款利率高企，该行业仍保持最大GDP贡献者地位。",
+"Consulting and admin-support demand stayed firm through the rate-hike cycle.":"在加息周期中，咨询与行政支持服务需求保持坚挺。",
+"Federal outlays on infrastructure and defense supported public-sector growth.":"联邦在基础设施和国防方面的支出支撑了公共部门增长。",
+"New orders softened as higher borrowing costs weighed on capital spending.":"随着借贷成本上升拖累资本支出，新增订单有所走软。",
+"Continued its multi-year run as the fastest-growing major employer.":"连续多年保持增长最快的主要雇主行业地位。",
+"Higher interest rates lifted bank net interest income through the year.":"全年较高的利率提升了银行净利息收入。",
+"Resilient consumer spending kept retail growth ahead of expectations.":"消费支出保持韧性，使零售增长超出预期。",
+"Early AI infrastructure investment began lifting data-center construction.":"早期人工智能基础设施投资开始带动数据中心建设。",
+"Public infrastructure funding partly offset a slower housing market.":"公共基础设施资金部分抵消了住房市场放缓的影响。",
+"Warehouse and logistics investment kept expanding to serve online retail.":"仓储与物流投资持续扩张以支持线上零售业务。",
+"Softer global commodity prices weighed on farm income through the year.":"全年国际大宗商品价格走软，拖累了农业收入。",
+"Leisure and business travel spending continued its post-pandemic recovery.":"休闲与商务旅行支出持续从疫情中复苏。",
+"Largest single contributor to GDP, driven by owners' imputed rent and commercial leasing.":"受自住房屋虚拟租金和商业租赁推动，是GDP最大的单一贡献行业。",
+"Legal, consulting, and admin-support firms continue to outpace broader economic growth.":"法律、咨询和行政支持类企业增速持续超过整体经济。",
+"Federal, state and local government remains the largest single employer category.":"联邦、州及地方政府仍是最大的单一雇主类别。",
+"Still a top-three sector by output, though its GDP share has slid for decades.":"按产值仍位列前三大行业，但其GDP占比已连续下滑数十年。",
+"Wall Street and insurance underwriting remain outsized relative to headcount.":"华尔街与保险承保业务的产值相对于从业人数仍显著偏高。",
+"Fastest-growing major employer, adding jobs almost every month post-pandemic.":"疫情后几乎每月都在增加就业，是增长最快的主要雇主行业。",
+"Large, low-margin employer base sensitive to consumer spending swings.":"就业规模庞大但利润率较低，对消费支出波动较为敏感。",
+"Software, data processing and media punch far above their workforce weight.":"软件、数据处理和媒体行业的产值远超其就业人数占比。",
+"Boosted by infrastructure spending and a multi-year housing supply shortfall.":"受基础设施支出及多年住房供给短缺推动而增长。",
+"Freight and last-mile delivery volumes kept climbing with online retail growth.":"随着线上零售增长，货运和最后一公里配送量持续攀升。",
+"Trade tensions and soft global commodity prices weighed on farm exports.":"贸易紧张局势和疲软的国际大宗商品价格拖累了农产品出口。",
+"Resilient consumer travel and dining spend kept this sector expanding.":"消费者在旅行和餐饮方面保持韧性支出，推动该行业持续扩张。"
+});
+
+Object.assign(NOTE_ZH, {
+"Factory output rebounded quickly once zero-COVID restrictions ended.":"清零政策解除后，工厂产出迅速反弹。",
+"Consumption recovered from 2022 lockdowns but stayed below pre-2020 trend.":"消费从2022年封控中有所恢复，但仍低于2020年前的趋势水平。",
+"Major developer defaults triggered a sharp confidence shock in housing.":"主要房企违约引发了住房市场信心的剧烈冲击。",
+"Policy easing supported credit expansion to cushion the property downturn.":"政策宽松支持信贷扩张，以缓冲房地产下行压力。",
+"New residential starts fell sharply as developer liquidity dried up.":"随着房企流动性枯竭，新开工住宅大幅下滑。",
+"Grain output rose slightly, supporting food-security policy goals.":"粮食产量小幅增长，支撑了粮食安全政策目标。",
+"Passenger and freight transport rebounded as travel restrictions lifted.":"随着出行限制解除，客运和货运均出现反弹。",
+"Software and IT services grew despite a broader tech-sector regulatory crackdown.":"尽管科技行业监管收紧，软件与信息技术服务仍保持增长。",
+"Coal output was pushed higher on energy-security policy priorities.":"出于能源安全政策考量，煤炭产量被进一步提升。",
+"Healthcare investment expanded as the post-pandemic system rebuilt capacity.":"疫情后医疗系统重建产能，带动医疗投资扩大。",
+"Business services rebounded alongside the broader post-lockdown recovery.":"随着封控后整体经济复苏，商业服务业同步反弹。",
+"Administrative spending stayed elevated to support the economic reopening.":"行政支出保持高位，以支持经济重新开放。",
+"Electric-vehicle and battery exports helped offset softer domestic demand.":"电动汽车与电池出口有助于抵消国内需求疲软的影响。",
+"Domestic consumption grew modestly as households stayed cautious.":"由于家庭消费仍较为谨慎，国内消费温和增长。",
+"State-directed lending supported credit growth despite property stress.":"尽管房地产承压，国家主导的信贷投放仍支撑了信贷增长。",
+"New construction starts fell further as developer defaults continued.":"随着房企违约持续，新开工建设进一步下滑。",
+"Home prices kept falling in most tier-2 and tier-3 cities through the year.":"全年大多数二三线城市房价持续下跌。",
+"A stable harvest kept rural output broadly flat year-on-year.":"稳定的收成使农村产出同比大体持平。",
+"Parcel delivery volumes kept rising on the back of livestream shopping.":"在直播电商带动下，快递配送量持续上升。",
+"Continued state investment in semiconductors and AI infrastructure.":"国家持续加大对半导体与人工智能基础设施的投资。",
+"Coal demand growth slowed as renewable generation capacity expanded.":"随着可再生能源发电产能扩大，煤炭需求增速放缓。",
+"Continued its steady structural rise as the population kept ageing.":"随着人口持续老龄化，该行业保持稳定的结构性增长。",
+"Business services grew steadily despite broader economic headwinds.":"尽管整体经济面临逆风，商业服务业仍保持稳步增长。",
+"Government stimulus spending supported administrative sector output.":"政府刺激支出支撑了行政管理部门的产出。",
+"By far the largest sector; China remains the dominant global manufacturing hub.":"是迄今为止最大的行业；中国仍是全球主导性的制造业中心。",
+"Large domestic distribution sector supporting both exports and consumption.":"庞大的国内流通行业同时支撑着出口与消费。",
+"Banking and insurance sector has grown alongside capital-market reforms.":"银行与保险业随资本市场改革同步增长。",
+"Slowed sharply as the property-sector correction weighed on new starts.":"受房地产行业调整拖累，新开工大幅放缓。",
+"Still recovering from a multi-year downturn in developer financing and home sales.":"仍在从房企融资和住房销售多年下滑中逐步恢复。",
+"Employs a vast rural workforce despite a shrinking share of total output.":"尽管在总产出中的占比不断缩小，仍吸纳着庞大的农村劳动力。",
+"Logistics network expansion tracks the growth of domestic e-commerce.":"物流网络的扩张与国内电商增长同步。",
+"Fastest-growing sector as the state prioritises tech self-sufficiency.":"随着国家优先推进科技自主可控，该行业成为增速最快的产业。",
+"Coal and metals output steady but growth has cooled with slower construction.":"煤炭与金属产出保持稳定，但随建筑业放缓，增速有所降温。",
+"Public healthcare investment kept expanding as the population ages rapidly.":"随着人口快速老龄化，公共医疗投资持续扩大。",
+"Corporate consulting and outsourcing services grew alongside industrial upgrading.":"随着产业升级推进，企业咨询与外包服务同步增长。",
+"State administrative spending stayed elevated to support economic stimulus measures.":"为配合经济刺激措施，国家行政支出保持高位。"
+});
+
+Object.assign(NOTE_ZH, {
+"Housing activity stayed firm for most of the year before rate rises cooled it.":"全年大部分时间住房市场活动保持坚挺，随后加息使其降温。",
+"Dairy processors benefited from a near-record farmgate milk price.":"乳制品加工企业受益于接近历史高位的农场收奶价格。",
+"Dairy export revenue hit a record high on strong global milk prices.":"受国际奶价强劲推动，乳制品出口收入创历史新高。",
+"Continued steady growth in demand for aged and community care.":"养老与社区护理需求持续稳定增长。",
+"Rising interest rates began lifting bank lending margins.":"利率上升开始提升银行放贷利差。",
+"Builders worked through a large pipeline of pandemic-era consents.":"建筑商正在消化疫情期间积累的大量审批项目。",
+"Business services demand held up well through most of the year.":"全年大部分时间商业服务需求保持良好。",
+"Consumer spending was boosted by returning international tourists.":"国际游客回归带动了消费支出增长。",
+"The reopening of New Zealand's border drove a sharp rebound in visitor spend.":"新西兰边境重新开放推动游客消费大幅反弹。",
+"Government programs stayed elevated as part of the post-pandemic recovery.":"作为疫情后复苏的一部分，政府项目支出保持高位。",
+"Telecommunications demand grew steadily through the reopening year.":"在边境重开之年，电信需求持续稳步增长。",
+"International student numbers began rebounding as the border reopened.":"随着边境重新开放，国际学生人数开始回升。",
+"High mortgage rates weighed on housing turnover and rental market activity.":"高抵押贷款利率拖累了住房成交量和租赁市场活动。",
+"Export-oriented manufacturers faced softer demand from key trading partners.":"出口导向型制造商面临主要贸易伙伴需求疲软的压力。",
+"Stayed one of the few sectors adding jobs through the downturn.":"在经济下行期间，仍是少数保持新增就业的行业之一。",
+"Higher interest rates supported bank margins despite weaker loan demand.":"尽管贷款需求走弱，较高利率仍支撑了银行利差。",
+"Building consents fell sharply from their post-2021 peak.":"建筑审批数量较2021年后的峰值大幅下滑。",
+"Business consulting demand softened as clients delayed discretionary spend.":"随着客户推迟非必要支出，企业咨询需求有所走软。",
+"Households cut discretionary spending as living costs stayed elevated.":"由于生活成本居高不下，家庭削减了非必要支出。",
+"Lower global dairy prices reduced farmer payouts from the prior year.":"国际奶价下跌导致农户收益低于上一年度。",
+"International visitor numbers kept recovering toward pre-pandemic levels.":"国际游客人数持续向疫情前水平恢复。",
+"Government spending stayed a stabilising force through the downturn.":"在经济下行期间，政府支出持续发挥稳定作用。",
+"Telco and digital media demand held up despite the wider economic slowdown.":"尽管整体经济放缓，电信与数字媒体需求仍保持稳健。",
+"International student numbers continued a gradual recovery.":"国际学生人数持续缓慢恢复。",
+"Owner-occupied housing imputed rent makes this the single largest GDP contributor.":"自住房屋虚拟租金使其成为最大的单一GDP贡献行业。",
+"Food processing (especially dairy) dominates, but broader manufacturing has softened.":"食品加工（尤其是乳制品）占主导地位，但整体制造业有所走软。",
+"One of the largest and fastest-growing employers as the population ages.":"随着人口老龄化，成为规模最大、增长最快的雇主行业之一。",
+"Small but efficient sector, heavily weighted toward banking and insurance.":"规模虽小但效率较高，主要集中于银行与保险业务。",
+"Growing steadily as firms expand consulting and technical export services.":"随着企业扩大咨询与技术出口服务，该行业保持稳步增长。",
+"Cooling after a multi-year residential building boom driven by past housing shortages.":"在此前住房短缺推动的多年住宅建设热潮后开始降温。",
+"Large employer base closely tied to tourism recovery and household spending.":"就业规模庞大，与旅游业复苏及家庭消费密切相关。",
+"Only ~5–6% of GDP but dominates exports — dairy alone earns roughly $21B a year.":"占GDP比重仅约5%–6%，却主导出口——仅乳制品一项年出口额就约210亿新西兰元。",
+"Tourism-linked hospitality sector still recovering toward pre-2020 visitor levels.":"与旅游相关的酒店餐饮业仍在向2020年前的游客水平恢复。",
+"Government services expanded modestly alongside population growth.":"随着人口增长，政府服务实现温和扩张。",
+"Telecommunications and streaming demand kept growing steadily.":"电信与流媒体需求持续稳步增长。",
+"International education exports continued recovering toward pre-2020 levels.":"国际教育出口持续向2020年前的水平恢复。"
+});
+
+Object.assign(NOTE_ZH, {
+"A rapidly weakening yen gave exporters their strongest competitive edge in years.":"日元快速贬值使出口企业获得多年来最强的竞争优势。",
+"Border reopening drove a strong rebound in tourist-linked retail spending.":"边境重开推动了与旅游相关的零售消费强劲反弹。",
+"Low domestic interest rates kept property investment attractive.":"国内低利率环境持续维持房地产投资的吸引力。",
+"Continued its multi-decade rise as Japan's population kept ageing.":"随着日本人口持续老龄化，该行业延续了长达数十年的增长态势。",
+"Public infrastructure projects kept activity elevated.":"公共基础设施项目使行业活动保持活跃。",
+"Persistently negative interest rates kept bank margins under pressure.":"持续的负利率使银行利差持续承压。",
+"Passenger transport rebounded sharply once entry restrictions were lifted.":"入境限制解除后，客运出行大幅反弹。",
+"Technology and R&D services grew steadily through the recovery.":"在复苏过程中，科技与研发服务持续稳步增长。",
+"Rural depopulation continued to erode the farming and fishing workforce.":"农村人口流失持续削弱农业与渔业劳动力。",
+"Government spending remained elevated as part of ongoing stimulus measures.":"作为持续刺激措施的一部分，政府支出维持高位。",
+"IT services demand grew steadily through the post-pandemic recovery.":"在疫情后复苏过程中，IT服务需求持续稳步增长。",
+"Hospitality revenue rebounded sharply once entry restrictions were lifted.":"入境限制解除后，酒店餐饮收入大幅反弹。",
+"Auto exports rebounded as global supply-chain disruptions finally eased.":"随着全球供应链瓶颈最终缓解，汽车出口出现反弹。",
+"Consumer spending held up despite rising import-driven inflation.":"尽管进口驱动型通胀上升，消费支出仍保持坚挺。",
+"Foreign buyers took advantage of the weak yen to invest in Japanese property.":"外国买家利用日元贬值机会投资日本房地产。",
+"Elder-care spending continued its long-run structural rise.":"养老护理支出持续保持长期结构性增长。",
+"Markets priced in the Bank of Japan's eventual exit from ultra-low rates.":"市场已消化日本央行最终退出超低利率政策的预期。",
+"A shrinking construction workforce kept project timelines stretched.":"建筑业劳动力不断萎缩，使项目工期持续延长。",
+"Inbound tourism recovered past pre-pandemic levels for the first time.":"入境旅游首次恢复并超过疫情前水平。",
+"Corporate R&D spending stayed resilient despite a soft domestic economy.":"尽管国内经济疲软，企业研发支出仍保持韧性。",
+"Farmer numbers kept falling, one of the fastest declines among major economies.":"农户数量持续下降，降幅在主要经济体中位居前列。",
+"Public spending stayed a stabilising force amid soft private consumption.":"在私人消费疲软的背景下，公共支出持续发挥稳定作用。",
+"Corporate digital transformation spending continued to accelerate.":"企业数字化转型支出持续加速。",
+"A weak yen kept export manufacturers, especially autos and machinery, highly competitive.":"日元贬值使出口制造商（尤其是汽车和机械行业）保持高度竞争力。",
+"Inbound tourism spending gave retail an unusual boost this year.":"今年入境旅游消费为零售业带来了不同寻常的提振。",
+"Tokyo commercial property stayed a rare bright spot versus other advanced economies.":"相较其他发达经济体，东京商业地产依然是难得的亮点。",
+"The world's oldest population keeps structurally lifting health and elder-care spending.":"作为全球老龄化程度最深的国家，持续从结构上推高医疗与养老支出。",
+"The Bank of Japan's exit from negative rates began lifting bank margins.":"日本央行退出负利率政策已开始提升银行利差。",
+"Chronic labour shortages continue to constrain project completion rates.":"长期存在的劳动力短缺持续制约项目完工率。",
+"Record inbound visitor numbers lifted rail, air and logistics volumes.":"创纪录的入境游客人数带动了铁路、航空及物流运量增长。",
+"R&D-intensive firms kept investing despite broader economic stagnation.":"尽管整体经济陷入停滞，研发密集型企业仍持续投资。",
+"An ageing, shrinking farming workforce continues to weigh on rural output.":"老龄化且不断萎缩的农业劳动力持续拖累农村产出。",
+"Government spending stayed elevated to support an ageing society and defence buildup.":"为支持老龄化社会及国防建设，政府支出维持高位。",
+"Government-backed digital transformation initiatives lifted IT sector investment.":"政府支持的数字化转型举措带动了IT行业投资。",
+"Record inbound tourist numbers drove strong hotel and restaurant revenue.":"创纪录的入境游客数量带动酒店与餐饮收入强劲增长。"
+});
+
+Object.assign(NOTE_ZH, {
+"A steep global memory-chip price crash dragged export revenue down sharply.":"全球存储芯片价格暴跌，导致出口收入大幅下滑。",
+"Aggressive rate hikes to tame inflation curbed household spending.":"为抑制通胀而大幅加息，抑制了家庭支出。",
+"One of the sharpest property downturns in decades hit major cities.":"主要城市遭遇数十年来最严重的房地产下滑之一。",
+"Builders worked through a large pipeline of pre-approved projects.":"建筑商正在消化大量已获批的项目储备。",
+"A brief bond-market liquidity scare rattled financial institutions.":"债券市场短暂的流动性恐慌扰动了金融机构。",
+"Kept expanding steadily, insulated from the broader export downturn.":"未受整体出口下滑影响，持续稳步扩张。",
+"Global tech-sector layoffs reached Korean platform and software firms.":"全球科技行业裁员浪潮波及韩国平台与软件企业。",
+"Falling export volumes weighed heavily on shipping and freight demand.":"出口量下滑严重拖累航运与货运需求。",
+"Continued a long-run structural decline in workforce and output share.":"劳动力与产出占比持续呈长期结构性下滑。",
+"Public spending stayed elevated to help cushion the sharp export downturn.":"公共支出维持高位，以缓冲出口大幅下滑的冲击。",
+"Domestic hospitality spending softened alongside broader economic caution.":"随着整体经济趋于谨慎，国内酒店餐饮消费有所走软。",
+"Private tutoring spending held up despite the wider economic slowdown.":"尽管整体经济放缓，私人补习支出仍保持坚挺。",
+"Chip exports recovered in the second half after a weak start to the year.":"芯片出口在年初疲软后于下半年实现恢复。",
+"High interest rates continued to weigh on household consumption.":"高利率持续对家庭消费构成压力。",
+"Regional property markets stayed weak through most of the year.":"全年大部分时间地区房地产市场持续疲软。",
+"A project-financing liquidity crisis stalled several major developments.":"项目融资流动性危机使多个大型开发项目陷入停滞。",
+"Banks stayed profitable despite construction-sector credit stress.":"尽管建筑业信贷承压，银行业仍保持盈利。",
+"Continued its steady structural rise as the population aged further.":"随着人口进一步老龄化，该行业保持稳定的结构性增长。",
+"Software and platform firms kept growing despite the broader chip slump.":"尽管芯片行业整体低迷，软件与平台企业仍保持增长。",
+"Weaker global trade volumes early in the year hit logistics activity.":"年初全球贸易量走弱，冲击了物流行业活动。",
+"Farm output stayed roughly flat amid a continuing rural workforce decline.":"在农村劳动力持续减少的背景下，农业产出大体持平。",
+"Government spending stayed a stabilising force amid the chip-sector slump.":"在芯片行业低迷期间，政府支出持续发挥稳定作用。",
+"Visitor numbers kept climbing back toward pre-pandemic levels.":"游客人数持续向疫情前水平回升。",
+"Private education spending remained resilient despite broader economic softness.":"尽管整体经济疲软，私人教育支出仍保持韧性。",
+"Memory-chip demand from AI data centres drove a sharp export rebound.":"人工智能数据中心对存储芯片的需求推动出口大幅反弹。",
+"High household debt levels kept a lid on discretionary consumer spending.":"高企的家庭债务水平持续抑制了非必要消费支出。",
+"A wave of project-financing defaults slowed new residential starts.":"一波项目融资违约拖慢了新建住宅开工。",
+"Export strength and a resilient won supported bank profitability.":"出口强劲及韩元汇率韧性支撑了银行盈利能力。",
+"Property prices in some regions kept correcting from 2021 highs.":"部分地区房价持续从2021年高点回调。",
+"One of the fastest-ageing populations globally kept lifting care demand.":"作为全球老龄化速度最快的国家之一，持续推高护理需求。",
+"Domestic tech giants ramped up AI and cloud infrastructure spending.":"国内科技巨头加大了人工智能与云基础设施投资。",
+"Container throughput at Busan rose alongside the export rebound.":"随着出口反弹，釜山港集装箱吞吐量随之上升。",
+"A shrinking, ageing rural workforce continued to weigh on farm output.":"不断萎缩且老龄化的农村劳动力持续拖累农业产出。",
+"Defence and administrative spending stayed elevated amid regional security concerns.":"受地区安全局势影响，国防与行政支出维持高位。",
+"Inbound tourism, especially from China, kept recovering toward pre-pandemic levels.":"入境旅游（尤其是来自中国的游客）持续向疫情前水平恢复。",
+"Private tutoring and higher-education spending remained a large household expense.":"私人补习与高等教育支出仍是家庭的一项重要开支。"
+});
+
+Object.assign(NOTE_ZH, {
+"Electronics manufacturing stayed strong through most of the year.":"全年大部分时间电子制造业保持强劲。",
+"Trade volumes benefited from a broad post-pandemic global reopening.":"贸易量受益于疫情后全球范围内的广泛重新开放。",
+"Regional wealth-management inflows accelerated amid global market volatility.":"在全球市场波动的背景下，区域财富管理资金流入加速。",
+"Corporate relocations to Singapore continued at a brisk pace.":"企业迁往新加坡的步伐持续保持强劲。",
+"The port recorded some of its highest-ever container throughput figures.":"该港口录得历史最高集装箱吞吐量之一。",
+"Tourism rebounded sharply as regional travel restrictions were lifted.":"随着区域旅行限制解除，旅游业大幅反弹。",
+"Tech-sector investment stayed strong despite global rate hikes.":"尽管全球加息，科技行业投资仍保持强劲。",
+"Construction activity rebounded as pandemic-era labour restrictions eased.":"随着疫情期间劳动力限制放宽，建筑业活动出现反弹。",
+"Property prices stayed firm despite successive rounds of cooling measures.":"尽管多轮楼市降温措施出台，房价仍保持坚挺。",
+"Healthcare capacity expansion continued post-pandemic.":"疫情后医疗系统产能持续扩张。",
+"Public spending stayed elevated to support the post-pandemic recovery.":"为支持疫情后复苏，公共支出维持高位。",
+"International student numbers began recovering as borders reopened.":"随着边境重新开放，国际学生人数开始回升。",
+"Stayed resilient even as the broader trade-dependent economy slowed.":"即便整体依赖贸易的经济有所放缓，该行业仍保持韧性。",
+"Slower global electronics trade weighed on entrepot volumes.":"全球电子产品贸易放缓，拖累转口贸易量。",
+"Global semiconductor downturn cut into electronics output for most of the year.":"全球半导体行业低迷，导致全年大部分时间电子产品产出减少。",
+"Continued attracting regional headquarters and professional service firms.":"持续吸引区域总部及专业服务企业入驻。",
+"Container throughput growth slowed alongside weaker global trade.":"随着全球贸易走弱，集装箱吞吐量增速放缓。",
+"Data-centre and tech investment kept flowing in despite the trade slowdown.":"尽管贸易放缓，数据中心与科技投资仍持续流入。",
+"Public infrastructure projects continued largely on schedule.":"公共基础设施项目大体按计划持续推进。",
+"Property demand held firm despite cooling measures on residential purchases.":"尽管出台了住宅购房降温措施，房地产需求仍保持坚挺。",
+"Visitor numbers kept climbing back toward pre-pandemic levels.":"游客人数持续向疫情前水平回升。",
+"Healthcare spending continued its steady structural rise.":"医疗支出持续保持稳定的结构性增长。",
+"Public spending stayed resilient even as trade-linked sectors slowed.":"即便贸易相关行业放缓，公共支出仍保持韧性。",
+"International student enrolment stayed a steady contributor to services exports.":"国际学生入学人数持续为服务出口做出稳定贡献。",
+"Continued to attract wealth-management inflows amid regional financial-hub competition.":"在区域金融中心竞争中持续吸引财富管理资金流入。",
+"Semiconductor and electronics production benefited from the global chip upcycle.":"半导体与电子产品生产受益于全球芯片周期上行。",
+"Singapore's role as a regional entrepot trade hub kept volumes elevated.":"新加坡作为区域转口贸易枢纽的地位维持了较高的贸易量。",
+"The port handled record container throughput as global trade rebounded.":"随着全球贸易反弹，该港口处理的集装箱吞吐量创下纪录。",
+"Professional and administrative services grew alongside regional HQ relocations.":"随着区域总部迁入，专业与行政服务同步增长。",
+"Continued to draw regional tech headquarters and data-centre investment.":"持续吸引区域科技总部及数据中心投资。",
+"Public housing and infrastructure projects kept activity elevated.":"公共住房与基础设施项目使行业活动保持活跃。",
+"Visitor arrivals continued recovering toward pre-pandemic levels.":"入境游客人数持续向疫情前水平恢复。",
+"Prime commercial and residential property stayed in strong demand.":"优质商业与住宅地产需求持续强劲。",
+"Government healthcare investment expanded as Singapore's population ages.":"随着新加坡人口老龄化，政府医疗投资持续扩大。",
+"Public-sector spending stayed elevated to support social and infrastructure programs.":"为支持社会保障与基础设施项目，公共部门支出维持高位。",
+"Singapore's role as a regional education hub kept international enrolment strong.":"新加坡作为区域教育枢纽的地位持续吸引大量国际学生入学。"
+});
+
+Object.assign(NOTE_ZH, {
+"The 2022 gas-price shock forced some energy-intensive plants to curb output.":"2022年天然气价格冲击迫使部分高耗能工厂削减产量。",
+"Property values held up early in the year before rate hikes began to bite.":"年初房产价值保持坚挺，随后加息影响逐渐显现。",
+"Surging energy and food prices sharply cut into real consumer spending.":"能源与食品价格飙升大幅削弱了实际消费支出。",
+"Government energy-relief packages lifted public-sector spending.":"政府能源纾困方案带动了公共部门支出增长。",
+"Kept growing steadily, largely insulated from the energy crisis.":"基本不受能源危机影响，持续保持稳定增长。",
+"Business and engineering services stayed a relative bright spot.":"商业与工程服务相对而言表现亮眼。",
+"Builders worked through a large pipeline of pre-crisis approvals.":"建筑商正在消化危机前获批的大量项目储备。",
+"Rising ECB rates began lifting bank net interest income.":"欧洲央行加息开始提升银行净利息收入。",
+"Higher fuel and energy costs squeezed freight and logistics margins.":"燃料与能源成本上升压缩了货运与物流利润率。",
+"Soaring fertiliser costs from the gas-price shock hit farm margins hard.":"天然气价格冲击导致化肥成本飙升，严重压缩农业利润。",
+"Tech investment stayed resilient even as heavy industry contracted.":"即便重工业萎缩，科技投资仍保持韧性。",
+"Hospitality revenue kept recovering from pandemic-era restrictions.":"酒店餐饮收入持续从疫情限制措施中恢复。",
+"Energy-intensive chemical and industrial output kept contracting through the year.":"全年高耗能化工与工业产出持续收缩。",
+"Commercial real estate values fell further as financing costs stayed high.":"由于融资成本居高不下，商业地产价值进一步下滑。",
+"Public spending stayed a stabilising force amid private-sector weakness.":"在私营部门疲软之际，公共支出持续发挥稳定作用。",
+"High inflation eroded real household spending power through the year.":"全年高通胀持续侵蚀家庭实际消费能力。",
+"Continued its steady structural rise as care demand kept increasing.":"随着护理需求持续增长，该行业保持稳定的结构性增长。",
+"Engineering services stayed relatively resilient versus heavy industry.":"相较重工业，工程服务表现相对更具韧性。",
+"New housing starts fell sharply from their 2021 peak.":"新建住宅开工量较2021年峰值大幅下滑。",
+"Higher interest rates continued lifting bank profitability.":"较高利率持续提升银行盈利能力。",
+"Falling industrial exports weighed heavily on freight volumes.":"工业出口下滑严重拖累货运量。",
+"Elevated fertiliser and energy costs kept squeezing farm profitability.":"高企的化肥与能源成本持续压缩农业利润。",
+"IT services remained one of the few consistently growing sectors.":"IT服务仍是少数保持持续增长的行业之一。",
+"Cautious consumer spending weighed on hospitality revenue through the year.":"全年消费者支出趋于谨慎，拖累了酒店餐饮收入。",
+"Automakers kept struggling with the costly shift to EVs amid Chinese competition.":"在中国车企竞争压力下，汽车制造商在向电动车转型的高昂成本中持续挣扎。",
+"A major increase in defence spending lifted public-sector output.":"国防支出大幅增加带动了公共部门产出增长。",
+"Higher borrowing costs continued weighing on commercial property values.":"较高的借贷成本持续对商业地产价值构成压力。",
+"Cautious consumer spending kept retail growth subdued.":"消费者支出趋于谨慎，使零售业增长保持低迷。",
+"An ageing population kept structurally lifting health and care spending.":"人口老龄化持续从结构上推高医疗与护理支出。",
+"Engineering and R&D-intensive services stayed a relative bright spot.":"工程与研发密集型服务相对而言表现亮眼。",
+"Higher interest rates continued to suppress new residential building.":"较高利率持续抑制新建住宅建设。",
+"Higher rates for longer supported bank net interest margins.":"利率维持高位更长时间，支撑了银行净息差。",
+"Weaker export volumes weighed on freight and logistics activity.":"出口量走弱拖累了货运与物流行业活动。",
+"High input costs continued to squeeze German farm incomes.":"高企的生产投入成本持续压缩德国农业收入。",
+"Government digitalisation initiatives helped lift IT-sector investment.":"政府数字化举措带动了IT行业投资增长。",
+"Domestic tourism and hospitality spending held up despite weak consumer sentiment.":"尽管消费者信心疲软，国内旅游与酒店餐饮消费仍保持稳健。"
+});
+
+Object.assign(NOTE_ZH, {
+"Housing activity held up early in the year before rate rises took hold.":"年初住房市场活动保持坚挺，随后加息影响开始显现。",
+"Rising interest rates began lifting bank net interest margins.":"利率上升开始提升银行净息差。",
+"Soaring energy bills sharply cut into household discretionary spending.":"能源账单飙升大幅削减了家庭可自由支配支出。",
+"High energy costs weighed heavily on energy-intensive manufacturers.":"高企的能源成本严重拖累高耗能制造商。",
+"Business services stayed relatively insulated from the cost-of-living crisis.":"商业服务相对未受生活成本危机的严重影响。",
+"Post-pandemic care backlogs kept demand for health services elevated.":"疫情后积压的护理需求使医疗服务需求持续处于高位。",
+"Builders worked through a pipeline of projects approved before rate hikes began.":"建筑商正在消化加息前已获批的项目储备。",
+"Tech-sector investment stayed strong despite the broader cost-of-living crisis.":"尽管生活成本危机蔓延，科技行业投资仍保持强劲。",
+"International student enrolment rebounded strongly post-pandemic.":"疫情后国际学生入学人数强劲反弹。",
+"Government energy-support schemes lifted public spending through the crisis.":"政府能源补贴计划在危机期间推高了公共支出。",
+"Soaring energy and fertiliser costs squeezed farm profitability.":"能源与化肥成本飙升压缩了农业利润。",
+"Hospitality revenue continued recovering from pandemic-era restrictions.":"酒店餐饮收入持续从疫情限制措施中恢复。",
+"Higher mortgage rates sharply cooled housing transactions through the year.":"全年较高的抵押贷款利率大幅降温了住房交易。",
+"Higher interest rates supported bank margins despite broader economic softness.":"尽管整体经济疲软，较高利率仍支撑了银行利差。",
+"Business and legal services stayed resilient amid the wider slowdown.":"在整体经济放缓之际，商业与法律服务仍保持韧性。",
+"Persistent inflation kept squeezing household discretionary spending.":"持续通胀不断压缩家庭可自由支配支出。",
+"EU trade friction and weak export demand kept output subdued.":"欧盟贸易摩擦及出口需求疲软使产出持续低迷。",
+"NHS waiting lists kept growing, adding pressure on social-care services.":"英国国家医疗服务体系（NHS）候诊名单持续增长，加大了社会护理服务的压力。",
+"High borrowing costs continued to slow new residential building.":"高企的借贷成本持续拖慢新建住宅建设。",
+"Tech investment held up better than most other sectors.":"科技投资的表现好于大多数其他行业。",
+"International student numbers stayed a resilient source of export revenue.":"国际学生人数持续成为出口收入的稳健来源。",
+"Government spending stayed a stabilising force amid weak private-sector growth.":"在私营部门增长疲软之际，政府支出持续发挥稳定作用。",
+"Rising input costs and post-Brexit trade friction kept squeezing farm incomes.":"生产投入成本上升及脱欧后贸易摩擦持续压缩农业收入。",
+"Cost-of-living pressures weighed on discretionary hospitality spending.":"生活成本压力拖累了非必要的酒店餐饮消费。",
+"London retained its position as Europe's largest financial-services hub.":"伦敦继续保持欧洲最大金融服务中心的地位。",
+"Owner-occupied housing imputed rent remains the single largest GDP contributor.":"自住房屋虚拟租金仍是最大的单一GDP贡献行业。",
+"Legal, consulting and technical services kept growing faster than the broader economy.":"法律、咨询与技术服务的增速持续超过整体经济。",
+"Post-Brexit customs friction continued to weigh on manufacturing exports to the EU.":"脱欧后海关摩擦持续拖累对欧盟的制造业出口。",
+"NHS and social-care demand kept rising alongside a growing waiting-list backlog.":"随着候诊积压持续增长，NHS及社会护理需求同步上升。",
+"Cost-of-living pressures kept discretionary consumer spending subdued.":"生活成本压力持续抑制非必要消费支出。",
+"London's tech sector kept attracting venture capital despite broader caution.":"尽管整体市场趋于谨慎，伦敦科技行业仍持续吸引风险投资。",
+"Public infrastructure projects helped offset a slower private housing market.":"公共基础设施项目部分抵消了私人住房市场放缓的影响。",
+"Higher-education exports via international student enrolment stayed a key earner.":"通过国际学生入学实现的高等教育出口仍是重要创收来源。",
+"Public spending stayed elevated to support the NHS and defence commitments.":"为支持NHS及国防承诺，公共支出维持高位。",
+"New customs and export paperwork continued to weigh on farm trade with the EU.":"新的海关及出口文书要求持续拖累与欧盟的农产品贸易。",
+"Hospitality spending held up despite the broader cost-of-living squeeze.":"尽管生活成本压力持续，酒店餐饮消费仍保持坚挺。"
+});
+
+Object.assign(NOTE_ZH, {
+"Property activity held up in the first half before rate hikes began to bite.":"上半年房地产活动保持坚挺，随后加息影响开始显现。",
+"Aerospace and defence manufacturing stayed resilient through the energy shock.":"在能源冲击期间，航空航天与国防制造业仍保持韧性。",
+"Government energy price-cap schemes lifted public-sector spending.":"政府能源限价计划带动了公共部门支出增长。",
+"Surging energy costs cut into real household spending power.":"能源成本飙升削弱了家庭的实际消费能力。",
+"Kept expanding steadily, largely insulated from the energy-price shock.":"基本未受能源价格冲击影响，持续保持稳定扩张。",
+"Business and consulting services stayed a relative bright spot.":"商业与咨询服务相对而言表现亮眼。",
+"Builders worked through a pipeline of pre-crisis approvals.":"建筑商正在消化危机前获批的项目储备。",
+"Rising ECB rates began lifting bank net interest income.":"欧洲央行加息开始提升银行净利息收入。",
+"Soaring fertiliser and energy costs squeezed farm profitability.":"化肥与能源成本飙升压缩了农业利润。",
+"Tech-sector investment held up despite the broader energy-driven slowdown.":"尽管能源驱动的整体经济放缓，科技行业投资仍保持坚挺。",
+"Hospitality revenue kept recovering strongly from pandemic-era restrictions.":"酒店餐饮收入持续从疫情限制措施中强劲恢复。",
+"Freight volumes held up reasonably well despite the energy-price shock.":"尽管遭遇能源价格冲击，货运量仍保持相对稳健。",
+"Aerospace order backlogs kept factory output growing steadily.":"航空航天订单积压使工厂产出持续稳步增长。",
+"Property transaction volumes fell to their lowest level in over a decade.":"房地产成交量降至十多年来的最低水平。",
+"Public spending stayed elevated amid political pressure to protect services.":"在维护公共服务的政治压力下，公共支出维持高位。",
+"Persistent inflation kept eroding real household purchasing power.":"持续通胀不断侵蚀家庭实际购买力。",
+"Continued its steady structural rise as care demand kept increasing.":"随着护理需求持续增长，该行业保持稳定的结构性增长。",
+"Business services growth outpaced the broader stagnant economy.":"商业服务的增速超过了整体停滞的经济。",
+"High borrowing costs kept new housing starts near multi-year lows.":"高企的借贷成本使新建住宅开工维持在多年低位附近。",
+"Bank margins benefited from rates staying higher for longer.":"利率长期维持高位使银行利差受益。",
+"Rising input costs squeezed farm incomes across most regions.":"生产投入成本上升压缩了大多数地区的农业收入。",
+"IT and telecom services stayed a relative bright spot in a sluggish economy.":"在低迷的经济环境中，IT与电信服务相对而言表现亮眼。",
+"Strong international visitor numbers kept hospitality revenue resilient.":"强劲的国际游客数量使酒店餐饮收入保持韧性。",
+"Weaker freight volumes tracked the broader slowdown in industrial exports.":"货运量走弱，反映出工业出口整体放缓的趋势。",
+"Aerospace and luxury-goods exporters kept output growing despite a soft eurozone backdrop.":"尽管欧元区经济环境疲软，航空航天与奢侈品出口商仍保持产出增长。",
+"Higher mortgage rates continued to weigh on residential property transactions.":"较高的抵押贷款利率持续对住宅地产交易构成压力。",
+"Elevated public spending kept the budget deficit above EU targets.":"公共支出居高不下，使财政赤字持续高于欧盟目标水平。",
+"Cautious household spending kept retail growth below the eurozone average.":"家庭消费趋于谨慎，使零售增长低于欧元区平均水平。",
+"Consulting and engineering services stayed a relative bright spot.":"咨询与工程服务相对而言表现亮眼。",
+"An ageing population kept structurally lifting health and social-care spending.":"人口老龄化持续从结构上推高医疗与社会护理支出。",
+"Higher-for-longer ECB rates continued supporting bank margins.":"欧洲央行利率长期维持高位持续支撑银行利差。",
+"New housing starts fell to some of their lowest levels in over a decade.":"新建住宅开工降至十多年来的最低水平之一。",
+"Falling farm incomes fuelled nationwide farmer protests over EU trade rules.":"农业收入下滑引发了全国范围内针对欧盟贸易规则的农民抗议活动。",
+"Tech and telecom services kept growing faster than the broader stagnant economy.":"科技与电信服务的增速持续超过整体停滞的经济。",
+"France's position as the world's most-visited country kept hospitality revenue strong.":"法国作为全球游客到访量最高的国家，持续支撑酒店餐饮收入保持强劲。",
+"Softer industrial export volumes weighed on freight and logistics activity.":"工业出口量走软，拖累了货运与物流行业活动。"
+});
+
+function trNote(note){
+  if(LANG === 'zh') return NOTE_ZH[note] || note;
+  return note;
+}
+
+const SUBNAME_ZH = {
+"Hospitals":"医院",
+"Aged & residential care":"养老与住宿护理",
+"Allied health & primary care":"联合医疗与基础医疗",
+"Social assistance services":"社会救助服务",
+"Iron ore & metal ores":"铁矿石与金属矿石",
+"Coal":"煤炭",
+"Oil & gas extraction":"石油与天然气开采",
+"Other mining & quarrying":"其他采矿与采石",
+"Residential building":"住宅建筑",
+"Non-residential building":"非住宅建筑",
+"Heavy & civil infrastructure":"重型与市政基础设施",
+"Trade services & fit-out":"专业分包与装修服务",
+"Legal & accounting":"法律与会计",
+"Consulting & management":"咨询与管理",
+"Engineering & technical":"工程与技术服务",
+"Computer systems design":"计算机系统设计",
+"Banking & lending":"银行与信贷",
+"Insurance & superannuation":"保险与养老金",
+"Capital markets & funds":"资本市场与基金",
+"Food & beverage processing":"食品饮料加工",
+"Machinery & equipment":"机械与设备",
+"Chemicals & materials":"化工与材料",
+"Electronics & vehicles":"电子产品与汽车",
+"Road freight & logistics":"公路货运与物流",
+"Rail & maritime":"铁路与海运",
+"Air transport":"航空运输",
+"Postal & warehousing":"邮政与仓储",
+"Food & grocery retail":"食品与杂货零售",
+"General & department retail":"综合与百货零售",
+"Wholesale trade":"批发贸易",
+"E-commerce & online retail":"电子商务与网络零售",
+"Livestock & dairy":"畜牧与乳业",
+"Crops & grains":"农作物与谷物",
+"Forestry & logging":"林业与伐木",
+"Fishing & aquaculture":"渔业与水产养殖",
+"Owner-occupied housing (imputed rent)":"自住房屋（虚拟租金）",
+"Commercial leasing":"商业租赁",
+"Real estate services & agents":"房地产服务与中介",
+"Public administration":"公共行政管理",
+"Defence":"国防",
+"Education (public)":"公共教育",
+"Public safety & justice":"公共安全与司法",
+"Primary & secondary schooling":"中小学教育",
+"Higher education & universities":"高等教育与大学",
+"Vocational & technical training":"职业与技术培训",
+"International student services":"国际学生服务",
+"Software & IT services":"软件与IT服务",
+"Data processing & hosting":"数据处理与托管",
+"Telecommunications":"电信",
+"Publishing & media":"出版与媒体",
+"Hotels & accommodation":"酒店与住宿",
+"Cafes & restaurants":"咖啡馆与餐厅",
+"Catering & takeaway":"餐饮外卖服务",
+"Core operations":"核心业务",
+"Support & ancillary services":"支持与配套服务",
+"Other activities":"其他业务"
+};
+
+function trSubName(name){
+  if(LANG === 'zh') return SUBNAME_ZH[name] || name;
+  return name;
+}
+
+const STAT_LABEL_ZH = {
+"National net worth":"国民净资产",
+"GDP growth FY22–23":"2022–23财年GDP增长率",
+"Services share of GDP":"服务业占GDP比重",
+"Jobs in health & social care":"医疗与社会护理就业人数",
+"GDP growth FY23–24":"2023–24财年GDP增长率",
+"GDP growth FY24–25":"2024–25财年GDP增长率",
+"Nominal GDP":"名义GDP",
+"Jobs in government":"政府部门就业人数",
+"Manufacturing workers":"制造业从业人数",
+"Dairy export revenue":"乳制品出口收入",
+"Population aged 65+":"65岁以上人口占比",
+"Semiconductor exports":"半导体出口额",
+"Global container port by volume":"全球集装箱吞吐量排名",
+"Manufacturing jobs":"制造业就业人数",
+"Jobs in financial services":"金融服务业就业人数",
+"Public spending share of GDP":"公共支出占GDP比重"
+};
+
+function trStatLabel(label){
+  if(LANG === 'zh') return STAT_LABEL_ZH[label] || label;
+  return label;
+}
+
+function heroTitleSingle(countryName){
+  return LANG === 'zh'
+    ? `掌控 <span class="accent">${countryName}</span> 经济命脉的产业版`
+    : `The board that <span class="accent">runs</span> ${countryName}`;
+}
+function heroTitleCompareYears(countryName){
+  return LANG === 'zh'
+    ? `<span class="accent">${countryName}</span> 三年对比`
+    : `Three years of <span class="accent">${countryName}</span>, compared`;
+}
+function heroTitleCountryCompare(){
+  return LANG === 'zh'
+    ? `各国经济，<span class="accent">并排对比</span>`
+    : `Economies, <span class="accent">compared</span>`;
+}
+
+function applyStaticTranslations(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    el.textContent = t(key);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-html');
+    el.innerHTML = t(key);
+  });
+  document.querySelectorAll('[data-country]').forEach(el=>{
+    const code = el.getAttribute('data-country');
+    const flag = el.getAttribute('data-flag') || '';
+    el.textContent = `${flag} ${trCountry(code)}`;
+  });
+  document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
+  document.body.classList.toggle('lang-zh', LANG === 'zh');
+}
+// ============ END I18N ============
+
 function renderTableBody(){
   let arr = [...currentTableIndustries];
   if(tableSortState.key){
@@ -1688,11 +2431,11 @@ function renderTableBody(){
   const tbody = document.getElementById('tableBody');
   tbody.innerHTML = arr.map(ind=>`
     <tr>
-      <td style="color:var(--paper)">${ind.name}</td>
+      <td style="color:var(--paper)">${trIndustry(ind.name)}</td>
       <td class="num">${ind.gdp}%</td>
       <td class="num">${ind.workforce}%</td>
       <td class="num"><span class="trend ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span></td>
-      <td>${ind.note}</td>
+      <td>${trNote(ind.note)}</td>
     </tr>
   `).join('');
 }
@@ -1735,8 +2478,8 @@ function renderSubsectorTableBody(){
   const tbody = document.getElementById('subsectorTableBody');
   tbody.innerHTML = arr.map(row=>`
     <tr>
-      <td style="color:var(--paper)">${row.industry}</td>
-      <td>${row.name}</td>
+      <td style="color:var(--paper)">${trIndustry(row.industry)}</td>
+      <td>${trSubName(row.name)}</td>
       <td class="num">${row.pct}%</td>
       <td class="num">${row.gdpContribution}%</td>
     </tr>
@@ -1772,25 +2515,26 @@ function renderSingleYear(code, year){
   const country = countryData[code];
   const data = country.years[year];
   const industries = [...data.industries].sort((a,b)=>b.gdp-a.gdp);
+  const countryName = trCountry(code);
 
   // Hero text
   document.getElementById('heroEyebrow').textContent = data.eyebrow;
-  document.title = `${country.name} Top Industries · FY ${YEAR_LABEL[year]} — AU/IDX Board`;
-  document.getElementById('heroTitle').innerHTML = data.titleHtml;
-  document.getElementById('heroSub').textContent = data.sub;
+  document.title = `${countryName} ${t('doc_title_top_industries')} · FY ${YEAR_LABEL[year]} — AU/IDX Board`;
+  document.getElementById('heroTitle').innerHTML = heroTitleSingle(countryName);
+  document.getElementById('heroSub').textContent = LANG==='zh' ? t('hero_sub_generic') : data.sub;
   const readout = document.getElementById('boardReadout');
-  readout.innerHTML = data.stats.map(s=>`<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${s.k}</div></div>`).join('');
+  readout.innerHTML = data.stats.map(s=>`<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${trStatLabel(s.k)}</div></div>`).join('');
   document.querySelector('footer div:first-child').textContent = data.footer;
   document.querySelector('nav .brand').innerHTML = `<span class="dot"></span>${code}/IDX BOARD`;
-  document.getElementById('industriesNote').textContent = `Approximate GDP share, workforce share and earnings direction, FY ${YEAR_LABEL[year]}.`;
-  document.getElementById('earningsChartTitle').textContent = `Earnings direction, FY ${YEAR_LABEL[year]}`;
+  document.getElementById('industriesNote').textContent = `${t('industries_note_prefix')} FY ${YEAR_LABEL[year]}.`;
+  document.getElementById('earningsChartTitle').textContent = `${t('earnings_direction_prefix')} FY ${YEAR_LABEL[year]}`;
 
   // Ticker
   const tickerTrack = document.getElementById('tickerTrack');
   let tickerHtml='';
   for(let r=0;r<2;r++){
     industries.forEach(ind=>{
-      tickerHtml += `<span class="ticker-item">${ind.name} <b>${ind.gdp}%</b> <span class="arrow ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span></span>`;
+      tickerHtml += `<span class="ticker-item">${trIndustry(ind.name)} <b>${ind.gdp}%</b> <span class="arrow ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span></span>`;
     });
   }
   tickerTrack.innerHTML = tickerHtml;
@@ -1802,22 +2546,22 @@ function renderSingleYear(code, year){
     const subs = getSubcategories(ind.name);
     const subsHtml = subs.map(s=>`
       <div class="sub-row">
-        <div class="sub-row-top"><span class="sub-name">${s.name}</span><span class="sub-pct">${s.pct}%</span></div>
+        <div class="sub-row-top"><span class="sub-name">${trSubName(s.name)}</span><span class="sub-pct">${s.pct}%</span></div>
         <div class="sub-bar-track"><div class="sub-bar-fill" style="width:${s.pct}%"></div></div>
       </div>
     `).join('');
     return `
     <div class="tile">
-      <div class="rank">NO. ${String(idx+1).padStart(2,'0')}</div>
-      <h3>${ind.name}</h3>
+      <div class="rank">${t('no_prefix')} ${String(idx+1).padStart(2,'0')}</div>
+      <h3>${trIndustry(ind.name)}</h3>
       <span class="trend-chip ${ind.trend}">${ind.trend==='up'?'▲':'▼'} ${ind.trendVal}</span>
       <div class="metric-row">
-        <div class="metric"><div class="v">${ind.gdp}%</div><div class="k">GDP share</div></div>
-        <div class="metric"><div class="v">${ind.workforce}%</div><div class="k">Workforce</div></div>
+        <div class="metric"><div class="v">${ind.gdp}%</div><div class="k">${t('tile_gdp_share')}</div></div>
+        <div class="metric"><div class="v">${ind.workforce}%</div><div class="k">${t('tile_workforce')}</div></div>
       </div>
       <div class="bar-track"><div class="bar-fill" style="width:${(ind.gdp/maxGdp*100).toFixed(0)}%"></div></div>
-      <p>${ind.note}</p>
-      <button class="subs-toggle" type="button" aria-expanded="false">Sub-sector breakdown <span class="subs-toggle-arrow">▾</span></button>
+      <p>${trNote(ind.note)}</p>
+      <button class="subs-toggle" type="button" aria-expanded="false">${t('subs_toggle_label')} <span class="subs-toggle-arrow">▾</span></button>
       <div class="subs-panel">${subsHtml}</div>
     </div>
   `;
@@ -1840,7 +2584,7 @@ function renderSingleYear(code, year){
       });
     });
   });
-  document.getElementById('subsectorNote').textContent = `Each industry's own output broken down into its constituent sub-sectors, FY ${YEAR_LABEL[year]}.`;
+  document.getElementById('subsectorNote').textContent = `${t('subsector_note_prefix')} FY ${YEAR_LABEL[year]}.`;
   renderSubsectorTableBody();
 
   // Charts — destroy old instances first
@@ -1851,9 +2595,9 @@ function renderSingleYear(code, year){
   gdpChartInstance = new Chart(document.getElementById('gdpChart'), {
     type:'bar',
     data:{
-      labels: industries.map(i=>chartLabel(i.name)),
+      labels: industries.map(i=>chartLabel(trIndustry(i.name))),
       datasets:[{
-        label:'GDP share (%)',
+        label: t('chart_gdp_title'),
         data: industries.map(i=>i.gdp),
         backgroundColor: '#b9702a',
         borderRadius:2,
@@ -1865,8 +2609,8 @@ function renderSingleYear(code, year){
       plugins:{
         legend:{display:false},
         tooltip:{callbacks:{
-          title:(items)=> industries[items[0].dataIndex].name,
-          label:(c)=>c.parsed.x+'% of GDP'
+          title:(items)=> trIndustry(industries[items[0].dataIndex].name),
+          label:(c)=>c.parsed.x+'% ' + t('of_gdp')
         }}
       },
       scales:{
@@ -1880,8 +2624,8 @@ function renderSingleYear(code, year){
     type:'scatter',
     data:{
       datasets:[{
-        label:'Industries',
-        data: industries.map((i)=>({x:i.workforce, y:i.gdp, name:i.name})),
+        label: t('col_industry'),
+        data: industries.map((i)=>({x:i.workforce, y:i.gdp, name:trIndustry(i.name)})),
         backgroundColor: palette,
         pointRadius:8,
         pointHoverRadius:11,
@@ -1892,11 +2636,11 @@ function renderSingleYear(code, year){
     options:{
       plugins:{
         legend:{display:false},
-        tooltip:{callbacks:{label:(c)=>`${c.raw.name}: ${c.raw.x}% workforce, ${c.raw.y}% GDP`}}
+        tooltip:{callbacks:{label:(c)=>`${c.raw.name}: ${c.raw.x}% ${t('tile_workforce')}, ${c.raw.y}% GDP`}}
       },
       scales:{
-        x:{title:{display:true,text:'Workforce share (%)', color:'#5c6a63'}, grid:{color:'rgba(31,45,40,0.08)'}},
-        y:{title:{display:true,text:'GDP share (%)', color:'#5c6a63'}, grid:{color:'rgba(31,45,40,0.08)'}}
+        x:{title:{display:true,text:t('workforce_share_axis'), color:'#5c6a63'}, grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{title:{display:true,text:t('gdp_share_axis'), color:'#5c6a63'}, grid:{color:'rgba(31,45,40,0.08)'}}
       }
     }
   });
@@ -1904,9 +2648,9 @@ function renderSingleYear(code, year){
   earningsChartInstance = new Chart(document.getElementById('earningsChart'), {
     type:'bar',
     data:{
-      labels: industries.map(i=>i.name),
+      labels: industries.map(i=>chartLabel(trIndustry(i.name))),
       datasets:[{
-        label:'Trend',
+        label: t('col_earnings_trend'),
         data: industries.map(i=> i.trend==='up' ? 1 : -1),
         backgroundColor: industries.map(i=> i.trend==='up' ? '#2f8f6d' : '#b3492e'),
         borderRadius:2
@@ -1916,11 +2660,12 @@ function renderSingleYear(code, year){
       plugins:{
         legend:{display:false},
         tooltip:{callbacks:{
-          label:(c)=> industries[c.dataIndex].trendVal + ' earnings change'
+          title:(items)=> trIndustry(industries[items[0].dataIndex].name),
+          label:(c)=> industries[c.dataIndex].trendVal
         }}
       },
       scales:{
-        y:{ticks:{callback:v=> v===1?'Growth':(v===-1?'Decline':'')}, grid:{color:'rgba(31,45,40,0.08)'}},
+        y:{ticks:{callback:v=> v===1?t('growth_label'):(v===-1?t('decline_label'):'')}, grid:{color:'rgba(31,45,40,0.08)'}},
         x:{ticks:{autoSkip:false, maxRotation:45, minRotation:30, font:{size:10}}, grid:{display:false}}
       }
     }
@@ -1932,15 +2677,16 @@ function renderCompare(code){
   const years = YEAR_ORDER.filter(y=>country.years[y]);
   const latestYear = years[years.length-1];
   const latest = country.years[latestYear];
+  const countryName = trCountry(code);
 
   // Hero text — use latest year framing, note it's a comparison
-  document.getElementById('heroEyebrow').textContent = `${country.name} · Comparing FY ${YEAR_LABEL[years[0]]} – FY ${YEAR_LABEL[latestYear]}`;
-  document.title = `${country.name} Industries · ${YEAR_LABEL[years[0]]}–${YEAR_LABEL[latestYear]} Compared — AU/IDX Board`;
-  document.getElementById('heroTitle').innerHTML = `Three years of <span class="accent">${country.name}</span>, compared`;
-  document.getElementById('heroSub').textContent = `How every major industry's GDP share and workforce share has shifted across the last three fiscal years.`;
+  document.getElementById('heroEyebrow').textContent = `${countryName} · ${t('comparing_prefix')} FY ${YEAR_LABEL[years[0]]} – FY ${YEAR_LABEL[latestYear]}`;
+  document.title = `${countryName} ${t('doc_title_industries')} · ${YEAR_LABEL[years[0]]}–${YEAR_LABEL[latestYear]} ${t('doc_title_compared')} — AU/IDX Board`;
+  document.getElementById('heroTitle').innerHTML = heroTitleCompareYears(countryName);
+  document.getElementById('heroSub').textContent = t('compare_years_sub');
   const readout = document.getElementById('boardReadout');
-  readout.innerHTML = latest.stats.map(s=>`<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${s.k}</div></div>`).join('');
-  document.querySelector('footer div:first-child').textContent = latest.footer + ' · MULTI-YEAR COMPARISON VIEW';
+  readout.innerHTML = latest.stats.map(s=>`<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${trStatLabel(s.k)}</div></div>`).join('');
+  document.querySelector('footer div:first-child').textContent = latest.footer + ' · ' + t('multi_year_view_label');
   document.querySelector('nav .brand').innerHTML = `<span class="dot"></span>${code}/IDX BOARD`;
 
   // Ticker — show latest year's GDP shares with a "3yr" delta
@@ -1958,7 +2704,7 @@ function renderCompare(code){
       const last = byYearByName[latestYear][name].gdp;
       const delta = (last-first).toFixed(1);
       const dir = delta >= 0 ? 'up' : 'down';
-      tickerHtml += `<span class="ticker-item">${name} <b>${last}%</b> <span class="arrow ${dir}">${dir==='up'?'▲':'▼'} ${delta>=0?'+':''}${delta}pp 3yr</span></span>`;
+      tickerHtml += `<span class="ticker-item">${trIndustry(name)} <b>${last}%</b> <span class="arrow ${dir}">${dir==='up'?'▲':'▼'} ${delta>=0?'+':''}${delta}pp ${t('yr_suffix')}</span></span>`;
     });
   }
   tickerTrack.innerHTML = tickerHtml;
@@ -1967,8 +2713,8 @@ function renderCompare(code){
   document.querySelectorAll('.single-year-view').forEach(el=> el.style.display='none');
   document.getElementById('compareView').style.display='';
 
-  document.getElementById('compareHeading').textContent = `${country.name}: ${YEAR_LABEL[years[0]]} through ${YEAR_LABEL[latestYear]}`;
-  document.getElementById('compareNote').textContent = `GDP share by industry across the last three fiscal years — sorted by ${YEAR_LABEL[latestYear]} weight.`;
+  document.getElementById('compareHeading').textContent = `${countryName}: ${YEAR_LABEL[years[0]]} ${t('through_label')} ${YEAR_LABEL[latestYear]}`;
+  document.getElementById('compareNote').textContent = `${t('compare_note_prefix')} ${YEAR_LABEL[latestYear]} ${t('weight_suffix')}`;
   document.getElementById('compareColYear1').textContent = YEAR_LABEL[years[0]];
   document.getElementById('compareColYear2').textContent = YEAR_LABEL[years[1]];
   document.getElementById('compareColYear3').textContent = YEAR_LABEL[years[2]];
@@ -1986,7 +2732,7 @@ function renderCompare(code){
     const dir = delta >= 0 ? 'up' : 'down';
     return `
       <tr>
-        <td style="color:var(--paper)">${name}</td>
+        <td style="color:var(--paper)">${trIndustry(name)}</td>
         <td class="num">${v1}%</td>
         <td class="num">${v2}%</td>
         <td class="num">${v3}%</td>
@@ -2004,7 +2750,7 @@ function renderCompare(code){
   compareBarInstance = new Chart(document.getElementById('compareBarChart'), {
     type:'bar',
     data:{
-      labels: sortedNames.map(n=> chartLabel(n)),
+      labels: sortedNames.map(n=> chartLabel(trIndustry(n))),
       datasets: years.map(y=>({
         label: YEAR_LABEL[y],
         data: sortedNames.map(n=> byYearByName[y][n].gdp),
@@ -2017,7 +2763,7 @@ function renderCompare(code){
       plugins:{
         legend:{display:true, position:'top', labels:{boxWidth:12, font:{size:11}}},
         tooltip:{callbacks:{
-          title:(items)=> sortedNames[items[0].dataIndex],
+          title:(items)=> trIndustry(sortedNames[items[0].dataIndex]),
           label:(c)=>`${c.dataset.label}: ${c.parsed.x}%`
         }}
       },
@@ -2033,7 +2779,7 @@ function renderCompare(code){
     data:{
       labels: years.map(y=>YEAR_LABEL[y]),
       datasets: sortedNames.map((name, idx)=>({
-        label: chartLabel(name),
+        label: chartLabel(trIndustry(name)),
         data: years.map(y=> byYearByName[y][name].gdp),
         borderColor: palette[idx % palette.length],
         backgroundColor: palette[idx % palette.length],
@@ -2064,18 +2810,18 @@ function renderCountryCompare(codes, year){
   if(selected.length === 0){ return; }
 
   // Hero
-  const names = selected.map(c=> countryData[c].name);
-  document.getElementById('heroEyebrow').textContent = `Cross-country comparison · FY ${YEAR_LABEL[yr]}`;
-  document.getElementById('heroTitle').innerHTML = `Economies, <span class="accent">compared</span>`;
-  document.getElementById('heroSub').textContent = `${names.join(', ')} — GDP share by broad industry category, side by side for FY ${YEAR_LABEL[yr]}.`;
+  const names = selected.map(c=> trCountry(c));
+  document.getElementById('heroEyebrow').textContent = `${t('cross_country_prefix')} · FY ${YEAR_LABEL[yr]}`;
+  document.getElementById('heroTitle').innerHTML = heroTitleCountryCompare();
+  document.getElementById('heroSub').textContent = `${names.join('、')} — ${t('country_compare_sub_suffix')} FY ${YEAR_LABEL[yr]}.`;
   const readout = document.getElementById('boardReadout');
   readout.innerHTML = selected.slice(0,4).map(c=>{
     const s = countryData[c].years[yr].stats[1]; // GDP growth stat
-    return `<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${countryData[c].flag} ${countryData[c].name} — ${s.k}</div></div>`;
+    return `<div class="readout-cell"><div class="v">${s.v}</div><div class="k">${countryData[c].flag} ${trCountry(c)} — ${trStatLabel(s.k)}</div></div>`;
   }).join('');
-  document.querySelector('footer div:first-child').textContent = `MULTI-COUNTRY COMPARISON · FY ${YEAR_LABEL[yr]} · FIGURES ARE ILLUSTRATIVE APPROXIMATIONS`;
+  document.querySelector('footer div:first-child').textContent = `${t('multi_country_view_label')} · FY ${YEAR_LABEL[yr]} · ${t('footer_illustrative')}`;
   document.querySelector('nav .brand').innerHTML = `<span class="dot"></span>CMP/IDX BOARD`;
-  document.title = `Compare ${selected.join('-')} Industries · FY ${YEAR_LABEL[yr]} — AU/IDX Board`;
+  document.title = `${t('doc_title_compare')} ${selected.join('-')} · FY ${YEAR_LABEL[yr]} — AU/IDX Board`;
 
   // Ticker — top category per country
   const tickerTrack = document.getElementById('tickerTrack');
@@ -2083,7 +2829,7 @@ function renderCountryCompare(codes, year){
   for(let r=0;r<2;r++){
     selected.forEach(c=>{
       const top = [...countryData[c].years[yr].industries].sort((a,b)=>b.gdp-a.gdp)[0];
-      tickerHtml += `<span class="ticker-item">${countryData[c].flag} ${countryData[c].name} <b>${top.gdp}%</b> <span class="arrow up">${getCategoryLabel(top.name)}</span></span>`;
+      tickerHtml += `<span class="ticker-item">${countryData[c].flag} ${trCountry(c)} <b>${top.gdp}%</b> <span class="arrow up">${trCategory(getCategoryLabel(top.name))}</span></span>`;
     });
   }
   tickerTrack.innerHTML = tickerHtml;
@@ -2094,7 +2840,7 @@ function renderCountryCompare(codes, year){
   document.getElementById('countryCompareView').style.display='';
 
   document.getElementById('countryCompareHeading').textContent = `${names.join(' · ')} — FY ${YEAR_LABEL[yr]}`;
-  document.getElementById('countryCompareNote').textContent = `GDP share by broad industry category, compared across ${selected.length} selected countries.`;
+  document.getElementById('countryCompareNote').textContent = `${t('country_compare_note_prefix')} ${selected.length} ${t('country_compare_note_suffix')}`;
 
   // Build category -> country -> gdp map
   const allCategories = [];
@@ -2118,7 +2864,7 @@ function renderCountryCompare(codes, year){
 
   // Table head
   const thead = document.getElementById('countryCompareTableHead');
-  thead.innerHTML = `<th>Category</th>` + selected.map(c=>`<th class="num">${countryData[c].flag} ${c}</th>`).join('');
+  thead.innerHTML = `<th>${t('col_category')}</th>` + selected.map(c=>`<th class="num">${countryData[c].flag} ${c}</th>`).join('');
 
   // Table body
   const tbody = document.getElementById('countryCompareTableBody');
@@ -2127,7 +2873,7 @@ function renderCountryCompare(codes, year){
       const v = categoryData[cat][c];
       return `<td class="num">${v !== undefined ? v+'%' : '—'}</td>`;
     }).join('');
-    return `<tr><td style="color:var(--paper)">${cat}</td>${cells}</tr>`;
+    return `<tr><td style="color:var(--paper)">${trCategory(cat)}</td>${cells}</tr>`;
   }).join('');
 
   // Charts
@@ -2142,7 +2888,7 @@ function renderCountryCompare(codes, year){
   countryCompareBarInstance = new Chart(document.getElementById('countryCompareBarChart'), {
     type:'bar',
     data:{
-      labels: allCategories.map(cat=> chartLabel(cat)),
+      labels: allCategories.map(cat=> chartLabel(trCategory(cat))),
       datasets: selected.map(c=>({
         label: `${countryData[c].flag} ${c}`,
         data: allCategories.map(cat=> categoryData[cat][c] !== undefined ? categoryData[cat][c] : 0),
@@ -2155,7 +2901,7 @@ function renderCountryCompare(codes, year){
       plugins:{
         legend:{display:true, position:'top', labels:{boxWidth:12, font:{size:11}}},
         tooltip:{callbacks:{
-          title:(items)=> allCategories[items[0].dataIndex],
+          title:(items)=> trCategory(allCategories[items[0].dataIndex]),
           label:(c)=>`${c.dataset.label}: ${c.parsed.x}%`
         }}
       },
@@ -2167,7 +2913,7 @@ function renderCountryCompare(codes, year){
   });
 
   // Stat chart: GDP growth rate per country (parsed from stats[1].v, which is a % string)
-  const statLabels = selected.map(c=> `${countryData[c].flag} ${countryData[c].name}`);
+  const statLabels = selected.map(c=> `${countryData[c].flag} ${trCountry(c)}`);
   const statValues = selected.map(c=>{
     const raw = countryData[c].years[yr].stats[1].v; // e.g. "+1.4%" or "−0.3%"
     const num = parseFloat(raw.replace('−','-').replace('%',''));
@@ -2179,7 +2925,7 @@ function renderCountryCompare(codes, year){
     data:{
       labels: statLabels,
       datasets:[{
-        label:'GDP growth (%)',
+        label: t('gdp_growth_label'),
         data: statValues,
         backgroundColor: selected.map(c=> statValues[selected.indexOf(c)] >= 0 ? '#2f8f6d' : '#b3492e'),
         borderRadius:2
@@ -2188,7 +2934,7 @@ function renderCountryCompare(codes, year){
     options:{
       plugins:{
         legend:{display:false},
-        tooltip:{callbacks:{label:(c)=>`GDP growth: ${c.parsed.y}%`}}
+        tooltip:{callbacks:{label:(c)=>`${t('gdp_growth_label')}: ${c.parsed.y}%`}}
       },
       scales:{
         y:{ticks:{callback:v=>v+'%'}, grid:{color:'rgba(31,45,40,0.08)'}},
@@ -2205,7 +2951,7 @@ function render(code, year){
     document.getElementById('countryChecklist').style.display='flex';
     document.getElementById('compareView').style.display='none';
     const checked = Array.from(document.querySelectorAll('#countryChecklist input:checked')).map(el=>el.value);
-    renderCountryCompare(checked.length ? checked : ['AU','US','CN','NZ'], year);
+    renderCountryCompare(checked.length ? checked : ['AU','US','CN','DE','JP'], year);
   } else if(year === 'all'){
     document.getElementById('countryChecklist').style.display='none';
     document.getElementById('countryCompareView').style.display='none';
@@ -2264,6 +3010,18 @@ window.addEventListener('resize', ()=>{
   }, 200);
 });
 
+document.getElementById('langToggle').addEventListener('click', (e)=>{
+  const btn = e.target.closest('.lang-btn');
+  if(!btn) return;
+  const lang = btn.getAttribute('data-lang');
+  if(lang === LANG) return;
+  LANG = lang;
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.getAttribute('data-lang')===LANG));
+  applyStaticTranslations();
+  render(lastRenderCode, lastRenderYear);
+});
+
+applyStaticTranslations();
 render('AU','2025');
 </script>
 
