@@ -536,9 +536,16 @@
       <option value="CN" data-flag="🇨🇳" data-country="CN">🇨🇳 China</option>
       <option value="DE" data-flag="🇩🇪" data-country="DE">🇩🇪 Germany</option>
       <option value="JP" data-flag="🇯🇵" data-country="JP">🇯🇵 Japan</option>
+      <option value="IN" data-flag="🇮🇳" data-country="IN">🇮🇳 India</option>
       <option value="GB" data-flag="🇬🇧" data-country="GB">🇬🇧 United Kingdom</option>
       <option value="FR" data-flag="🇫🇷" data-country="FR">🇫🇷 France</option>
+      <option value="IT" data-flag="🇮🇹" data-country="IT">🇮🇹 Italy</option>
+      <option value="CA" data-flag="🇨🇦" data-country="CA">🇨🇦 Canada</option>
+      <option value="BR" data-flag="🇧🇷" data-country="BR">🇧🇷 Brazil</option>
+      <option value="RU" data-flag="🇷🇺" data-country="RU">🇷🇺 Russia</option>
+      <option value="MX" data-flag="🇲🇽" data-country="MX">🇲🇽 Mexico</option>
       <option value="KR" data-flag="🇰🇷" data-country="KR">🇰🇷 South Korea</option>
+      <option value="ES" data-flag="🇪🇸" data-country="ES">🇪🇸 Spain</option>
       <option value="SG" data-flag="🇸🇬" data-country="SG">🇸🇬 Singapore</option>
       <option value="NZ" data-flag="🇳🇿" data-country="NZ">🇳🇿 New Zealand</option>
       <option value="compare" data-i18n="opt_compare_countries">⇄ Compare Countries</option>
@@ -559,15 +566,22 @@
     <label class="country-check"><input type="checkbox" value="CN" checked> <span data-flag="🇨🇳" data-country="CN">🇨🇳 China</span></label>
     <label class="country-check"><input type="checkbox" value="DE" checked> <span data-flag="🇩🇪" data-country="DE">🇩🇪 Germany</span></label>
     <label class="country-check"><input type="checkbox" value="JP" checked> <span data-flag="🇯🇵" data-country="JP">🇯🇵 Japan</span></label>
+    <label class="country-check"><input type="checkbox" value="IN"> <span data-flag="🇮🇳" data-country="IN">🇮🇳 India</span></label>
     <label class="country-check"><input type="checkbox" value="GB"> <span data-flag="🇬🇧" data-country="GB">🇬🇧 United Kingdom</span></label>
     <label class="country-check"><input type="checkbox" value="FR"> <span data-flag="🇫🇷" data-country="FR">🇫🇷 France</span></label>
+    <label class="country-check"><input type="checkbox" value="IT"> <span data-flag="🇮🇹" data-country="IT">🇮🇹 Italy</span></label>
+    <label class="country-check"><input type="checkbox" value="CA"> <span data-flag="🇨🇦" data-country="CA">🇨🇦 Canada</span></label>
+    <label class="country-check"><input type="checkbox" value="BR"> <span data-flag="🇧🇷" data-country="BR">🇧🇷 Brazil</span></label>
+    <label class="country-check"><input type="checkbox" value="RU"> <span data-flag="🇷🇺" data-country="RU">🇷🇺 Russia</span></label>
+    <label class="country-check"><input type="checkbox" value="MX"> <span data-flag="🇲🇽" data-country="MX">🇲🇽 Mexico</span></label>
     <label class="country-check"><input type="checkbox" value="KR"> <span data-flag="🇰🇷" data-country="KR">🇰🇷 South Korea</span></label>
+    <label class="country-check"><input type="checkbox" value="ES"> <span data-flag="🇪🇸" data-country="ES">🇪🇸 Spain</span></label>
     <label class="country-check"><input type="checkbox" value="SG"> <span data-flag="🇸🇬" data-country="SG">🇸🇬 Singapore</span></label>
     <label class="country-check"><input type="checkbox" value="NZ"> <span data-flag="🇳🇿" data-country="NZ">🇳🇿 New Zealand</span></label>
   </div>
 
   <h1 class="hero-title" id="heroTitle">The board that <span class="accent">runs</span> Australia</h1>
-  <p class="hero-sub" id="heroSub">Nine industries, read like an exchange board: what each one contributes to output, how many people it employs, and which way its earnings are moving.</p>
+  <p class="hero-sub" id="heroSub">Top industries, read like an exchange board: what each one contributes to output, how many people it employs, and which way its earnings are moving.</p>
 
   <div class="board-readout mono" id="boardReadout">
     <div class="readout-cell"><div class="v">$21.4T</div><div class="k">National net worth</div></div>
@@ -587,7 +601,7 @@
       </div>
       <p class="section-note" data-i18n="s01_note">Services carry the GDP. Resources carry the export invoice. The board rarely agrees on which industry matters most.</p>
     </div>
-    <p style="max-width:72ch; line-height:1.75; color:var(--paper-dim); font-size:1rem;" data-i18n-html="s01_body">
+    <p style="max-width:72ch; line-height:1.75; color:var(--paper-dim); font-size:1rem;" id="overviewBody">
       Services broadly account for roughly three-quarters of GDP, but the sharpest recent growth has come from a narrower band: <b style="color:var(--paper)">professional & technical services, construction and administrative services</b> drove private-sector wage growth, while <b style="color:var(--paper)">mining</b> stayed the largest single export earner despite falling profits. Manufacturing has been losing GDP share for three decades, and agriculture, though only 2–3% of GDP, still swings state-level growth on the back of a single good harvest.
     </p>
   </section>
@@ -596,7 +610,7 @@
     <div class="section-head">
       <div>
         <div class="section-num" data-i18n="s02_num">// 02 · SECTOR TILES</div>
-        <h2 data-i18n="s02_title">Nine industries, ranked by GDP weight</h2>
+        <h2 data-i18n="s02_title">Top industries, ranked by GDP weight</h2>
       </div>
       <p class="section-note" id="industriesNote">Approximate GDP share, workforce share and earnings direction, FY 2024–25.</p>
     </div>
@@ -738,7 +752,7 @@
         <tbody id="countryCompareTableBody"></tbody>
       </table>
     </div>
-    <p class="section-note" style="margin-top:1rem; max-width:60ch;" data-i18n="country_compare_footnote">"—" means that category didn't rank among that country's top nine industries for the selected year — not that it's zero.</p>
+    <p class="section-note" style="margin-top:1rem; max-width:60ch;" data-i18n="country_compare_footnote">"—" means that category didn't rank among that country's top industries for the selected year — not that it's zero.</p>
   </section>
 
 </main>
@@ -756,7 +770,7 @@ const countryData = {
       "2025":{
         eyebrow:"ABS National Accounts · FY 2024–25",
         titleHtml:'The board that <span class="accent">runs</span> Australia',
-        sub:"Nine industries, read like an exchange board: what each one contributes to output, how many people it employs, and which way its earnings are moving.",
+        sub:"Top industries, read like an exchange board: what each one contributes to output, how many people it employs, and which way its earnings are moving.",
         stats:[
           {v:"$21.4T", k:"National net worth"},
           {v:"+1.4%", k:"GDP growth FY24–25"},
@@ -776,7 +790,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:2.4, workforce:2.5, trend:"up", trendVal:"+25.5% NSW", note:"Small GDP share but outsized swings — NSW agriculture alone grew 25.5% on a good season."},
           {name:"Rental, Hiring & Real Estate Services", gdp:6.8, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Owner-occupied housing imputed rent and commercial leasing keep this a top contributor."},
           {name:"Public Administration & Safety", gdp:6.2, workforce:8.0, trend:"up", trendVal:"+ steady", note:"Federal and state government services expanded alongside population growth."},
-          {name:"Information Media & Telecommunications", gdp:2.9, workforce:1.7, trend:"up", trendVal:"+ steady", note:"Telecommunications and digital media kept growing faster than the broader economy."}
+          {name:"Information Media & Telecommunications", gdp:2.9, workforce:1.7, trend:"up", trendVal:"+ steady", note:"Telecommunications and digital media kept growing faster than the broader economy."},
+          {name:"Education & Training", gdp:5.0, workforce:8.0, trend:"up", trendVal:"+ international students", note:"International education exports rebounded strongly as student visa numbers recovered."},
+          {name:"Accommodation & Food Services", gdp:2.4, workforce:7.1, trend:"up", trendVal:"+ tourism rebound", note:"Domestic and inbound tourism spending continued to recover toward pre-2020 levels."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.4, workforce:0.9, trend:"up", trendVal:"+ coal phase-down", note:"Ageing coal plants began retiring as renewable capacity kept expanding."}
         ]
       },
       "2024":{
@@ -802,7 +820,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:2.8, workforce:2.6, trend:"up", trendVal:"+ good season", note:"A strong east-coast harvest lifted output after a wetter prior year."},
           {name:"Rental, Hiring & Real Estate Services", gdp:6.6, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Kept growing steadily as population growth supported rental demand."},
           {name:"Public Administration & Safety", gdp:6.0, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Government spending stayed a stabilising force through the rate-hike cycle."},
-          {name:"Information Media & Telecommunications", gdp:2.8, workforce:1.7, trend:"up", trendVal:"+ steady", note:"Streaming and telecommunications demand continued its steady rise."}
+          {name:"Information Media & Telecommunications", gdp:2.8, workforce:1.7, trend:"up", trendVal:"+ steady", note:"Streaming and telecommunications demand continued its steady rise."},
+          {name:"Education & Training", gdp:4.8, workforce:7.9, trend:"up", trendVal:"+ steady", note:"International student enrolments continued climbing back toward pre-pandemic highs."},
+          {name:"Accommodation & Food Services", gdp:2.3, workforce:7.0, trend:"down", trendVal:"− cost pressure", note:"Cost-of-living pressures weighed on discretionary dining and travel spending."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:1.0, trend:"up", trendVal:"+ renewables build-out", note:"Large-scale solar and wind projects kept adding new generation capacity."}
         ]
       },
       "2023":{
@@ -828,7 +850,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:2.6, workforce:2.7, trend:"down", trendVal:"− wet season", note:"Flooding across eastern states disrupted several crop and livestock regions."},
           {name:"Rental, Hiring & Real Estate Services", gdp:6.5, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Low interest rates through most of the year kept property investment attractive."},
           {name:"Public Administration & Safety", gdp:5.9, workforce:7.8, trend:"up", trendVal:"+ steady", note:"Pandemic-era government programs continued flowing through into the economy."},
-          {name:"Information Media & Telecommunications", gdp:2.7, workforce:1.6, trend:"up", trendVal:"+ steady", note:"Digital media and telco demand held up well through the post-pandemic recovery."}
+          {name:"Information Media & Telecommunications", gdp:2.7, workforce:1.6, trend:"up", trendVal:"+ steady", note:"Digital media and telco demand held up well through the post-pandemic recovery."},
+          {name:"Education & Training", gdp:4.6, workforce:7.7, trend:"up", trendVal:"+ border reopening", note:"International student numbers rebounded sharply as border restrictions fully lifted."},
+          {name:"Accommodation & Food Services", gdp:2.2, workforce:6.8, trend:"up", trendVal:"+ post-COVID rebound", note:"Hospitality spending kept recovering from pandemic-era restrictions."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:1.0, trend:"up", trendVal:"+ grid investment", note:"Major grid upgrades continued to support the shift toward renewable generation."}
         ]
       }
     }
@@ -859,7 +885,11 @@ const countryData = {
           {name:"Construction", gdp:4.3, workforce:5.3, trend:"up", trendVal:"+ infra spend", note:"Boosted by infrastructure spending and a multi-year housing supply shortfall."},
           {name:"Transportation & Warehousing", gdp:3.4, workforce:4.9, trend:"up", trendVal:"+ e-commerce", note:"Freight and last-mile delivery volumes kept climbing with online retail growth."},
           {name:"Agriculture, Forestry & Fishing", gdp:0.9, workforce:1.4, trend:"down", trendVal:"− export headwinds", note:"Trade tensions and soft global commodity prices weighed on farm exports."},
-          {name:"Accommodation & Food Services", gdp:2.8, workforce:8.7, trend:"up", trendVal:"+ travel demand", note:"Resilient consumer travel and dining spend kept this sector expanding."}
+          {name:"Accommodation & Food Services", gdp:2.8, workforce:8.7, trend:"up", trendVal:"+ travel demand", note:"Resilient consumer travel and dining spend kept this sector expanding."},
+          {name:"Mining & Quarrying", gdp:1.5, workforce:0.4, trend:"up", trendVal:"+ energy prices", note:"Oil and gas extraction output rose alongside firmer energy prices."},
+          {name:"Education & Training", gdp:4.0, workforce:9.2, trend:"up", trendVal:"+ steady", note:"Higher-education institutions continued attracting strong international enrolment."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.5, workforce:0.5, trend:"up", trendVal:"+ steady", note:"Renewable capacity additions continued at a record pace nationwide."}
         ]
       },
       "2024":{
@@ -885,7 +915,11 @@ const countryData = {
           {name:"Construction", gdp:4.1, workforce:5.2, trend:"up", trendVal:"+ steady", note:"Public infrastructure funding partly offset a slower housing market."},
           {name:"Transportation & Warehousing", gdp:3.3, workforce:4.8, trend:"up", trendVal:"+ e-commerce", note:"Warehouse and logistics investment kept expanding to serve online retail."},
           {name:"Agriculture, Forestry & Fishing", gdp:1.0, workforce:1.4, trend:"down", trendVal:"− soft prices", note:"Softer global commodity prices weighed on farm income through the year."},
-          {name:"Accommodation & Food Services", gdp:2.7, workforce:8.6, trend:"up", trendVal:"+ travel demand", note:"Leisure and business travel spending continued its post-pandemic recovery."}
+          {name:"Accommodation & Food Services", gdp:2.7, workforce:8.6, trend:"up", trendVal:"+ travel demand", note:"Leisure and business travel spending continued its post-pandemic recovery."},
+          {name:"Mining & Quarrying", gdp:1.4, workforce:0.4, trend:"down", trendVal:"− softer prices", note:"Softer oil and gas prices weighed on extraction-sector revenue."},
+          {name:"Education & Training", gdp:3.9, workforce:9.1, trend:"up", trendVal:"+ steady", note:"University enrolment and research funding stayed resilient through the year."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.5, workforce:0.5, trend:"up", trendVal:"+ LNG exports", note:"Record LNG export capacity additions lifted the broader utilities sector."}
         ]
       },
       "2023":{
@@ -911,7 +945,11 @@ const countryData = {
           {name:"Construction", gdp:4.0, workforce:5.1, trend:"down", trendVal:"− housing slump", note:"Higher mortgage rates sharply slowed new residential starts."},
           {name:"Transportation & Warehousing", gdp:3.5, workforce:4.9, trend:"down", trendVal:"− freight recession", note:"A prolonged freight-sector downturn hit trucking and rail volumes."},
           {name:"Agriculture, Forestry & Fishing", gdp:1.1, workforce:1.5, trend:"up", trendVal:"+ strong exports", note:"Strong grain exports supported farm incomes for much of the year."},
-          {name:"Accommodation & Food Services", gdp:2.6, workforce:8.4, trend:"up", trendVal:"+ resilient spend", note:"Consumers kept prioritising travel and dining despite high inflation."}
+          {name:"Accommodation & Food Services", gdp:2.6, workforce:8.4, trend:"up", trendVal:"+ resilient spend", note:"Consumers kept prioritising travel and dining despite high inflation."},
+          {name:"Mining & Quarrying", gdp:1.6, workforce:0.4, trend:"up", trendVal:"+ high prices", note:"Elevated energy prices lifted oil and gas extraction revenue."},
+          {name:"Education & Training", gdp:3.8, workforce:9.0, trend:"up", trendVal:"+ steady", note:"International student numbers continued recovering post-pandemic."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.6, workforce:0.5, trend:"up", trendVal:"+ grid modernization", note:"Utilities kept investing heavily in grid modernization and data-centre power demand."}
         ]
       }
     }
@@ -942,7 +980,11 @@ const countryData = {
           {name:"Mining & Quarrying", gdp:2.3, workforce:1.2, trend:"down", trendVal:"− demand cool", note:"Coal and metals output steady but growth has cooled with slower construction."},
           {name:"Health & Social Welfare", gdp:5.5, workforce:5.0, trend:"up", trendVal:"+ demand", note:"Public healthcare investment kept expanding as the population ages rapidly."},
           {name:"Leasing & Business Services", gdp:5.0, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Corporate consulting and outsourcing services grew alongside industrial upgrading."},
-          {name:"Public Administration", gdp:4.5, workforce:3.5, trend:"up", trendVal:"+ steady", note:"State administrative spending stayed elevated to support economic stimulus measures."}
+          {name:"Public Administration", gdp:4.5, workforce:3.5, trend:"up", trendVal:"+ steady", note:"State administrative spending stayed elevated to support economic stimulus measures."},
+          {name:"Education", gdp:3.5, workforce:4.2, trend:"up", trendVal:"+ steady", note:"Government investment in vocational and higher education continued expanding capacity."},
+          {name:"Accommodation & Food Services", gdp:2.5, workforce:5.5, trend:"up", trendVal:"+ domestic tourism", note:"Strong domestic tourism demand kept hotel and restaurant revenue growing."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:3.0, workforce:1.2, trend:"up", trendVal:"+ steady", note:"Coal-fired capacity still expanded even as renewables grew even faster."}
         ]
       },
       "2024":{
@@ -968,7 +1010,11 @@ const countryData = {
           {name:"Mining & Quarrying", gdp:2.5, workforce:1.3, trend:"down", trendVal:"− soft demand", note:"Coal demand growth slowed as renewable generation capacity expanded."},
           {name:"Health & Social Welfare", gdp:5.3, workforce:4.9, trend:"up", trendVal:"+ demand", note:"Continued its steady structural rise as the population kept ageing."},
           {name:"Leasing & Business Services", gdp:4.8, workforce:4.4, trend:"up", trendVal:"+ steady", note:"Business services grew steadily despite broader economic headwinds."},
-          {name:"Public Administration", gdp:4.4, workforce:3.5, trend:"up", trendVal:"+ stimulus", note:"Government stimulus spending supported administrative sector output."}
+          {name:"Public Administration", gdp:4.4, workforce:3.5, trend:"up", trendVal:"+ stimulus", note:"Government stimulus spending supported administrative sector output."},
+          {name:"Education", gdp:3.4, workforce:4.1, trend:"up", trendVal:"+ steady", note:"Higher-education enrolment kept climbing alongside continued policy support."},
+          {name:"Accommodation & Food Services", gdp:2.4, workforce:5.4, trend:"up", trendVal:"+ steady", note:"Domestic travel spending stayed resilient despite broader consumer caution."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:3.1, workforce:1.2, trend:"up", trendVal:"+ grid expansion", note:"Ultra-high-voltage grid expansion continued connecting renewable-rich western regions."}
         ]
       },
       "2023":{
@@ -994,7 +1040,11 @@ const countryData = {
           {name:"Mining & Quarrying", gdp:2.6, workforce:1.3, trend:"up", trendVal:"+ energy security", note:"Coal output was pushed higher on energy-security policy priorities."},
           {name:"Health & Social Welfare", gdp:5.1, workforce:4.7, trend:"up", trendVal:"+ demand", note:"Healthcare investment expanded as the post-pandemic system rebuilt capacity."},
           {name:"Leasing & Business Services", gdp:4.6, workforce:4.3, trend:"up", trendVal:"+ reopening", note:"Business services rebounded alongside the broader post-lockdown recovery."},
-          {name:"Public Administration", gdp:4.3, workforce:3.4, trend:"up", trendVal:"+ steady", note:"Administrative spending stayed elevated to support the economic reopening."}
+          {name:"Public Administration", gdp:4.3, workforce:3.4, trend:"up", trendVal:"+ steady", note:"Administrative spending stayed elevated to support the economic reopening."},
+          {name:"Education", gdp:3.3, workforce:4.0, trend:"up", trendVal:"+ reopening", note:"Education spending rebounded as in-person schooling fully resumed post-lockdown."},
+          {name:"Accommodation & Food Services", gdp:2.2, workforce:5.2, trend:"up", trendVal:"+ reopening rebound", note:"Hospitality revenue rebounded sharply as pandemic restrictions were lifted."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:3.2, workforce:1.3, trend:"up", trendVal:"+ renewables surge", note:"Solar and wind capacity additions again outpaced the rest of the world combined."}
         ]
       }
     }
@@ -1025,7 +1075,11 @@ const countryData = {
           {name:"Accommodation & Food Services", gdp:3.0, workforce:6.5, trend:"up", trendVal:"+ tourism rebound", note:"Tourism-linked hospitality sector still recovering toward pre-2020 visitor levels."},
           {name:"Public Administration & Safety", gdp:5.2, workforce:6.5, trend:"up", trendVal:"+ steady", note:"Government services expanded modestly alongside population growth."},
           {name:"Information Media & Telecommunications", gdp:2.8, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Telecommunications and streaming demand kept growing steadily."},
-          {name:"Education & Training", gdp:3.6, workforce:6.8, trend:"up", trendVal:"+ steady", note:"International education exports continued recovering toward pre-2020 levels."}
+          {name:"Education & Training", gdp:3.6, workforce:6.8, trend:"up", trendVal:"+ steady", note:"International education exports continued recovering toward pre-2020 levels."},
+          {name:"Mining & Quarrying", gdp:0.9, workforce:0.3, trend:"down", trendVal:"− declining output", note:"Gas field depletion kept domestic oil and gas output on a declining trend."},
+          {name:"Transport & Storage", gdp:4.5, workforce:4.8, trend:"up", trendVal:"+ trade volumes", note:"Freight and shipping volumes grew alongside a rebound in export trade."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.7, workforce:0.6, trend:"up", trendVal:"+ steady", note:"Hydro and geothermal generation continued supplying the majority of electricity."}
         ]
       },
       "2024":{
@@ -1051,7 +1105,11 @@ const countryData = {
           {name:"Accommodation & Food Services", gdp:2.9, workforce:6.4, trend:"up", trendVal:"+ tourism rebound", note:"International visitor numbers kept recovering toward pre-pandemic levels."},
           {name:"Public Administration & Safety", gdp:5.1, workforce:6.4, trend:"up", trendVal:"+ steady", note:"Government spending stayed a stabilising force through the downturn."},
           {name:"Information Media & Telecommunications", gdp:2.7, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Telco and digital media demand held up despite the wider economic slowdown."},
-          {name:"Education & Training", gdp:3.4, workforce:6.7, trend:"up", trendVal:"+ steady", note:"International student numbers continued a gradual recovery."}
+          {name:"Education & Training", gdp:3.4, workforce:6.7, trend:"up", trendVal:"+ steady", note:"International student numbers continued a gradual recovery."},
+          {name:"Mining & Quarrying", gdp:1.0, workforce:0.3, trend:"down", trendVal:"− declining output", note:"Ageing gas fields continued to weigh on domestic energy production."},
+          {name:"Transport & Storage", gdp:4.4, workforce:4.7, trend:"down", trendVal:"− soft trade", note:"Softer export volumes weighed on freight and logistics activity."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:0.6, trend:"down", trendVal:"− gas shortage", note:"Gas supply shortages forced greater reliance on coal-fired backup generation."}
         ]
       },
       "2023":{
@@ -1077,7 +1135,11 @@ const countryData = {
           {name:"Accommodation & Food Services", gdp:2.6, workforce:6.1, trend:"up", trendVal:"+ border reopening", note:"The reopening of New Zealand's border drove a sharp rebound in visitor spend."},
           {name:"Public Administration & Safety", gdp:5.0, workforce:6.3, trend:"up", trendVal:"+ steady", note:"Government programs stayed elevated as part of the post-pandemic recovery."},
           {name:"Information Media & Telecommunications", gdp:2.6, workforce:1.7, trend:"up", trendVal:"+ steady", note:"Telecommunications demand grew steadily through the reopening year."},
-          {name:"Education & Training", gdp:3.2, workforce:6.5, trend:"up", trendVal:"+ border reopening", note:"International student numbers began rebounding as the border reopened."}
+          {name:"Education & Training", gdp:3.2, workforce:6.5, trend:"up", trendVal:"+ border reopening", note:"International student numbers began rebounding as the border reopened."},
+          {name:"Mining & Quarrying", gdp:1.1, workforce:0.3, trend:"down", trendVal:"− declining output", note:"Domestic oil and gas production kept declining as fields matured."},
+          {name:"Transport & Storage", gdp:4.6, workforce:4.9, trend:"up", trendVal:"+ reopening", note:"Freight activity rebounded as global trade normalised post-pandemic."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.6, trend:"down", trendVal:"− gas field decline", note:"Declining domestic gas field output continued to strain electricity supply security."}
         ]
       }
     }
@@ -1108,7 +1170,11 @@ const countryData = {
           {name:"Agriculture & Fisheries", gdp:1.0, workforce:3.2, trend:"down", trendVal:"− ageing farmers", note:"An ageing, shrinking farming workforce continues to weigh on rural output."},
           {name:"Public Administration", gdp:5.0, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Government spending stayed elevated to support an ageing society and defence buildup."},
           {name:"Information & Communications", gdp:5.4, workforce:4.2, trend:"up", trendVal:"+ digital push", note:"Government-backed digital transformation initiatives lifted IT sector investment."},
-          {name:"Accommodation & Food Services", gdp:2.5, workforce:6.0, trend:"up", trendVal:"+ record tourism", note:"Record inbound tourist numbers drove strong hotel and restaurant revenue."}
+          {name:"Accommodation & Food Services", gdp:2.5, workforce:6.0, trend:"up", trendVal:"+ record tourism", note:"Record inbound tourist numbers drove strong hotel and restaurant revenue."},
+          {name:"Mining & Quarrying", gdp:0.1, workforce:0.1, trend:"down", trendVal:"− resource-poor", note:"Japan's minimal domestic mineral resources keep this sector negligible."},
+          {name:"Education & Training", gdp:3.8, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Private tutoring and university spending stayed a stable household expense."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.8, workforce:0.6, trend:"down", trendVal:"− import costs", note:"High global LNG prices continued weighing on utility-sector margins."}
         ]
       },
       "2024":{
@@ -1134,7 +1200,11 @@ const countryData = {
           {name:"Agriculture & Fisheries", gdp:1.1, workforce:3.3, trend:"down", trendVal:"− shrinking workforce", note:"Farmer numbers kept falling, one of the fastest declines among major economies."},
           {name:"Public Administration", gdp:4.9, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Public spending stayed a stabilising force amid soft private consumption."},
           {name:"Information & Communications", gdp:5.1, workforce:4.1, trend:"up", trendVal:"+ digital push", note:"Corporate digital transformation spending continued to accelerate."},
-          {name:"Accommodation & Food Services", gdp:2.3, workforce:5.9, trend:"up", trendVal:"+ tourism rebound", note:"Inbound tourism recovered past pre-pandemic levels for the first time."}
+          {name:"Accommodation & Food Services", gdp:2.3, workforce:5.9, trend:"up", trendVal:"+ tourism rebound", note:"Inbound tourism recovered past pre-pandemic levels for the first time."},
+          {name:"Mining & Quarrying", gdp:0.1, workforce:0.1, trend:"down", trendVal:"− resource-poor", note:"Domestic mining output remained minimal given Japan's scarce mineral resources."},
+          {name:"Education & Training", gdp:3.7, workforce:3.9, trend:"up", trendVal:"+ steady", note:"University enrolment held steady despite the country's shrinking youth population."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.7, workforce:0.6, trend:"down", trendVal:"− LNG costs", note:"A weak yen kept imported LNG costs elevated for utility companies."}
         ]
       },
       "2023":{
@@ -1160,7 +1230,11 @@ const countryData = {
           {name:"Agriculture & Fisheries", gdp:1.2, workforce:3.4, trend:"down", trendVal:"− structural decline", note:"Rural depopulation continued to erode the farming and fishing workforce."},
           {name:"Public Administration", gdp:4.8, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Government spending remained elevated as part of ongoing stimulus measures."},
           {name:"Information & Communications", gdp:4.9, workforce:4.0, trend:"up", trendVal:"+ steady", note:"IT services demand grew steadily through the post-pandemic recovery."},
-          {name:"Accommodation & Food Services", gdp:2.0, workforce:5.7, trend:"up", trendVal:"+ border reopening", note:"Hospitality revenue rebounded sharply once entry restrictions were lifted."}
+          {name:"Accommodation & Food Services", gdp:2.0, workforce:5.7, trend:"up", trendVal:"+ border reopening", note:"Hospitality revenue rebounded sharply once entry restrictions were lifted."},
+          {name:"Mining & Quarrying", gdp:0.1, workforce:0.1, trend:"down", trendVal:"− resource-poor", note:"Limited domestic mineral resources kept this sector a marginal contributor."},
+          {name:"Education & Training", gdp:3.6, workforce:3.9, trend:"up", trendVal:"+ steady", note:"Education spending remained stable despite Japan's declining birth rate."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.6, trend:"up", trendVal:"+ nuclear restarts", note:"Additional nuclear reactor restarts helped ease reliance on costly LNG imports."}
         ]
       }
     }
@@ -1191,7 +1265,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:1.8, workforce:4.5, trend:"down", trendVal:"− rural decline", note:"A shrinking, ageing rural workforce continued to weigh on farm output."},
           {name:"Public Administration & Defence", gdp:6.5, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Defence and administrative spending stayed elevated amid regional security concerns."},
           {name:"Accommodation & Food Services", gdp:2.2, workforce:6.8, trend:"up", trendVal:"+ tourism rebound", note:"Inbound tourism, especially from China, kept recovering toward pre-pandemic levels."},
-          {name:"Education", gdp:4.5, workforce:6.5, trend:"up", trendVal:"+ steady", note:"Private tutoring and higher-education spending remained a large household expense."}
+          {name:"Education", gdp:4.5, workforce:6.5, trend:"up", trendVal:"+ steady", note:"Private tutoring and higher-education spending remained a large household expense."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.1, trend:"down", trendVal:"− resource-poor", note:"South Korea's limited domestic mineral resources keep this sector marginal."},
+          {name:"Professional & Business Services", gdp:6.5, workforce:7.2, trend:"up", trendVal:"+ steady", note:"Consulting and legal services grew steadily alongside corporate restructuring activity."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.1, workforce:0.5, trend:"down", trendVal:"− import costs", note:"High global energy prices kept pressuring the state-owned utility's balance sheet."}
         ]
       },
       "2024":{
@@ -1217,7 +1295,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:1.9, workforce:4.6, trend:"down", trendVal:"− rural decline", note:"Farm output stayed roughly flat amid a continuing rural workforce decline."},
           {name:"Public Administration & Defence", gdp:6.3, workforce:3.9, trend:"up", trendVal:"+ steady", note:"Government spending stayed a stabilising force amid the chip-sector slump."},
           {name:"Accommodation & Food Services", gdp:2.0, workforce:6.7, trend:"up", trendVal:"+ tourism rebound", note:"Visitor numbers kept climbing back toward pre-pandemic levels."},
-          {name:"Education", gdp:4.4, workforce:6.4, trend:"up", trendVal:"+ steady", note:"Private education spending remained resilient despite broader economic softness."}
+          {name:"Education", gdp:4.4, workforce:6.4, trend:"up", trendVal:"+ steady", note:"Private education spending remained resilient despite broader economic softness."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.1, trend:"down", trendVal:"− resource-poor", note:"Domestic mining output stayed minimal given scarce mineral resources."},
+          {name:"Professional & Business Services", gdp:6.3, workforce:7.1, trend:"up", trendVal:"+ steady", note:"Business services demand held up despite the broader chip-sector slump."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.0, workforce:0.5, trend:"down", trendVal:"− LNG import costs", note:"Elevated LNG import costs continued weighing on state utility finances."}
         ]
       },
       "2023":{
@@ -1243,7 +1325,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:2.0, workforce:4.7, trend:"down", trendVal:"− rural decline", note:"Continued a long-run structural decline in workforce and output share."},
           {name:"Public Administration & Defence", gdp:6.1, workforce:3.8, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to help cushion the sharp export downturn."},
           {name:"Accommodation & Food Services", gdp:1.8, workforce:6.5, trend:"down", trendVal:"− weak spending", note:"Domestic hospitality spending softened alongside broader economic caution."},
-          {name:"Education", gdp:4.2, workforce:6.3, trend:"up", trendVal:"+ steady", note:"Private tutoring spending held up despite the wider economic slowdown."}
+          {name:"Education", gdp:4.2, workforce:6.3, trend:"up", trendVal:"+ steady", note:"Private tutoring spending held up despite the wider economic slowdown."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.1, trend:"down", trendVal:"− resource-poor", note:"Limited domestic mineral resources kept mining a marginal contributor."},
+          {name:"Professional & Business Services", gdp:6.1, workforce:6.9, trend:"down", trendVal:"− client caution", note:"Corporate clients delayed discretionary consulting spend amid the export downturn."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.1, workforce:0.5, trend:"up", trendVal:"+ nuclear expansion", note:"New nuclear reactor construction continued as part of the country's energy strategy."}
         ]
       }
     }
@@ -1274,7 +1360,11 @@ const countryData = {
           {name:"Real Estate", gdp:4.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Prime commercial and residential property stayed in strong demand."},
           {name:"Health & Social Services", gdp:3.2, workforce:5.5, trend:"up", trendVal:"+ ageing demand", note:"Government healthcare investment expanded as Singapore's population ages."},
           {name:"Public Administration", gdp:3.8, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Public-sector spending stayed elevated to support social and infrastructure programs."},
-          {name:"Education", gdp:2.5, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Singapore's role as a regional education hub kept international enrolment strong."}
+          {name:"Education", gdp:2.5, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Singapore's role as a regional education hub kept international enrolment strong."},
+          {name:"Mining & Quarrying", gdp:0.1, workforce:0.02, trend:"down", trendVal:"− negligible", note:"Singapore has virtually no domestic mineral resources; this sector remains negligible."},
+          {name:"Agriculture & Fisheries", gdp:0.1, workforce:0.1, trend:"down", trendVal:"− land-scarce", note:"Land scarcity keeps domestic agriculture and fisheries a marginal contributor to output."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.5, workforce:0.3, trend:"up", trendVal:"+ LNG diversification", note:"New LNG import agreements helped diversify the city-state's energy supply."}
         ]
       },
       "2024":{
@@ -1300,7 +1390,11 @@ const countryData = {
           {name:"Accommodation & Food Services", gdp:2.1, workforce:5.9, trend:"up", trendVal:"+ tourism rebound", note:"Visitor numbers kept climbing back toward pre-pandemic levels."},
           {name:"Health & Social Services", gdp:3.1, workforce:5.4, trend:"up", trendVal:"+ ageing demand", note:"Healthcare spending continued its steady structural rise."},
           {name:"Public Administration", gdp:3.7, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Public spending stayed resilient even as trade-linked sectors slowed."},
-          {name:"Education", gdp:2.4, workforce:4.4, trend:"up", trendVal:"+ steady", note:"International student enrolment stayed a steady contributor to services exports."}
+          {name:"Education", gdp:2.4, workforce:4.4, trend:"up", trendVal:"+ steady", note:"International student enrolment stayed a steady contributor to services exports."},
+          {name:"Mining & Quarrying", gdp:0.1, workforce:0.02, trend:"down", trendVal:"− negligible", note:"Domestic mining remains negligible given Singapore's lack of mineral resources."},
+          {name:"Agriculture & Fisheries", gdp:0.1, workforce:0.1, trend:"up", trendVal:"+ urban farming push", note:"Government-backed urban farming initiatives gave the sector a small boost."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.5, workforce:0.3, trend:"up", trendVal:"+ solar push", note:"Rooftop and floating solar installations continued expanding despite limited land."}
         ]
       },
       "2023":{
@@ -1326,7 +1420,11 @@ const countryData = {
           {name:"Real Estate", gdp:3.9, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Property prices stayed firm despite successive rounds of cooling measures."},
           {name:"Health & Social Services", gdp:3.0, workforce:5.2, trend:"up", trendVal:"+ steady", note:"Healthcare capacity expansion continued post-pandemic."},
           {name:"Public Administration", gdp:3.6, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support the post-pandemic recovery."},
-          {name:"Education", gdp:2.3, workforce:4.3, trend:"up", trendVal:"+ reopening", note:"International student numbers began recovering as borders reopened."}
+          {name:"Education", gdp:2.3, workforce:4.3, trend:"up", trendVal:"+ reopening", note:"International student numbers began recovering as borders reopened."},
+          {name:"Mining & Quarrying", gdp:0.1, workforce:0.02, trend:"down", trendVal:"− negligible", note:"Singapore's land constraints keep domestic mining output negligible."},
+          {name:"Agriculture & Fisheries", gdp:0.1, workforce:0.1, trend:"down", trendVal:"− land-scarce", note:"Limited arable land continues to constrain domestic agricultural output."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.6, workforce:0.3, trend:"up", trendVal:"+ regional grid", note:"Cross-border electricity imports from regional grid links continued expanding."}
         ]
       }
     }
@@ -1357,7 +1455,11 @@ const countryData = {
           {name:"Transport & Storage", gdp:4.8, workforce:5.0, trend:"down", trendVal:"− export slowdown", note:"Weaker export volumes weighed on freight and logistics activity."},
           {name:"Agriculture, Forestry & Fishing", gdp:0.9, workforce:1.2, trend:"down", trendVal:"− cost pressure", note:"High input costs continued to squeeze German farm incomes."},
           {name:"Information & Communication", gdp:4.5, workforce:3.2, trend:"up", trendVal:"+ digitalisation push", note:"Government digitalisation initiatives helped lift IT-sector investment."},
-          {name:"Accommodation & Food Services", gdp:2.0, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Domestic tourism and hospitality spending held up despite weak consumer sentiment."}
+          {name:"Accommodation & Food Services", gdp:2.0, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Domestic tourism and hospitality spending held up despite weak consumer sentiment."},
+          {name:"Mining & Quarrying", gdp:0.3, workforce:0.2, trend:"down", trendVal:"− coal phase-out", note:"Germany's ongoing coal phase-out continued to shrink domestic mining output."},
+          {name:"Education & Training", gdp:4.0, workforce:5.2, trend:"up", trendVal:"+ steady", note:"Public and vocational education spending stayed resilient despite budget pressures."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.8, workforce:0.8, trend:"down", trendVal:"− nuclear exit", note:"The completed nuclear phase-out shifted more generation onto gas and renewables."}
         ]
       },
       "2024":{
@@ -1383,7 +1485,11 @@ const countryData = {
           {name:"Transport & Storage", gdp:5.0, workforce:5.1, trend:"down", trendVal:"− weak exports", note:"Falling industrial exports weighed heavily on freight volumes."},
           {name:"Agriculture, Forestry & Fishing", gdp:0.9, workforce:1.2, trend:"down", trendVal:"− cost pressure", note:"Elevated fertiliser and energy costs kept squeezing farm profitability."},
           {name:"Information & Communication", gdp:4.3, workforce:3.1, trend:"up", trendVal:"+ steady", note:"IT services remained one of the few consistently growing sectors."},
-          {name:"Accommodation & Food Services", gdp:1.9, workforce:4.4, trend:"down", trendVal:"− weak consumption", note:"Cautious consumer spending weighed on hospitality revenue through the year."}
+          {name:"Accommodation & Food Services", gdp:1.9, workforce:4.4, trend:"down", trendVal:"− weak consumption", note:"Cautious consumer spending weighed on hospitality revenue through the year."},
+          {name:"Mining & Quarrying", gdp:0.3, workforce:0.2, trend:"down", trendVal:"− coal phase-out", note:"Coal-mining output kept shrinking as Germany advanced its phase-out timeline."},
+          {name:"Education & Training", gdp:3.9, workforce:5.1, trend:"up", trendVal:"+ steady", note:"University and vocational training enrolment remained stable through the slowdown."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.8, trend:"down", trendVal:"− high costs", note:"New LNG import terminals helped replace lost Russian pipeline gas supply."}
         ]
       },
       "2023":{
@@ -1409,7 +1515,11 @@ const countryData = {
           {name:"Transport & Storage", gdp:5.3, workforce:5.2, trend:"down", trendVal:"− energy costs", note:"Higher fuel and energy costs squeezed freight and logistics margins."},
           {name:"Agriculture, Forestry & Fishing", gdp:1.0, workforce:1.3, trend:"down", trendVal:"− energy shock", note:"Soaring fertiliser costs from the gas-price shock hit farm margins hard."},
           {name:"Information & Communication", gdp:4.1, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Tech investment stayed resilient even as heavy industry contracted."},
-          {name:"Accommodation & Food Services", gdp:1.8, workforce:4.3, trend:"up", trendVal:"+ post-COVID rebound", note:"Hospitality revenue kept recovering from pandemic-era restrictions."}
+          {name:"Accommodation & Food Services", gdp:1.8, workforce:4.3, trend:"up", trendVal:"+ post-COVID rebound", note:"Hospitality revenue kept recovering from pandemic-era restrictions."},
+          {name:"Mining & Quarrying", gdp:0.4, workforce:0.3, trend:"down", trendVal:"− coal phase-out", note:"Lignite mining output declined further as coal-fired plants continued closing."},
+          {name:"Education & Training", gdp:3.8, workforce:5.0, trend:"up", trendVal:"+ steady", note:"Education spending held steady even as the broader economy faced the energy shock."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.7, workforce:0.8, trend:"down", trendVal:"− energy transition costs", note:"The costly Energiewende transition kept household electricity prices elevated."}
         ]
       }
     }
@@ -1440,7 +1550,11 @@ const countryData = {
           {name:"Education", gdp:5.5, workforce:8.5, trend:"up", trendVal:"+ steady", note:"Higher-education exports via international student enrolment stayed a key earner."},
           {name:"Public Administration & Defence", gdp:5.0, workforce:5.0, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support the NHS and defence commitments."},
           {name:"Agriculture, Forestry & Fishing", gdp:0.6, workforce:1.0, trend:"down", trendVal:"− post-Brexit friction", note:"New customs and export paperwork continued to weigh on farm trade with the EU."},
-          {name:"Accommodation & Food Services", gdp:3.5, workforce:7.5, trend:"up", trendVal:"+ tourism steady", note:"Hospitality spending held up despite the broader cost-of-living squeeze."}
+          {name:"Accommodation & Food Services", gdp:3.5, workforce:7.5, trend:"up", trendVal:"+ tourism steady", note:"Hospitality spending held up despite the broader cost-of-living squeeze."},
+          {name:"Mining & Quarrying", gdp:0.5, workforce:0.2, trend:"down", trendVal:"− declining output", note:"North Sea oil and gas output kept declining as fields matured further."},
+          {name:"Transport & Storage", gdp:4.0, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Freight and logistics activity grew steadily alongside resilient consumer demand."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.2, workforce:0.5, trend:"down", trendVal:"− energy crisis", note:"The energy-price crisis kept household bills and supplier costs elevated."}
         ]
       },
       "2024":{
@@ -1466,7 +1580,11 @@ const countryData = {
           {name:"Education", gdp:5.6, workforce:8.6, trend:"up", trendVal:"+ steady", note:"International student numbers stayed a resilient source of export revenue."},
           {name:"Public Administration & Defence", gdp:4.9, workforce:4.9, trend:"up", trendVal:"+ steady", note:"Government spending stayed a stabilising force amid weak private-sector growth."},
           {name:"Agriculture, Forestry & Fishing", gdp:0.6, workforce:1.0, trend:"down", trendVal:"− weak margins", note:"Rising input costs and post-Brexit trade friction kept squeezing farm incomes."},
-          {name:"Accommodation & Food Services", gdp:3.3, workforce:7.4, trend:"down", trendVal:"− cost pressure", note:"Cost-of-living pressures weighed on discretionary hospitality spending."}
+          {name:"Accommodation & Food Services", gdp:3.3, workforce:7.4, trend:"down", trendVal:"− cost pressure", note:"Cost-of-living pressures weighed on discretionary hospitality spending."},
+          {name:"Mining & Quarrying", gdp:0.5, workforce:0.2, trend:"down", trendVal:"− declining output", note:"Maturing North Sea fields continued to weigh on domestic oil and gas production."},
+          {name:"Transport & Storage", gdp:3.9, workforce:4.4, trend:"down", trendVal:"− weak trade", note:"Softer trade volumes with the EU weighed on freight and logistics activity."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.0, workforce:0.5, trend:"down", trendVal:"− price cap pressure", note:"Regulatory price caps continued to squeeze household energy-supplier margins."}
         ]
       },
       "2023":{
@@ -1492,7 +1610,11 @@ const countryData = {
           {name:"Education", gdp:5.4, workforce:8.4, trend:"up", trendVal:"+ steady", note:"International student enrolment rebounded strongly post-pandemic."},
           {name:"Public Administration & Defence", gdp:4.8, workforce:4.8, trend:"up", trendVal:"+ energy support", note:"Government energy-support schemes lifted public spending through the crisis."},
           {name:"Agriculture, Forestry & Fishing", gdp:0.7, workforce:1.1, trend:"down", trendVal:"− energy shock", note:"Soaring energy and fertiliser costs squeezed farm profitability."},
-          {name:"Accommodation & Food Services", gdp:3.4, workforce:7.6, trend:"up", trendVal:"+ post-COVID rebound", note:"Hospitality revenue continued recovering from pandemic-era restrictions."}
+          {name:"Accommodation & Food Services", gdp:3.4, workforce:7.6, trend:"up", trendVal:"+ post-COVID rebound", note:"Hospitality revenue continued recovering from pandemic-era restrictions."},
+          {name:"Mining & Quarrying", gdp:0.6, workforce:0.2, trend:"down", trendVal:"− declining output", note:"North Sea oil and gas output continued its long-run structural decline."},
+          {name:"Transport & Storage", gdp:4.1, workforce:4.6, trend:"up", trendVal:"+ steady", note:"Logistics activity held up despite broader cost-of-living pressures."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.1, workforce:0.5, trend:"up", trendVal:"+ offshore wind", note:"Offshore wind capacity additions continued at a steady pace around the coastline."}
         ]
       }
     }
@@ -1523,7 +1645,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:1.7, workforce:2.5, trend:"down", trendVal:"− farmer protests", note:"Falling farm incomes fuelled nationwide farmer protests over EU trade rules."},
           {name:"Information & Communication", gdp:4.6, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Tech and telecom services kept growing faster than the broader stagnant economy."},
           {name:"Accommodation & Food Services", gdp:3.0, workforce:6.0, trend:"up", trendVal:"+ tourism strength", note:"France's position as the world's most-visited country kept hospitality revenue strong."},
-          {name:"Transport & Storage", gdp:4.5, workforce:5.5, trend:"down", trendVal:"− weak exports", note:"Softer industrial export volumes weighed on freight and logistics activity."}
+          {name:"Transport & Storage", gdp:4.5, workforce:5.5, trend:"down", trendVal:"− weak exports", note:"Softer industrial export volumes weighed on freight and logistics activity."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.1, trend:"down", trendVal:"− minimal", note:"France's limited domestic mineral resources keep this sector a marginal contributor."},
+          {name:"Education", gdp:4.2, workforce:6.2, trend:"up", trendVal:"+ steady", note:"Public education spending remained a stable pillar of France's large public sector."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.7, workforce:0.7, trend:"down", trendVal:"− reactor outages", note:"Extended nuclear reactor outages forced increased reliance on imported power."}
         ]
       },
       "2024":{
@@ -1549,7 +1675,11 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:1.8, workforce:2.6, trend:"down", trendVal:"− cost pressure", note:"Rising input costs squeezed farm incomes across most regions."},
           {name:"Information & Communication", gdp:4.4, workforce:2.9, trend:"up", trendVal:"+ steady", note:"IT and telecom services stayed a relative bright spot in a sluggish economy."},
           {name:"Accommodation & Food Services", gdp:2.9, workforce:5.9, trend:"up", trendVal:"+ tourism strength", note:"Strong international visitor numbers kept hospitality revenue resilient."},
-          {name:"Transport & Storage", gdp:4.7, workforce:5.6, trend:"down", trendVal:"− soft freight", note:"Weaker freight volumes tracked the broader slowdown in industrial exports."}
+          {name:"Transport & Storage", gdp:4.7, workforce:5.6, trend:"down", trendVal:"− soft freight", note:"Weaker freight volumes tracked the broader slowdown in industrial exports."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.1, trend:"down", trendVal:"− minimal", note:"Domestic mining output stayed minimal given France's scarce mineral resources."},
+          {name:"Education", gdp:4.1, workforce:6.1, trend:"up", trendVal:"+ steady", note:"Education spending held steady despite broader fiscal pressure on the public sector."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:0.7, trend:"up", trendVal:"+ steady", note:"EDF's nuclear reactor maintenance programme continued restoring generation capacity."}
         ]
       },
       "2023":{
@@ -1575,11 +1705,681 @@ const countryData = {
           {name:"Agriculture, Forestry & Fishing", gdp:1.9, workforce:2.7, trend:"down", trendVal:"− input costs", note:"Soaring fertiliser and energy costs squeezed farm profitability."},
           {name:"Information & Communication", gdp:4.2, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Tech-sector investment held up despite the broader energy-driven slowdown."},
           {name:"Accommodation & Food Services", gdp:2.7, workforce:5.7, trend:"up", trendVal:"+ post-COVID rebound", note:"Hospitality revenue kept recovering strongly from pandemic-era restrictions."},
-          {name:"Transport & Storage", gdp:4.9, workforce:5.7, trend:"up", trendVal:"+ steady", note:"Freight volumes held up reasonably well despite the energy-price shock."}
+          {name:"Transport & Storage", gdp:4.9, workforce:5.7, trend:"up", trendVal:"+ steady", note:"Freight volumes held up reasonably well despite the energy-price shock."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.1, trend:"down", trendVal:"− minimal", note:"Limited domestic mineral resources kept mining a marginal contributor to output."},
+          {name:"Education", gdp:4.0, workforce:6.0, trend:"up", trendVal:"+ steady", note:"Public education spending remained resilient amid the broader energy-price shock."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.7, trend:"up", trendVal:"+ nuclear output recovery", note:"Improved nuclear-fleet availability lifted electricity exports to neighbouring countries."}
+        ]
+      }
+    }
+  },
+  IN: {
+    flag:"🇮🇳", name:"India",
+    years:{
+      "2025":{
+        eyebrow:"MOSPI National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> India',
+        sub:"The world's fastest-growing major economy: IT services and manufacturing expand rapidly while agriculture still anchors employment for hundreds of millions.",
+        stats:[
+          {v:"$4.1T", k:"Nominal GDP"},
+          {v:"+6.8%", k:"GDP growth FY24–25"},
+          {v:"~50%", k:"Services share of GDP"},
+          {v:"~42%", k:"Jobs in government"}
+        ],
+        footer:"SOURCE: MINISTRY OF STATISTICS & PROGRAMME IMPLEMENTATION (MOSPI), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Agriculture, Forestry & Fishing", gdp:16.0, workforce:42.0, trend:"up", trendVal:"+ good monsoon", note:"A favourable monsoon lifted crop yields across most farming regions."},
+          {name:"Manufacturing", gdp:15.0, workforce:12.0, trend:"up", trendVal:"+ PLI schemes", note:"Production-linked incentive schemes kept drawing new factory investment."},
+          {name:"Retail & Wholesale Trade", gdp:11.0, workforce:13.0, trend:"up", trendVal:"+ steady", note:"Rising urban incomes kept consumer spending on a steady upward path."},
+          {name:"Construction", gdp:8.0, workforce:12.0, trend:"up", trendVal:"+ infra push", note:"Government infrastructure spending kept construction activity elevated."},
+          {name:"Information & Communication", gdp:8.0, workforce:2.0, trend:"up", trendVal:"+ IT exports", note:"Software and IT-services exports remained a major foreign-exchange earner."},
+          {name:"Real Estate", gdp:7.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Urban housing demand stayed strong across major metropolitan markets."},
+          {name:"Public Administration", gdp:6.0, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Government spending on welfare programmes kept administrative output elevated."},
+          {name:"Financial & Insurance Services", gdp:6.5, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Bank credit growth stayed strong as digital payments adoption widened."},
+          {name:"Transport & Storage", gdp:5.0, workforce:5.0, trend:"up", trendVal:"+ steady", note:"Logistics investment expanded alongside rapid e-commerce growth."},
+          {name:"Professional & Business Services", gdp:5.0, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Global capability centres kept expanding their India-based operations."},
+          {name:"Health Care & Social Assistance", gdp:3.5, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Private hospital investment expanded to meet rising urban demand."},
+          {name:"Education", gdp:3.5, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Private-sector education and ed-tech investment kept growing steadily."},
+          {name:"Mining & Quarrying", gdp:2.3, workforce:0.5, trend:"up", trendVal:"+ coal output", note:"Domestic coal production rose to reduce reliance on imports."},
+          {name:"Accommodation & Food Services", gdp:2.2, workforce:3.0, trend:"up", trendVal:"+ tourism growth", note:"Domestic tourism and hospitality spending kept climbing steadily."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.4, workforce:0.9, trend:"up", trendVal:"+ grid stress", note:"Peak summer demand repeatedly tested grid capacity in major states."}
+        ]
+      },
+      "2024":{
+        eyebrow:"MOSPI National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> India',
+        sub:"Manufacturing and construction led a broad-based expansion, while services exports continued to outpace global peers.",
+        stats:[
+          {v:"$3.6T", k:"Nominal GDP"},
+          {v:"+8.2%", k:"GDP growth FY23–24"},
+          {v:"~50%", k:"Services share of GDP"},
+          {v:"~41%", k:"Jobs in government"}
+        ],
+        footer:"SOURCE: MINISTRY OF STATISTICS & PROGRAMME IMPLEMENTATION (MOSPI), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Agriculture, Forestry & Fishing", gdp:16.5, workforce:42.5, trend:"down", trendVal:"− uneven rainfall", note:"Uneven monsoon rainfall weighed on yields in several key states."},
+          {name:"Manufacturing", gdp:14.3, workforce:11.8, trend:"up", trendVal:"+ investment surge", note:"Capital-goods and electronics manufacturing led a broad investment surge."},
+          {name:"Retail & Wholesale Trade", gdp:10.7, workforce:12.8, trend:"up", trendVal:"+ steady", note:"Consumer spending stayed resilient across both urban and rural markets."},
+          {name:"Construction", gdp:8.3, workforce:12.2, trend:"up", trendVal:"+ record activity", note:"Construction activity hit a multi-year high on strong public investment."},
+          {name:"Information & Communication", gdp:7.7, workforce:1.9, trend:"up", trendVal:"+ IT exports", note:"IT services exports grew despite softer demand from Western clients."},
+          {name:"Real Estate", gdp:6.8, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Residential sales volumes hit multi-year highs in major cities."},
+          {name:"Financial & Insurance Services", gdp:6.3, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Retail credit growth accelerated as more households accessed formal banking."},
+          {name:"Public Administration", gdp:5.8, workforce:3.9, trend:"up", trendVal:"+ steady", note:"Election-year spending lifted public administration output temporarily."},
+          {name:"Transport & Storage", gdp:4.8, workforce:4.9, trend:"up", trendVal:"+ steady", note:"Port and highway capacity expansion supported freight-volume growth."},
+          {name:"Professional & Business Services", gdp:4.7, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Multinational firms kept expanding India-based technology and analytics hubs."},
+          {name:"Health Care & Social Assistance", gdp:3.4, workforce:3.9, trend:"up", trendVal:"+ steady", note:"Hospital capacity expanded to serve a growing middle class."},
+          {name:"Education", gdp:3.4, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Private tutoring and higher-education enrolment continued rising steadily."},
+          {name:"Mining & Quarrying", gdp:2.2, workforce:0.5, trend:"up", trendVal:"+ steady", note:"Coal and iron-ore output rose to meet strong industrial demand."},
+          {name:"Accommodation & Food Services", gdp:2.1, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Domestic leisure travel continued its steady post-pandemic recovery."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:1.0, trend:"up", trendVal:"+ renewable auctions", note:"Record renewable-energy auctions kept attracting new solar and wind investment."}
+        ]
+      },
+      "2023":{
+        eyebrow:"MOSPI National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> India',
+        sub:"A strong post-pandemic rebound saw construction, manufacturing and financial services all expand at a rapid clip.",
+        stats:[
+          {v:"$3.4T", k:"Nominal GDP"},
+          {v:"+7.0%", k:"GDP growth FY22–23"},
+          {v:"~50%", k:"Services share of GDP"},
+          {v:"~41%", k:"Jobs in government"}
+        ],
+        footer:"SOURCE: MINISTRY OF STATISTICS & PROGRAMME IMPLEMENTATION (MOSPI), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Agriculture, Forestry & Fishing", gdp:17.0, workforce:43.0, trend:"up", trendVal:"+ steady", note:"A stable monsoon season supported solid crop and livestock output."},
+          {name:"Manufacturing", gdp:13.8, workforce:11.5, trend:"up", trendVal:"+ post-COVID rebound", note:"Factory output rebounded strongly as global supply chains normalised."},
+          {name:"Retail & Wholesale Trade", gdp:10.5, workforce:12.5, trend:"up", trendVal:"+ reopening", note:"Consumer spending rebounded sharply after pandemic-era restrictions eased."},
+          {name:"Construction", gdp:7.8, workforce:11.8, trend:"up", trendVal:"+ steady", note:"Residential and infrastructure projects picked up pace through the year."},
+          {name:"Real Estate", gdp:6.6, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Property sales recovered strongly from pandemic-era lows."},
+          {name:"Information & Communication", gdp:7.2, workforce:1.8, trend:"up", trendVal:"+ IT exports", note:"IT-services exports grew steadily on strong global digital demand."},
+          {name:"Financial & Insurance Services", gdp:6.0, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Bank lending growth accelerated as economic activity normalised."},
+          {name:"Public Administration", gdp:5.6, workforce:3.8, trend:"up", trendVal:"+ steady", note:"Public infrastructure spending stayed elevated through the fiscal year."},
+          {name:"Transport & Storage", gdp:4.6, workforce:4.8, trend:"up", trendVal:"+ reopening", note:"Freight and passenger transport rebounded as mobility restrictions eased."},
+          {name:"Professional & Business Services", gdp:4.4, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Demand for outsourced technology and consulting services stayed strong."},
+          {name:"Health Care & Social Assistance", gdp:3.3, workforce:3.8, trend:"up", trendVal:"+ steady", note:"Healthcare infrastructure investment continued expanding post-pandemic."},
+          {name:"Education", gdp:3.3, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Schools and universities returned to full in-person operation."},
+          {name:"Mining & Quarrying", gdp:2.1, workforce:0.5, trend:"up", trendVal:"+ steady", note:"Coal production rose to support strong industrial power demand."},
+          {name:"Accommodation & Food Services", gdp:2.0, workforce:2.8, trend:"up", trendVal:"+ reopening rebound", note:"Hospitality revenue rebounded sharply as travel restrictions were lifted."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:1.0, trend:"up", trendVal:"+ demand growth", note:"Soaring electricity demand from industry and air-conditioning kept capacity expanding."}
+        ]
+      }
+    }
+  },
+  IT: {
+    flag:"🇮🇹", name:"Italy",
+    years:{
+      "2025":{
+        eyebrow:"ISTAT National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Italy',
+        sub:"A manufacturing and tourism powerhouse: precision machinery and luxury goods anchor exports while hospitality remains a major employer.",
+        stats:[
+          {v:"$2.3T", k:"Nominal GDP"},
+          {v:"+0.6%", k:"GDP growth FY24–25"},
+          {v:"~74%", k:"Services share of GDP"},
+          {v:"~57%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: ISTAT (ITALIAN NATIONAL INSTITUTE OF STATISTICS), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:16.0, workforce:14.0, trend:"up", trendVal:"+ luxury demand", note:"Luxury goods and precision machinery exporters kept output growing."},
+          {name:"Real Estate", gdp:13.0, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Higher mortgage rates continued to weigh on residential transactions."},
+          {name:"Public Administration", gdp:9.0, workforce:8.0, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support an ageing population."},
+          {name:"Retail & Wholesale Trade", gdp:10.0, workforce:13.5, trend:"down", trendVal:"− weak spending", note:"Cautious household spending kept retail growth below the EU average."},
+          {name:"Professional & Business Services", gdp:8.0, workforce:8.5, trend:"up", trendVal:"+ steady", note:"Design, engineering and consulting services stayed a relative bright spot."},
+          {name:"Health Care & Social Assistance", gdp:7.0, workforce:11.0, trend:"up", trendVal:"+ demand", note:"An ageing population kept structurally lifting healthcare spending."},
+          {name:"Accommodation & Food Services", gdp:6.5, workforce:9.0, trend:"up", trendVal:"+ record tourism", note:"Record international visitor numbers drove strong hospitality revenue."},
+          {name:"Construction", gdp:6.0, workforce:7.5, trend:"down", trendVal:"− stimulus fade", note:"Construction cooled as pandemic-era renovation incentives expired."},
+          {name:"Financial & Insurance Services", gdp:5.0, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Higher-for-longer ECB rates continued supporting bank margins."},
+          {name:"Transport & Storage", gdp:4.5, workforce:5.0, trend:"up", trendVal:"+ tourism-linked", note:"Passenger transport benefited from strong inbound tourism demand."},
+          {name:"Information & Communication", gdp:4.2, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Telecom and digital services investment continued expanding steadily."},
+          {name:"Education", gdp:4.0, workforce:6.5, trend:"up", trendVal:"+ steady", note:"Public education spending remained a stable pillar of the budget."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.0, workforce:3.5, trend:"down", trendVal:"− input costs", note:"Rising input costs continued to squeeze farm profitability."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.2, trend:"down", trendVal:"− minimal", note:"Domestic mineral resources remain limited, keeping this sector marginal."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.7, workforce:0.6, trend:"down", trendVal:"− energy costs", note:"High energy costs from the gas-price shock weighed on household bills."}
+        ]
+      },
+      "2024":{
+        eyebrow:"ISTAT National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Italy',
+        sub:"Growth stayed sluggish as high interest rates weighed on construction, while tourism and manufacturing exports held up better.",
+        stats:[
+          {v:"$2.2T", k:"Nominal GDP"},
+          {v:"+0.7%", k:"GDP growth FY23–24"},
+          {v:"~74%", k:"Services share of GDP"},
+          {v:"~56%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: ISTAT (ITALIAN NATIONAL INSTITUTE OF STATISTICS), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:16.3, workforce:14.2, trend:"up", trendVal:"+ steady", note:"Machinery exporters stayed resilient despite soft eurozone demand."},
+          {name:"Real Estate", gdp:13.3, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Property transaction volumes fell to a multi-year low."},
+          {name:"Public Administration", gdp:8.8, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated amid political pressure to protect services."},
+          {name:"Retail & Wholesale Trade", gdp:10.3, workforce:13.6, trend:"down", trendVal:"− inflation squeeze", note:"Persistent inflation kept eroding real household purchasing power."},
+          {name:"Accommodation & Food Services", gdp:6.2, workforce:8.8, trend:"up", trendVal:"+ tourism strength", note:"International visitor numbers kept climbing toward record levels."},
+          {name:"Health Care & Social Assistance", gdp:6.8, workforce:10.8, trend:"up", trendVal:"+ demand", note:"Healthcare demand continued its steady structural rise."},
+          {name:"Professional & Business Services", gdp:7.7, workforce:8.3, trend:"up", trendVal:"+ steady", note:"Consulting and engineering services outgrew the broader stagnant economy."},
+          {name:"Construction", gdp:6.5, workforce:7.7, trend:"down", trendVal:"− stimulus fade", note:"The winding-down of renovation tax credits slowed new project starts."},
+          {name:"Financial & Insurance Services", gdp:4.8, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Elevated interest rates continued supporting bank net interest income."},
+          {name:"Transport & Storage", gdp:4.3, workforce:4.9, trend:"up", trendVal:"+ tourism-linked", note:"Tourism-linked passenger transport demand stayed resilient."},
+          {name:"Information & Communication", gdp:4.0, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Digital infrastructure investment continued at a steady pace."},
+          {name:"Education", gdp:3.9, workforce:6.4, trend:"up", trendVal:"+ steady", note:"Education spending held steady despite broader fiscal constraints."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.1, workforce:3.6, trend:"down", trendVal:"− weather impact", note:"Drought conditions in parts of the south weighed on crop yields."},
+          {name:"Mining & Quarrying", gdp:0.2, workforce:0.2, trend:"down", trendVal:"− minimal", note:"Limited domestic mineral resources kept mining a marginal contributor."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:0.6, trend:"up", trendVal:"+ steady", note:"New gas-import diversification reduced reliance on any single supplier."}
+        ]
+      },
+      "2023":{
+        eyebrow:"ISTAT National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Italy',
+        sub:"The energy-price shock hit manufacturing hard, while a strong tourism rebound and construction incentives cushioned overall growth.",
+        stats:[
+          {v:"$2.1T", k:"Nominal GDP"},
+          {v:"+0.8%", k:"GDP growth FY22–23"},
+          {v:"~73%", k:"Services share of GDP"},
+          {v:"~56%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: ISTAT (ITALIAN NATIONAL INSTITUTE OF STATISTICS), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:16.8, workforce:14.5, trend:"down", trendVal:"− energy costs", note:"High energy costs weighed on energy-intensive manufacturing output."},
+          {name:"Real Estate", gdp:13.5, workforce:2.1, trend:"up", trendVal:"+ steady", note:"Property activity held up before rate hikes began to bite."},
+          {name:"Construction", gdp:7.2, workforce:8.2, trend:"up", trendVal:"+ renovation boom", note:"Generous renovation tax credits drove a residential building boom."},
+          {name:"Public Administration", gdp:8.6, workforce:7.8, trend:"up", trendVal:"+ energy support", note:"Government energy-relief measures lifted public-sector spending."},
+          {name:"Retail & Wholesale Trade", gdp:10.6, workforce:13.8, trend:"down", trendVal:"− energy shock", note:"Soaring energy bills cut sharply into household discretionary spending."},
+          {name:"Accommodation & Food Services", gdp:5.9, workforce:8.5, trend:"up", trendVal:"+ tourism rebound", note:"Tourism rebounded strongly as international travel fully reopened."},
+          {name:"Professional & Business Services", gdp:7.4, workforce:8.1, trend:"up", trendVal:"+ steady", note:"Business services stayed a relative bright spot amid the energy shock."},
+          {name:"Health Care & Social Assistance", gdp:6.6, workforce:10.5, trend:"up", trendVal:"+ demand", note:"Healthcare spending kept rising steadily, largely insulated from the energy shock."},
+          {name:"Financial & Insurance Services", gdp:4.6, workforce:2.9, trend:"up", trendVal:"+ rate normalization", note:"Rising ECB rates began lifting bank net interest income."},
+          {name:"Transport & Storage", gdp:4.1, workforce:4.8, trend:"down", trendVal:"− energy costs", note:"Higher fuel costs squeezed freight and logistics margins."},
+          {name:"Information & Communication", gdp:3.8, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Telecom investment held up despite the broader energy-driven slowdown."},
+          {name:"Education", gdp:3.8, workforce:6.3, trend:"up", trendVal:"+ steady", note:"Education spending remained resilient amid the broader energy-price shock."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.2, workforce:3.7, trend:"down", trendVal:"− input costs", note:"Soaring fertiliser and energy costs squeezed farm profitability."},
+          {name:"Mining & Quarrying", gdp:0.3, workforce:0.2, trend:"down", trendVal:"− minimal", note:"Domestic mineral resources remain limited, keeping this sector marginal."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.6, trend:"up", trendVal:"+ renewable growth", note:"Solar capacity additions continued at a rapid pace across southern regions."}
+        ]
+      }
+    }
+  },
+  CA: {
+    flag:"🇨🇦", name:"Canada",
+    years:{
+      "2025":{
+        eyebrow:"Statistics Canada National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Canada',
+        sub:"A resource-rich, trade-exposed economy where real estate, energy and financial services set the pace across a vast geography.",
+        stats:[
+          {v:"$2.2T", k:"Nominal GDP"},
+          {v:"+1.3%", k:"GDP growth FY24–25"},
+          {v:"~71%", k:"Services share of GDP"},
+          {v:"~1.3M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: STATISTICS CANADA NATIONAL ACCOUNTS, FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:13.0, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Higher borrowing costs kept weighing on home sales and refinancing."},
+          {name:"Mining & Quarrying", gdp:8.0, workforce:2.0, trend:"up", trendVal:"+ energy prices", note:"Oil-sands output rose alongside firmer global energy prices."},
+          {name:"Retail & Wholesale Trade", gdp:11.0, workforce:14.0, trend:"up", trendVal:"+ steady", note:"Consumer spending held up despite elevated household debt levels."},
+          {name:"Manufacturing", gdp:9.0, workforce:8.5, trend:"down", trendVal:"− trade uncertainty", note:"Tariff uncertainty with the US weighed on export-oriented manufacturers."},
+          {name:"Financial & Insurance Services", gdp:7.0, workforce:3.5, trend:"up", trendVal:"+ steady", note:"The big banks stayed profitable despite a cooling housing market."},
+          {name:"Construction", gdp:7.0, workforce:7.5, trend:"down", trendVal:"− housing slowdown", note:"Higher interest rates continued to slow new residential construction."},
+          {name:"Health Care & Social Assistance", gdp:7.0, workforce:12.0, trend:"up", trendVal:"+ demand", note:"An ageing population kept structurally lifting healthcare spending."},
+          {name:"Public Administration", gdp:6.0, workforce:7.0, trend:"up", trendVal:"+ steady", note:"Federal and provincial spending stayed a stabilising force."},
+          {name:"Professional & Business Services", gdp:6.0, workforce:8.0, trend:"up", trendVal:"+ steady", note:"Consulting and technical services kept growing faster than GDP."},
+          {name:"Transport & Storage", gdp:4.5, workforce:5.0, trend:"up", trendVal:"+ trade volumes", note:"Cross-border freight volumes grew alongside resilient trade flows."},
+          {name:"Education", gdp:4.5, workforce:7.0, trend:"up", trendVal:"+ steady", note:"International student enrolment remained a key source of education revenue."},
+          {name:"Information & Communication", gdp:3.5, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Telecom and tech investment continued expanding at a steady pace."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.0, workforce:2.0, trend:"up", trendVal:"+ strong exports", note:"Grain and canola exports stayed strong on solid global demand."},
+          {name:"Accommodation & Food Services", gdp:2.0, workforce:6.5, trend:"up", trendVal:"+ tourism steady", note:"Domestic and inbound tourism spending held up through the year."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.4, workforce:0.7, trend:"up", trendVal:"+ steady", note:"New transmission projects continued connecting remote hydro generation to demand centres."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Statistics Canada National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Canada',
+        sub:"High interest rates cooled housing and construction, while resource exports and financial services stayed resilient.",
+        stats:[
+          {v:"$2.1T", k:"Nominal GDP"},
+          {v:"+1.1%", k:"GDP growth FY23–24"},
+          {v:"~71%", k:"Services share of GDP"},
+          {v:"~1.3M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: STATISTICS CANADA NATIONAL ACCOUNTS, FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:13.4, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Home sales volumes fell sharply as mortgage rates stayed elevated."},
+          {name:"Mining & Quarrying", gdp:7.6, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Oil-sands production continued at near-record levels through the year."},
+          {name:"Retail & Wholesale Trade", gdp:10.8, workforce:13.9, trend:"down", trendVal:"− cost pressure", note:"High household debt levels kept a lid on discretionary spending."},
+          {name:"Manufacturing", gdp:9.3, workforce:8.6, trend:"down", trendVal:"− soft demand", note:"Softer US demand weighed on export-oriented manufacturing output."},
+          {name:"Health Care & Social Assistance", gdp:6.8, workforce:11.8, trend:"up", trendVal:"+ demand", note:"Healthcare spending continued its steady structural rise."},
+          {name:"Construction", gdp:7.3, workforce:7.7, trend:"down", trendVal:"− housing slowdown", note:"High interest rates continued to slow new housing starts."},
+          {name:"Financial & Insurance Services", gdp:6.8, workforce:3.4, trend:"up", trendVal:"+ steady", note:"Higher interest rates continued supporting bank net interest margins."},
+          {name:"Public Administration", gdp:5.8, workforce:6.9, trend:"up", trendVal:"+ steady", note:"Public spending stayed a stabilising force amid the housing slowdown."},
+          {name:"Professional & Business Services", gdp:5.8, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Business services demand held up despite the broader economic cooling."},
+          {name:"Education", gdp:4.4, workforce:6.9, trend:"up", trendVal:"+ steady", note:"International student numbers stayed a resilient source of revenue."},
+          {name:"Transport & Storage", gdp:4.3, workforce:4.9, trend:"down", trendVal:"− soft trade", note:"Softer trade volumes weighed on freight and logistics activity."},
+          {name:"Information & Communication", gdp:3.4, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Telecom infrastructure investment continued at a steady pace."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.1, workforce:2.1, trend:"down", trendVal:"− drought impact", note:"Dry conditions on the Prairies weighed on grain yields."},
+          {name:"Accommodation & Food Services", gdp:1.9, workforce:6.4, trend:"up", trendVal:"+ tourism rebound", note:"Inbound tourism continued recovering toward pre-pandemic levels."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:0.7, trend:"up", trendVal:"+ steady", note:"Strong hydro reservoir levels supported stable electricity export revenue."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Statistics Canada National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Canada',
+        sub:"Rising rates began cooling a red-hot housing market, while strong energy prices and post-pandemic reopening supported broader growth.",
+        stats:[
+          {v:"$2.0T", k:"Nominal GDP"},
+          {v:"+1.5%", k:"GDP growth FY22–23"},
+          {v:"~70%", k:"Services share of GDP"},
+          {v:"~1.3M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: STATISTICS CANADA NATIONAL ACCOUNTS, FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:13.8, workforce:2.1, trend:"down", trendVal:"− rate shock", note:"Rapid rate rises sharply cooled a previously red-hot housing market."},
+          {name:"Mining & Quarrying", gdp:8.4, workforce:2.0, trend:"up", trendVal:"+ high prices", note:"Elevated global energy prices lifted oil-sands sector revenue."},
+          {name:"Retail & Wholesale Trade", gdp:11.2, workforce:14.2, trend:"up", trendVal:"+ reopening", note:"Consumer spending stayed strong through the post-pandemic reopening."},
+          {name:"Manufacturing", gdp:9.6, workforce:8.8, trend:"up", trendVal:"+ steady", note:"Export-oriented manufacturers benefited from strong US demand."},
+          {name:"Construction", gdp:6.6, workforce:7.3, trend:"up", trendVal:"+ backlog", note:"Builders worked through a large pipeline of pre-approved projects."},
+          {name:"Financial & Insurance Services", gdp:6.4, workforce:3.3, trend:"down", trendVal:"− bank stress", note:"Global banking-sector stress briefly weighed on financial confidence."},
+          {name:"Health Care & Social Assistance", gdp:6.6, workforce:11.5, trend:"up", trendVal:"+ demand", note:"Healthcare demand kept rising steadily as the population aged."},
+          {name:"Public Administration", gdp:5.6, workforce:6.8, trend:"up", trendVal:"+ steady", note:"Pandemic-era relief spending continued flowing through into 2023."},
+          {name:"Professional & Business Services", gdp:5.6, workforce:7.7, trend:"up", trendVal:"+ steady", note:"Business investment in consulting and technical services held up well."},
+          {name:"Transport & Storage", gdp:4.4, workforce:4.8, trend:"up", trendVal:"+ steady", note:"Freight volumes stayed firm amid a strong cross-border trade cycle."},
+          {name:"Education", gdp:4.2, workforce:6.7, trend:"up", trendVal:"+ steady", note:"International student enrolment rebounded strongly post-pandemic."},
+          {name:"Information & Communication", gdp:3.2, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Tech-sector investment stayed resilient despite global rate hikes."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.2, workforce:2.2, trend:"up", trendVal:"+ strong exports", note:"Strong global grain prices supported solid farm export revenue."},
+          {name:"Accommodation & Food Services", gdp:1.8, workforce:6.2, trend:"up", trendVal:"+ reopening rebound", note:"Hospitality revenue rebounded sharply as travel restrictions were lifted."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.7, trend:"up", trendVal:"+ grid investment", note:"Hydroelectric-heavy provinces kept investing in interprovincial grid connections."}
+        ]
+      }
+    }
+  },
+  BR: {
+    flag:"🇧🇷", name:"Brazil",
+    years:{
+      "2025":{
+        eyebrow:"IBGE National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Brazil',
+        sub:"Latin America's largest economy, where a globally dominant agribusiness sector and a sizeable public sector anchor growth.",
+        stats:[
+          {v:"$2.2T", k:"Nominal GDP"},
+          {v:"+2.5%", k:"GDP growth FY24–25"},
+          {v:"~65%", k:"Services share of GDP"},
+          {v:"~58%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: IBGE (BRAZILIAN INSTITUTE OF GEOGRAPHY & STATISTICS), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Public Administration", gdp:15.0, workforce:12.0, trend:"up", trendVal:"+ steady", note:"A large public sector kept administrative spending a major GDP contributor."},
+          {name:"Retail & Wholesale Trade", gdp:13.0, workforce:18.0, trend:"up", trendVal:"+ steady", note:"Resilient consumer spending supported steady retail-sector growth."},
+          {name:"Manufacturing", gdp:11.0, workforce:11.0, trend:"down", trendVal:"− import competition", note:"Cheaper imports continued to pressure domestic manufacturers."},
+          {name:"Real Estate", gdp:8.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Urban housing demand stayed firm across major metropolitan areas."},
+          {name:"Agriculture, Forestry & Fishing", gdp:7.0, workforce:9.0, trend:"up", trendVal:"+ record harvest", note:"A record soybean harvest kept Brazil the world's top exporter."},
+          {name:"Financial & Insurance Services", gdp:7.0, workforce:3.0, trend:"up", trendVal:"+ steady", note:"High domestic interest rates continued supporting bank profitability."},
+          {name:"Transport & Storage", gdp:5.0, workforce:5.0, trend:"up", trendVal:"+ export logistics", note:"Grain-export logistics investment expanded to serve record harvests."},
+          {name:"Health Care & Social Assistance", gdp:5.5, workforce:7.0, trend:"up", trendVal:"+ demand", note:"Public and private healthcare spending both continued rising steadily."},
+          {name:"Construction", gdp:5.0, workforce:6.5, trend:"up", trendVal:"+ steady", note:"Infrastructure and housing projects kept construction activity elevated."},
+          {name:"Mining & Quarrying", gdp:4.0, workforce:1.0, trend:"down", trendVal:"− softer prices", note:"Softer global iron-ore prices weighed on mining-sector revenue."},
+          {name:"Professional & Business Services", gdp:4.0, workforce:4.0, trend:"up", trendVal:"+ steady", note:"Consulting and outsourcing services grew alongside corporate digitalisation."},
+          {name:"Education", gdp:4.0, workforce:5.0, trend:"up", trendVal:"+ steady", note:"Private education enrolment continued expanding in major cities."},
+          {name:"Information & Communication", gdp:3.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Fintech and digital-services investment kept growing at a rapid pace."},
+          {name:"Accommodation & Food Services", gdp:2.5, workforce:5.5, trend:"up", trendVal:"+ tourism growth", note:"Domestic tourism spending continued climbing steadily through the year."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.4, workforce:0.6, trend:"up", trendVal:"+ steady", note:"Wind and solar capacity additions kept diversifying the hydro-heavy grid."}
+        ]
+      },
+      "2024":{
+        eyebrow:"IBGE National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Brazil',
+        sub:"A record agricultural harvest and resilient consumer spending drove growth, even as high interest rates weighed on investment.",
+        stats:[
+          {v:"$2.1T", k:"Nominal GDP"},
+          {v:"+3.1%", k:"GDP growth FY23–24"},
+          {v:"~65%", k:"Services share of GDP"},
+          {v:"~57%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: IBGE (BRAZILIAN INSTITUTE OF GEOGRAPHY & STATISTICS), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Public Administration", gdp:14.8, workforce:11.9, trend:"up", trendVal:"+ steady", note:"Social-spending programmes kept public administration output elevated."},
+          {name:"Retail & Wholesale Trade", gdp:12.6, workforce:17.8, trend:"up", trendVal:"+ steady", note:"Household spending stayed resilient despite elevated interest rates."},
+          {name:"Manufacturing", gdp:11.4, workforce:11.2, trend:"down", trendVal:"− import competition", note:"Import competition, especially from China, kept pressuring domestic factories."},
+          {name:"Agriculture, Forestry & Fishing", gdp:7.5, workforce:9.2, trend:"up", trendVal:"+ record harvest", note:"A record grain harvest lifted farm output to an all-time high."},
+          {name:"Real Estate", gdp:7.8, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Property demand held firm in São Paulo and other major cities."},
+          {name:"Financial & Insurance Services", gdp:6.8, workforce:2.9, trend:"up", trendVal:"+ high rates", note:"High benchmark interest rates continued boosting bank net interest income."},
+          {name:"Health Care & Social Assistance", gdp:5.3, workforce:6.9, trend:"up", trendVal:"+ demand", note:"Healthcare spending continued its steady structural rise."},
+          {name:"Transport & Storage", gdp:4.8, workforce:4.9, trend:"up", trendVal:"+ export logistics", note:"Logistics investment expanded to handle the record grain harvest."},
+          {name:"Construction", gdp:4.8, workforce:6.3, trend:"up", trendVal:"+ steady", note:"Residential construction picked up alongside improving credit conditions."},
+          {name:"Mining & Quarrying", gdp:4.3, workforce:1.0, trend:"down", trendVal:"− softer prices", note:"Iron-ore prices softened on weaker Chinese steel demand."},
+          {name:"Professional & Business Services", gdp:3.8, workforce:3.9, trend:"up", trendVal:"+ steady", note:"Business services demand held up despite high interest rates."},
+          {name:"Education", gdp:3.9, workforce:4.9, trend:"up", trendVal:"+ steady", note:"Private-sector education enrolment continued its steady expansion."},
+          {name:"Information & Communication", gdp:2.9, workforce:1.9, trend:"up", trendVal:"+ fintech growth", note:"Digital banking and fintech adoption continued growing rapidly."},
+          {name:"Accommodation & Food Services", gdp:2.4, workforce:5.4, trend:"up", trendVal:"+ steady", note:"Domestic tourism spending stayed resilient through the year."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:0.6, trend:"down", trendVal:"− drought impact", note:"Below-average rainfall kept hydroelectric reservoir levels under pressure."}
+        ]
+      },
+      "2023":{
+        eyebrow:"IBGE National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Brazil',
+        sub:"High interest rates cooled credit and construction, while a strong harvest and resilient services kept overall growth positive.",
+        stats:[
+          {v:"$2.0T", k:"Nominal GDP"},
+          {v:"+2.9%", k:"GDP growth FY22–23"},
+          {v:"~64%", k:"Services share of GDP"},
+          {v:"~57%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: IBGE (BRAZILIAN INSTITUTE OF GEOGRAPHY & STATISTICS), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Public Administration", gdp:14.5, workforce:11.7, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support social welfare programmes."},
+          {name:"Retail & Wholesale Trade", gdp:12.9, workforce:18.0, trend:"down", trendVal:"− high rates", note:"High benchmark interest rates weighed on consumer credit and spending."},
+          {name:"Manufacturing", gdp:11.8, workforce:11.4, trend:"down", trendVal:"− high rates", note:"Elevated borrowing costs weighed on industrial investment and output."},
+          {name:"Agriculture, Forestry & Fishing", gdp:8.2, workforce:9.5, trend:"up", trendVal:"+ record harvest", note:"An exceptionally strong soybean harvest lifted farm export revenue."},
+          {name:"Real Estate", gdp:7.5, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Property demand held up despite the high interest-rate environment."},
+          {name:"Financial & Insurance Services", gdp:7.2, workforce:2.9, trend:"up", trendVal:"+ high rates", note:"Record-high benchmark rates lifted bank net interest margins."},
+          {name:"Mining & Quarrying", gdp:4.8, workforce:1.1, trend:"up", trendVal:"+ high prices", note:"Strong global iron-ore prices lifted mining-sector export revenue."},
+          {name:"Health Care & Social Assistance", gdp:5.1, workforce:6.7, trend:"up", trendVal:"+ demand", note:"Healthcare demand kept rising steadily as coverage expanded."},
+          {name:"Transport & Storage", gdp:4.6, workforce:4.7, trend:"up", trendVal:"+ steady", note:"Export logistics investment expanded to support record grain shipments."},
+          {name:"Construction", gdp:5.3, workforce:6.7, trend:"down", trendVal:"− high rates", note:"High interest rates continued to slow new construction starts."},
+          {name:"Education", gdp:3.8, workforce:4.8, trend:"up", trendVal:"+ steady", note:"Private education enrolment continued its steady post-pandemic recovery."},
+          {name:"Professional & Business Services", gdp:3.6, workforce:3.8, trend:"up", trendVal:"+ steady", note:"Demand for outsourced business services held up through the slowdown."},
+          {name:"Information & Communication", gdp:2.7, workforce:1.8, trend:"up", trendVal:"+ fintech growth", note:"Digital payments adoption continued expanding rapidly nationwide."},
+          {name:"Accommodation & Food Services", gdp:2.2, workforce:5.2, trend:"up", trendVal:"+ reopening rebound", note:"Tourism spending rebounded as pandemic-era restrictions fully lifted."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.7, trend:"up", trendVal:"+ reservoir recovery", note:"Strong rainfall replenished hydroelectric reservoirs after several dry years."}
+        ]
+      }
+    }
+  },
+  RU: {
+    flag:"🇷🇺", name:"Russia",
+    years:{
+      "2025":{
+        eyebrow:"Rosstat National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Russia',
+        sub:"An energy-dominated economy reshaped by sanctions: oil and gas extraction remains the largest single sector by far.",
+        stats:[
+          {v:"$2.1T", k:"Nominal GDP"},
+          {v:"+1.5%", k:"GDP growth FY24–25"},
+          {v:"~56%", k:"Services share of GDP"},
+          {v:"~40%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: ROSSTAT (FEDERAL STATE STATISTICS SERVICE), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Mining & Quarrying", gdp:15.0, workforce:2.0, trend:"down", trendVal:"− sanctions impact", note:"Export sanctions and price caps continued weighing on energy-sector revenue."},
+          {name:"Manufacturing", gdp:13.0, workforce:14.0, trend:"up", trendVal:"+ defence output", note:"Defence-related manufacturing output kept rising sharply."},
+          {name:"Retail & Wholesale Trade", gdp:13.0, workforce:17.0, trend:"up", trendVal:"+ steady", note:"Consumer spending held up on the back of rising wages."},
+          {name:"Public Administration", gdp:9.0, workforce:8.0, trend:"up", trendVal:"+ steady", note:"Government spending stayed elevated amid continued military expenditure."},
+          {name:"Real Estate", gdp:8.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Subsidised mortgage programmes kept housing demand elevated."},
+          {name:"Transport & Storage", gdp:7.0, workforce:6.0, trend:"down", trendVal:"− route disruption", note:"Rerouted trade flows continued to add cost and complexity to logistics."},
+          {name:"Construction", gdp:6.0, workforce:7.0, trend:"up", trendVal:"+ steady", note:"State-backed construction projects kept activity elevated."},
+          {name:"Financial & Insurance Services", gdp:4.5, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Domestic banks adapted to sanctions by expanding local-currency lending."},
+          {name:"Agriculture, Forestry & Fishing", gdp:4.0, workforce:6.0, trend:"up", trendVal:"+ strong harvest", note:"A strong grain harvest kept Russia a leading global wheat exporter."},
+          {name:"Health Care & Social Assistance", gdp:4.0, workforce:6.0, trend:"up", trendVal:"+ steady", note:"Public healthcare spending continued rising steadily."},
+          {name:"Professional & Business Services", gdp:3.0, workforce:3.0, trend:"down", trendVal:"− talent outflow", note:"Emigration of skilled workers continued to weigh on services output."},
+          {name:"Education", gdp:3.0, workforce:5.0, trend:"up", trendVal:"+ steady", note:"Public education spending remained stable despite fiscal pressures."},
+          {name:"Information & Communication", gdp:2.5, workforce:2.0, trend:"down", trendVal:"− tech isolation", note:"Restricted access to foreign technology continued to constrain the sector."},
+          {name:"Accommodation & Food Services", gdp:1.0, workforce:3.0, trend:"down", trendVal:"− tourism decline", note:"Reduced inbound international travel continued to weigh on hospitality revenue."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:3.3, workforce:1.6, trend:"down", trendVal:"− export disruption", note:"The loss of European pipeline markets sharply disrupted gas-export revenue."}
+        ]
+      },
+      "2024":{
+        eyebrow:"Rosstat National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Russia',
+        sub:"Defence-driven manufacturing and resilient consumer spending offset sanctions pressure on the energy sector.",
+        stats:[
+          {v:"$2.0T", k:"Nominal GDP"},
+          {v:"+3.6%", k:"GDP growth FY23–24"},
+          {v:"~56%", k:"Services share of GDP"},
+          {v:"~39%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: ROSSTAT (FEDERAL STATE STATISTICS SERVICE), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Mining & Quarrying", gdp:15.8, workforce:2.0, trend:"down", trendVal:"− price caps", note:"Western price caps on oil exports continued to compress energy revenue."},
+          {name:"Manufacturing", gdp:12.5, workforce:13.7, trend:"up", trendVal:"+ defence output", note:"Military production drove a sharp rise in manufacturing output."},
+          {name:"Retail & Wholesale Trade", gdp:12.7, workforce:16.8, trend:"up", trendVal:"+ steady", note:"Rapid wage growth in defence-linked sectors lifted consumer spending."},
+          {name:"Public Administration", gdp:8.8, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Military and administrative spending kept the public sector expanding."},
+          {name:"Real Estate", gdp:7.8, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Subsidised mortgages continued driving strong residential demand."},
+          {name:"Transport & Storage", gdp:7.2, workforce:6.1, trend:"down", trendVal:"− route disruption", note:"Sanctions-driven trade rerouting continued adding cost to logistics."},
+          {name:"Construction", gdp:5.8, workforce:6.9, trend:"up", trendVal:"+ steady", note:"State-funded infrastructure projects kept construction activity high."},
+          {name:"Financial & Insurance Services", gdp:4.3, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Domestic lending expanded as banks adapted to sanctions constraints."},
+          {name:"Agriculture, Forestry & Fishing", gdp:4.2, workforce:6.1, trend:"up", trendVal:"+ strong harvest", note:"Strong grain output kept Russia among the world's top wheat exporters."},
+          {name:"Health Care & Social Assistance", gdp:3.9, workforce:5.9, trend:"up", trendVal:"+ steady", note:"Public healthcare spending continued its steady structural rise."},
+          {name:"Education", gdp:2.9, workforce:4.9, trend:"up", trendVal:"+ steady", note:"Education spending remained stable amid broader fiscal pressures."},
+          {name:"Professional & Business Services", gdp:2.9, workforce:2.9, trend:"down", trendVal:"− talent outflow", note:"Continued emigration of skilled professionals weighed on services output."},
+          {name:"Information & Communication", gdp:2.4, workforce:1.9, trend:"down", trendVal:"− tech isolation", note:"Limited access to foreign technology constrained sector growth."},
+          {name:"Accommodation & Food Services", gdp:1.0, workforce:2.9, trend:"down", trendVal:"− tourism decline", note:"International visitor numbers stayed well below pre-2022 levels."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:3.1, workforce:1.5, trend:"up", trendVal:"+ domestic demand", note:"Domestic energy security priorities kept utility-sector investment elevated."}
+        ]
+      },
+      "2023":{
+        eyebrow:"Rosstat National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Russia',
+        sub:"The first full year under Western sanctions saw the economy pivot sharply toward defence production and domestic substitution.",
+        stats:[
+          {v:"$2.0T", k:"Nominal GDP"},
+          {v:"−1.2%", k:"GDP growth FY22–23"},
+          {v:"~55%", k:"Services share of GDP"},
+          {v:"~38%", k:"Public spending share of GDP"}
+        ],
+        footer:"SOURCE: ROSSTAT (FEDERAL STATE STATISTICS SERVICE), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Mining & Quarrying", gdp:17.0, workforce:2.1, trend:"down", trendVal:"− sanctions shock", note:"Initial sanctions and export bans sharply cut energy-sector revenue."},
+          {name:"Manufacturing", gdp:11.5, workforce:13.2, trend:"up", trendVal:"+ defence pivot", note:"A rapid pivot toward defence production began reshaping the sector."},
+          {name:"Retail & Wholesale Trade", gdp:12.2, workforce:16.5, trend:"down", trendVal:"− sanctions disruption", note:"Supply-chain disruption and import bans weighed on retail availability."},
+          {name:"Public Administration", gdp:8.5, workforce:7.7, trend:"up", trendVal:"+ steady", note:"Military spending drove a sharp rise in public administration output."},
+          {name:"Real Estate", gdp:7.5, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Government mortgage subsidies kept housing demand elevated."},
+          {name:"Transport & Storage", gdp:7.8, workforce:6.3, trend:"down", trendVal:"− route disruption", note:"Sanctions forced a costly rerouting of trade through new corridors."},
+          {name:"Construction", gdp:5.5, workforce:6.6, trend:"up", trendVal:"+ steady", note:"State-funded construction projects continued largely unaffected."},
+          {name:"Agriculture, Forestry & Fishing", gdp:4.5, workforce:6.3, trend:"up", trendVal:"+ record harvest", note:"A record grain harvest partly offset losses elsewhere in the economy."},
+          {name:"Financial & Insurance Services", gdp:3.8, workforce:1.8, trend:"down", trendVal:"− sanctions impact", note:"Exclusion from Western payment systems disrupted financial-sector operations."},
+          {name:"Health Care & Social Assistance", gdp:3.7, workforce:5.8, trend:"up", trendVal:"+ steady", note:"Public healthcare spending continued rising despite fiscal pressures."},
+          {name:"Education", gdp:2.8, workforce:4.8, trend:"up", trendVal:"+ steady", note:"Education spending remained broadly stable through the disruption."},
+          {name:"Professional & Business Services", gdp:2.7, workforce:2.8, trend:"down", trendVal:"− talent outflow", note:"A wave of emigration among skilled workers hit services output hard."},
+          {name:"Information & Communication", gdp:2.2, workforce:1.8, trend:"down", trendVal:"− tech isolation", note:"The exit of foreign tech firms disrupted digital-services availability."},
+          {name:"Accommodation & Food Services", gdp:1.0, workforce:2.7, trend:"down", trendVal:"− tourism collapse", note:"International visitor numbers collapsed following the invasion of Ukraine."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:3.2, workforce:1.5, trend:"up", trendVal:"+ Asia pivot", note:"New pipeline capacity redirected gas exports from Europe toward Asian markets."}
+        ]
+      }
+    }
+  },
+  MX: {
+    flag:"🇲🇽", name:"Mexico",
+    years:{
+      "2025":{
+        eyebrow:"INEGI National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Mexico',
+        sub:"A nearshoring boom is reshaping manufacturing, as companies relocate supply chains closer to the US market.",
+        stats:[
+          {v:"$1.9T", k:"Nominal GDP"},
+          {v:"+1.6%", k:"GDP growth FY24–25"},
+          {v:"~62%", k:"Services share of GDP"},
+          {v:"~5.4M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: INEGI (NATIONAL INSTITUTE OF STATISTICS & GEOGRAPHY), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:19.0, workforce:16.0, trend:"up", trendVal:"+ nearshoring boom", note:"Nearshoring investment kept driving strong growth in export manufacturing."},
+          {name:"Retail & Wholesale Trade", gdp:12.0, workforce:19.0, trend:"up", trendVal:"+ steady", note:"Consumer spending stayed resilient on the back of remittance inflows."},
+          {name:"Real Estate", gdp:11.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Industrial and residential property demand grew alongside nearshoring."},
+          {name:"Construction", gdp:7.0, workforce:8.0, trend:"up", trendVal:"+ industrial parks", note:"New industrial park construction expanded to meet nearshoring demand."},
+          {name:"Transport & Storage", gdp:6.0, workforce:5.5, trend:"up", trendVal:"+ trade volumes", note:"Cross-border freight volumes grew alongside record trade with the US."},
+          {name:"Financial & Insurance Services", gdp:4.5, workforce:2.5, trend:"up", trendVal:"+ steady", note:"Bank lending growth accelerated as nearshoring boosted corporate credit demand."},
+          {name:"Public Administration", gdp:5.0, workforce:6.0, trend:"up", trendVal:"+ steady", note:"Public infrastructure spending stayed elevated to support nearshoring."},
+          {name:"Professional & Business Services", gdp:4.5, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Demand for logistics and industrial consulting services kept rising."},
+          {name:"Mining & Quarrying", gdp:4.0, workforce:1.0, trend:"down", trendVal:"− declining output", note:"Ageing oil fields kept domestic petroleum output on a declining trend."},
+          {name:"Agriculture, Forestry & Fishing", gdp:3.5, workforce:12.0, trend:"up", trendVal:"+ strong exports", note:"Fruit and vegetable exports to the US continued growing steadily."},
+          {name:"Education", gdp:3.5, workforce:5.5, trend:"up", trendVal:"+ steady", note:"Private education enrolment expanded in major industrial hubs."},
+          {name:"Health Care & Social Assistance", gdp:3.0, workforce:4.5, trend:"up", trendVal:"+ steady", note:"Healthcare investment expanded to serve a growing industrial workforce."},
+          {name:"Accommodation & Food Services", gdp:2.5, workforce:6.0, trend:"up", trendVal:"+ tourism steady", note:"Tourism revenue stayed strong across major coastal destinations."},
+          {name:"Information & Communication", gdp:3.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Telecom and digital-services investment grew alongside industrial expansion."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.7, workforce:0.4, trend:"up", trendVal:"+ steady", note:"State utility CFE continued expanding capacity to meet rising industrial demand."}
+        ]
+      },
+      "2024":{
+        eyebrow:"INEGI National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Mexico',
+        sub:"Record foreign direct investment flowed into export manufacturing, while high interest rates cooled domestic credit growth.",
+        stats:[
+          {v:"$1.8T", k:"Nominal GDP"},
+          {v:"+3.2%", k:"GDP growth FY23–24"},
+          {v:"~62%", k:"Services share of GDP"},
+          {v:"~5.3M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: INEGI (NATIONAL INSTITUTE OF STATISTICS & GEOGRAPHY), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:18.5, workforce:15.7, trend:"up", trendVal:"+ record FDI", note:"Record foreign direct investment flowed into export-oriented factories."},
+          {name:"Retail & Wholesale Trade", gdp:11.7, workforce:18.7, trend:"up", trendVal:"+ steady", note:"Strong remittance inflows continued supporting household consumption."},
+          {name:"Real Estate", gdp:10.7, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Industrial real estate demand surged in northern border states."},
+          {name:"Construction", gdp:6.7, workforce:7.8, trend:"up", trendVal:"+ industrial parks", note:"Industrial park construction accelerated to meet nearshoring demand."},
+          {name:"Transport & Storage", gdp:5.7, workforce:5.4, trend:"up", trendVal:"+ record trade", note:"Mexico became the top US trading partner as freight volumes surged."},
+          {name:"Public Administration", gdp:4.8, workforce:5.9, trend:"up", trendVal:"+ steady", note:"Public infrastructure spending supported the broader nearshoring push."},
+          {name:"Financial & Insurance Services", gdp:4.3, workforce:2.4, trend:"up", trendVal:"+ high rates", note:"High benchmark rates continued boosting bank net interest income."},
+          {name:"Professional & Business Services", gdp:4.3, workforce:4.4, trend:"up", trendVal:"+ steady", note:"Industrial consulting and logistics services demand kept rising."},
+          {name:"Mining & Quarrying", gdp:4.2, workforce:1.0, trend:"down", trendVal:"− declining output", note:"State oil company Pemex continued facing declining crude output."},
+          {name:"Agriculture, Forestry & Fishing", gdp:3.6, workforce:12.2, trend:"up", trendVal:"+ strong exports", note:"Avocado and berry exports to the US kept growing steadily."},
+          {name:"Education", gdp:3.4, workforce:5.4, trend:"up", trendVal:"+ steady", note:"Private education enrolment continued expanding in industrial hubs."},
+          {name:"Health Care & Social Assistance", gdp:2.9, workforce:4.4, trend:"up", trendVal:"+ steady", note:"Healthcare investment grew alongside the expanding industrial workforce."},
+          {name:"Accommodation & Food Services", gdp:2.4, workforce:5.9, trend:"up", trendVal:"+ tourism strength", note:"Coastal tourism destinations recorded strong international visitor numbers."},
+          {name:"Information & Communication", gdp:2.8, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Digital infrastructure investment expanded alongside industrial growth."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.8, workforce:0.5, trend:"up", trendVal:"+ renewable auctions", note:"Renewed renewable-energy auctions began attracting fresh solar and wind investment."}
+        ]
+      },
+      "2023":{
+        eyebrow:"INEGI National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Mexico',
+        sub:"The nearshoring trend gathered pace as companies began relocating supply chains away from Asia toward North America.",
+        stats:[
+          {v:"$1.8T", k:"Nominal GDP"},
+          {v:"+3.3%", k:"GDP growth FY22–23"},
+          {v:"~62%", k:"Services share of GDP"},
+          {v:"~5.1M", k:"Manufacturing jobs"}
+        ],
+        footer:"SOURCE: INEGI (NATIONAL INSTITUTE OF STATISTICS & GEOGRAPHY), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Manufacturing", gdp:18.0, workforce:15.4, trend:"up", trendVal:"+ nearshoring start", note:"Early nearshoring investment began flowing into export manufacturing."},
+          {name:"Retail & Wholesale Trade", gdp:11.4, workforce:18.4, trend:"up", trendVal:"+ steady", note:"Consumer spending held up despite persistent inflationary pressures."},
+          {name:"Real Estate", gdp:10.4, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Industrial land demand began rising sharply in border regions."},
+          {name:"Construction", gdp:6.4, workforce:7.6, trend:"up", trendVal:"+ steady", note:"New factory construction picked up pace through the year."},
+          {name:"Transport & Storage", gdp:5.4, workforce:5.3, trend:"up", trendVal:"+ steady", note:"Cross-border freight volumes grew alongside recovering trade flows."},
+          {name:"Public Administration", gdp:4.7, workforce:5.8, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support infrastructure development."},
+          {name:"Mining & Quarrying", gdp:4.4, workforce:1.1, trend:"down", trendVal:"− declining output", note:"Ageing oil fields continued to weigh on Pemex production volumes."},
+          {name:"Financial & Insurance Services", gdp:4.1, workforce:2.3, trend:"up", trendVal:"+ high rates", note:"Elevated interest rates lifted bank profitability through the year."},
+          {name:"Professional & Business Services", gdp:4.1, workforce:4.3, trend:"up", trendVal:"+ steady", note:"Demand for industrial and logistics consulting kept growing."},
+          {name:"Agriculture, Forestry & Fishing", gdp:3.7, workforce:12.4, trend:"up", trendVal:"+ strong exports", note:"Fresh produce exports to the US continued their steady expansion."},
+          {name:"Education", gdp:3.3, workforce:5.3, trend:"up", trendVal:"+ steady", note:"Private education enrolment grew steadily in major cities."},
+          {name:"Health Care & Social Assistance", gdp:2.8, workforce:4.3, trend:"up", trendVal:"+ steady", note:"Healthcare spending continued its gradual post-pandemic recovery."},
+          {name:"Accommodation & Food Services", gdp:2.3, workforce:5.8, trend:"up", trendVal:"+ reopening rebound", note:"Tourism revenue rebounded strongly as international travel fully resumed."},
+          {name:"Information & Communication", gdp:2.6, workforce:1.8, trend:"up", trendVal:"+ steady", note:"Telecom investment continued expanding at a steady pace."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:1.9, workforce:0.5, trend:"up", trendVal:"+ grid modernization", note:"Grid modernization investment expanded to support growing nearshoring-linked demand."}
+        ]
+      }
+    }
+  },
+  ES: {
+    flag:"🇪🇸", name:"Spain",
+    years:{
+      "2025":{
+        eyebrow:"INE National Accounts · FY 2024–25",
+        titleHtml:'The board that <span class="accent">runs</span> Spain',
+        sub:"One of the world's most-visited countries: tourism, real estate and a large public sector anchor an economy outgrowing its eurozone peers.",
+        stats:[
+          {v:"$1.6T", k:"Nominal GDP"},
+          {v:"+2.8%", k:"GDP growth FY24–25"},
+          {v:"~75%", k:"Services share of GDP"},
+          {v:"~94M", k:"Annual international visitors"}
+        ],
+        footer:"SOURCE: INE (SPANISH NATIONAL STATISTICS INSTITUTE), FY24–25 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:11.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Foreign buyer demand kept coastal and urban property markets strong."},
+          {name:"Manufacturing", gdp:12.0, workforce:11.0, trend:"up", trendVal:"+ steady", note:"Automotive and food-processing exporters kept output growing steadily."},
+          {name:"Retail & Wholesale Trade", gdp:10.0, workforce:13.0, trend:"up", trendVal:"+ steady", note:"Consumer spending benefited from strong tourism-linked employment growth."},
+          {name:"Public Administration", gdp:9.0, workforce:8.0, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support healthcare and pensions."},
+          {name:"Accommodation & Food Services", gdp:7.0, workforce:10.0, trend:"up", trendVal:"+ record tourism", note:"A record number of international visitors drove strong hospitality revenue."},
+          {name:"Professional & Business Services", gdp:6.0, workforce:6.5, trend:"up", trendVal:"+ steady", note:"Business services growth continued to outpace the broader eurozone."},
+          {name:"Health Care & Social Assistance", gdp:6.0, workforce:9.0, trend:"up", trendVal:"+ demand", note:"An ageing population kept structurally lifting healthcare spending."},
+          {name:"Construction", gdp:6.0, workforce:6.5, trend:"up", trendVal:"+ housing demand", note:"Strong housing demand kept new construction activity elevated."},
+          {name:"Transport & Storage", gdp:5.0, workforce:5.0, trend:"up", trendVal:"+ tourism-linked", note:"Tourism-linked passenger transport demand stayed strong through the year."},
+          {name:"Financial & Insurance Services", gdp:4.0, workforce:2.0, trend:"up", trendVal:"+ steady", note:"Higher-for-longer ECB rates continued supporting bank margins."},
+          {name:"Information & Communication", gdp:4.0, workforce:3.0, trend:"up", trendVal:"+ steady", note:"Digital infrastructure investment continued expanding steadily."},
+          {name:"Education", gdp:4.0, workforce:6.0, trend:"up", trendVal:"+ steady", note:"Public education spending remained a stable pillar of the budget."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.5, workforce:4.0, trend:"down", trendVal:"− drought impact", note:"Persistent drought conditions weighed on crop yields in southern regions."},
+          {name:"Mining & Quarrying", gdp:0.3, workforce:0.2, trend:"down", trendVal:"− minimal", note:"Limited domestic mineral resources kept mining a marginal contributor."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.7, workforce:0.6, trend:"up", trendVal:"+ renewable growth", note:"Wind and solar capacity additions continued at one of the fastest paces in Europe."}
+        ]
+      },
+      "2024":{
+        eyebrow:"INE National Accounts · FY 2023–24",
+        titleHtml:'The board that <span class="accent">runs</span> Spain',
+        sub:"Spain outgrew most of its eurozone peers as record tourism and strong employment growth offset a cooling property market.",
+        stats:[
+          {v:"$1.6T", k:"Nominal GDP"},
+          {v:"+3.2%", k:"GDP growth FY23–24"},
+          {v:"~75%", k:"Services share of GDP"},
+          {v:"~85M", k:"Annual international visitors"}
+        ],
+        footer:"SOURCE: INE (SPANISH NATIONAL STATISTICS INSTITUTE), FY23–24 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:11.3, workforce:2.0, trend:"down", trendVal:"− rate pressure", note:"Higher mortgage rates began cooling residential transaction volumes."},
+          {name:"Manufacturing", gdp:11.8, workforce:10.9, trend:"up", trendVal:"+ steady", note:"Automotive exporters benefited from resilient European demand."},
+          {name:"Accommodation & Food Services", gdp:6.8, workforce:9.8, trend:"up", trendVal:"+ record tourism", note:"International visitor numbers hit a fresh record for the second year running."},
+          {name:"Retail & Wholesale Trade", gdp:9.8, workforce:12.9, trend:"up", trendVal:"+ steady", note:"Strong tourism-linked employment growth supported consumer spending."},
+          {name:"Public Administration", gdp:8.8, workforce:7.9, trend:"up", trendVal:"+ steady", note:"Public spending stayed elevated to support an ageing population."},
+          {name:"Health Care & Social Assistance", gdp:5.8, workforce:8.8, trend:"up", trendVal:"+ demand", note:"Healthcare demand continued its steady structural rise."},
+          {name:"Professional & Business Services", gdp:5.8, workforce:6.4, trend:"up", trendVal:"+ steady", note:"Business services growth outpaced the broader eurozone average."},
+          {name:"Construction", gdp:5.6, workforce:6.3, trend:"up", trendVal:"+ housing demand", note:"Housing demand stayed strong despite rising construction costs."},
+          {name:"Transport & Storage", gdp:4.8, workforce:4.9, trend:"up", trendVal:"+ tourism-linked", note:"Air travel demand hit new highs on record tourist arrivals."},
+          {name:"Education", gdp:3.9, workforce:5.9, trend:"up", trendVal:"+ steady", note:"Public education spending held steady despite broader fiscal constraints."},
+          {name:"Information & Communication", gdp:3.8, workforce:2.9, trend:"up", trendVal:"+ steady", note:"Telecom investment continued at a steady pace through the year."},
+          {name:"Financial & Insurance Services", gdp:3.8, workforce:1.9, trend:"up", trendVal:"+ steady", note:"Elevated interest rates continued supporting bank net interest income."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.6, workforce:4.1, trend:"down", trendVal:"− drought impact", note:"Ongoing drought conditions continued to weigh on southern farm output."},
+          {name:"Mining & Quarrying", gdp:0.3, workforce:0.2, trend:"down", trendVal:"− minimal", note:"Domestic mineral resources remain limited, keeping this sector marginal."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.5, workforce:0.6, trend:"up", trendVal:"+ interconnection", note:"New interconnection capacity with France helped export surplus renewable power."}
+        ]
+      },
+      "2023":{
+        eyebrow:"INE National Accounts · FY 2022–23",
+        titleHtml:'The board that <span class="accent">runs</span> Spain',
+        sub:"A strong post-pandemic tourism rebound drove one of the fastest growth rates in the eurozone, even as energy costs weighed on industry.",
+        stats:[
+          {v:"$1.5T", k:"Nominal GDP"},
+          {v:"+2.7%", k:"GDP growth FY22–23"},
+          {v:"~74%", k:"Services share of GDP"},
+          {v:"~71M", k:"Annual international visitors"}
+        ],
+        footer:"SOURCE: INE (SPANISH NATIONAL STATISTICS INSTITUTE), FY22–23 (APPROXIMATE)",
+        industries:[
+          {name:"Real Estate", gdp:11.6, workforce:2.1, trend:"up", trendVal:"+ steady", note:"Property demand held up well before rate hikes began to bite."},
+          {name:"Manufacturing", gdp:12.3, workforce:11.2, trend:"down", trendVal:"− energy costs", note:"High energy costs weighed on energy-intensive manufacturing output."},
+          {name:"Accommodation & Food Services", gdp:6.3, workforce:9.4, trend:"up", trendVal:"+ tourism rebound", note:"International tourism rebounded strongly as travel restrictions fully lifted."},
+          {name:"Retail & Wholesale Trade", gdp:10.1, workforce:13.2, trend:"up", trendVal:"+ reopening", note:"Consumer spending benefited from the broad post-pandemic reopening."},
+          {name:"Public Administration", gdp:8.6, workforce:7.7, trend:"up", trendVal:"+ energy support", note:"Government energy-relief measures lifted public-sector spending."},
+          {name:"Construction", gdp:5.9, workforce:6.6, trend:"up", trendVal:"+ steady", note:"Residential construction picked up as pandemic-era delays cleared."},
+          {name:"Health Care & Social Assistance", gdp:5.6, workforce:8.5, trend:"up", trendVal:"+ demand", note:"Healthcare spending kept rising steadily, largely insulated from the energy shock."},
+          {name:"Professional & Business Services", gdp:5.6, workforce:6.2, trend:"up", trendVal:"+ steady", note:"Business services stayed a relative bright spot amid the energy shock."},
+          {name:"Transport & Storage", gdp:4.6, workforce:4.7, trend:"up", trendVal:"+ tourism rebound", note:"Air travel demand rebounded sharply as international tourism recovered."},
+          {name:"Financial & Insurance Services", gdp:3.6, workforce:1.8, trend:"up", trendVal:"+ rate normalization", note:"Rising ECB rates began lifting bank net interest income."},
+          {name:"Education", gdp:3.8, workforce:5.8, trend:"up", trendVal:"+ steady", note:"Education spending remained resilient amid the broader energy-price shock."},
+          {name:"Information & Communication", gdp:3.6, workforce:2.8, trend:"up", trendVal:"+ steady", note:"Telecom investment held up despite the broader energy-driven slowdown."},
+          {name:"Agriculture, Forestry & Fishing", gdp:2.8, workforce:4.3, trend:"down", trendVal:"− drought impact", note:"Severe drought conditions sharply cut crop yields across the south."},
+          {name:"Mining & Quarrying", gdp:0.4, workforce:0.2, trend:"down", trendVal:"− minimal", note:"Domestic mineral resources remain limited, keeping this sector marginal."}
+        ,
+          {name:"Electricity, Gas & Water Supply", gdp:2.6, workforce:0.6, trend:"up", trendVal:"+ EU solar leader", note:"Spain retained its position as the EU's leading solar-capacity market."}
         ]
       }
     }
   }
+
 };
 
 let gdpChartInstance, scatterChartInstance, earningsChartInstance, compareBarInstance, compareLineInstance;
@@ -1685,6 +2485,12 @@ const SUBCATEGORY_MAP = [
     {name:"Hotels & accommodation", pct:42},
     {name:"Cafes & restaurants", pct:38},
     {name:"Catering & takeaway", pct:20}
+  ]},
+  { match:["electricity","utilities","gas & water"], label:"Utilities", subs:[
+    {name:"Electricity generation & supply", pct:48},
+    {name:"Gas supply & distribution", pct:26},
+    {name:"Water supply & sewerage", pct:16},
+    {name:"Waste collection & management", pct:10}
   ]}
 ];
 const DEFAULT_SUBS = [
@@ -1718,7 +2524,7 @@ const UI_STRINGS = {
     s01_num:'// 01 · READING THE BOARD', s01_title:'Two economies, one ledger',
     s01_note:"Services carry the GDP. Resources carry the export invoice. The board rarely agrees on which industry matters most.",
     s01_body:`Services broadly account for roughly three-quarters of GDP, but the sharpest recent growth has come from a narrower band: <b style="color:var(--paper)">professional & technical services, construction and administrative services</b> drove private-sector wage growth, while <b style="color:var(--paper)">mining</b> stayed the largest single export earner despite falling profits. Manufacturing has been losing GDP share for three decades, and agriculture, though only 2–3% of GDP, still swings state-level growth on the back of a single good harvest.`,
-    s02_num:'// 02 · SECTOR TILES', s02_title:'Nine industries, ranked by GDP weight',
+    s02_num:'// 02 · SECTOR TILES', s02_title:'Top industries, ranked by GDP weight',
     s03_num:'// 03 · VISUAL READOUT', s03_title:'Output vs. people, side by side',
     s03_note:"GDP share doesn't track workforce share — services employ more than they produce per head; mining does the reverse.",
     chart_gdp_title:'GDP share by industry (%)', chart_scatter_title:'GDP share vs. workforce share',
@@ -1736,7 +2542,7 @@ const UI_STRINGS = {
     chart_country_bar_title:'GDP share by category, grouped by country (%)',
     chart_country_stat_title:'Headline snapshot by country',
     col_category:'Category',
-    country_compare_footnote:'"—" means that category didn\'t rank among that country\'s top nine industries for the selected year — not that it\'s zero.',
+    country_compare_footnote:'"—" means that category didn\'t rank among that country\'s top industries for the selected year — not that it\'s zero.',
     footer_illustrative:'ILLUSTRATIVE REFERENCE FIGURES ONLY',
     doc_title_top_industries:'Top Industries', doc_title_industries:'Industries', doc_title_compared:'Compared',
     doc_title_compare:'Compare',
@@ -1767,7 +2573,7 @@ const UI_STRINGS = {
     s01_num:'// 01 · 解读产业板', s01_title:'两种经济，一本账',
     s01_note:'服务业撑起GDP，资源业撑起出口。哪个产业最重要，产业板给不出统一答案。',
     s01_body:`服务业大致占GDP的四分之三，但近期增长最快的其实是更窄的一部分：<b style="color:var(--paper)">专业技术服务、建筑业和行政服务</b>带动了私营部门的薪资增长，而<b style="color:var(--paper)">矿业</b>虽然利润下滑，仍是最大的单一出口创汇产业。制造业占GDP比重已连续三十年下滑，农业虽仅占GDP的2%–3%，却常因一次丰收就能左右地区增长数据。`,
-    s02_num:'// 02 · 产业板块', s02_title:'九大产业，按GDP占比排序',
+    s02_num:'// 02 · 产业板块', s02_title:'主要产业，按GDP占比排序',
     s03_num:'// 03 · 数据可视化', s03_title:'产出与就业，并排对比',
     s03_note:'GDP占比与就业占比并不同步——服务业吸纳的就业远超其产出比重；矿业则相反。',
     chart_gdp_title:'各产业GDP占比（%）', chart_scatter_title:'GDP占比 vs 就业占比',
@@ -1785,7 +2591,7 @@ const UI_STRINGS = {
     chart_country_bar_title:'各类别GDP占比，按国家分组（%）',
     chart_country_stat_title:'各国概览快照',
     col_category:'类别',
-    country_compare_footnote:'"—" 表示该类别未进入该国当年GDP占比前九大产业之列——并非占比为零。',
+    country_compare_footnote:'"—" 表示该类别未进入该国当年GDP占比前列产业之列——并非占比为零。',
     footer_illustrative:'仅供参考的示意性数据',
     doc_title_top_industries:'主要产业', doc_title_industries:'产业', doc_title_compared:'对比',
     doc_title_compare:'比较',
@@ -1817,7 +2623,8 @@ function t(key){
 
 const COUNTRY_NAME_ZH = {
   AU:'澳大利亚', US:'美国', CN:'中国', DE:'德国', JP:'日本',
-  GB:'英国', FR:'法国', KR:'韩国', SG:'新加坡', NZ:'新西兰'
+  GB:'英国', FR:'法国', KR:'韩国', SG:'新加坡', NZ:'新西兰',
+  IN:'印度', IT:'意大利', CA:'加拿大', BR:'巴西', RU:'俄罗斯', MX:'墨西哥', ES:'西班牙'
 };
 function trCountry(code){
   if(LANG === 'zh') return COUNTRY_NAME_ZH[code] || (countryData[code] && countryData[code].name) || code;
@@ -1838,7 +2645,8 @@ const CATEGORY_LABEL_ZH = {
   'Government & Public Admin':'政府与公共管理',
   'Education':'教育',
   'Information & Technology':'信息与科技',
-  'Accommodation & Food Services':'住宿与餐饮服务'
+  'Accommodation & Food Services':'住宿与餐饮服务',
+  'Utilities':'公用事业'
 };
 function trCategory(label){
   if(LANG === 'zh') return CATEGORY_LABEL_ZH[label] || label;
@@ -1889,7 +2697,8 @@ const INDUSTRY_NAME_ZH = {
   "Information & Communication":"信息与通信",
   "Transport & Postal Services":"交通运输与邮政服务",
   "Professional & Scientific Services":"专业与科学服务",
-  "Health & Social Work":"医疗与社会工作"
+  "Health & Social Work":"医疗与社会工作",
+  "Electricity, Gas & Water Supply":"电力、燃气与供水"
 };
 function trIndustry(name){
   if(LANG === 'zh') return INDUSTRY_NAME_ZH[name] || name;
@@ -2285,6 +3094,409 @@ Object.assign(NOTE_ZH, {
 "Softer industrial export volumes weighed on freight and logistics activity.":"工业出口量走软，拖累了货运与物流行业活动。"
 });
 
+Object.assign(NOTE_ZH, {
+"International student numbers rebounded sharply as border restrictions fully lifted.":"随着边境限制全面解除，国际学生人数大幅反弹。",
+"Hospitality spending kept recovering from pandemic-era restrictions.":"酒店餐饮消费持续从疫情限制措施中恢复。",
+"International student enrolments continued climbing back toward pre-pandemic highs.":"国际学生入学人数持续向疫情前高点回升。",
+"Cost-of-living pressures weighed on discretionary dining and travel spending.":"生活成本压力拖累了非必要的餐饮和旅行支出。",
+"International education exports rebounded strongly as student visa numbers recovered.":"随着学生签证数量恢复，国际教育出口强劲反弹。",
+"Domestic and inbound tourism spending continued to recover toward pre-2020 levels.":"国内及入境旅游消费持续向2020年前水平恢复。",
+"Elevated energy prices lifted oil and gas extraction revenue.":"能源价格高企提升了石油和天然气开采收入。",
+"International student numbers continued recovering post-pandemic.":"国际学生人数在疫情后持续恢复。",
+"Softer oil and gas prices weighed on extraction-sector revenue.":"石油天然气价格走软拖累了开采行业收入。",
+"University enrolment and research funding stayed resilient through the year.":"全年大学入学人数与科研经费保持韧性。",
+"Oil and gas extraction output rose alongside firmer energy prices.":"随着能源价格走强，石油和天然气开采产量有所上升。",
+"Higher-education institutions continued attracting strong international enrolment.":"高等院校持续吸引大量国际学生入学。",
+"Education spending rebounded as in-person schooling fully resumed post-lockdown.":"随着封控后线下教学全面恢复，教育支出出现反弹。",
+"Hospitality revenue rebounded sharply as pandemic restrictions were lifted.":"随着疫情限制措施解除，酒店餐饮收入大幅反弹。",
+"Higher-education enrolment kept climbing alongside continued policy support.":"在政策持续支持下，高等教育入学人数持续攀升。",
+"Domestic travel spending stayed resilient despite broader consumer caution.":"尽管整体消费趋于谨慎，国内旅行支出仍保持韧性。",
+"Government investment in vocational and higher education continued expanding capacity.":"政府对职业教育和高等教育的投资持续扩大办学规模。",
+"Strong domestic tourism demand kept hotel and restaurant revenue growing.":"强劲的国内旅游需求持续推动酒店与餐饮收入增长。",
+"Domestic oil and gas production kept declining as fields matured.":"随着油气田逐渐成熟，国内石油天然气产量持续下滑。",
+"Freight activity rebounded as global trade normalised post-pandemic.":"随着疫情后全球贸易恢复正常，货运活动出现反弹。",
+"Ageing gas fields continued to weigh on domestic energy production.":"老化的气田持续拖累国内能源产量。",
+"Softer export volumes weighed on freight and logistics activity.":"出口量走软拖累了货运与物流行业活动。",
+"Gas field depletion kept domestic oil and gas output on a declining trend.":"气田资源枯竭使国内油气产量持续呈下降趋势。",
+"Freight and shipping volumes grew alongside a rebound in export trade.":"随着出口贸易反弹，货运和航运量随之增长。",
+"Limited domestic mineral resources kept this sector a marginal contributor.":"国内矿产资源有限，使该行业贡献始终较为有限。",
+"Education spending remained stable despite Japan's declining birth rate.":"尽管日本出生率持续下降，教育支出仍保持稳定。",
+"Domestic mining output remained minimal given Japan's scarce mineral resources.":"由于日本矿产资源匮乏，国内采矿产出始终维持极低水平。",
+"University enrolment held steady despite the country's shrinking youth population.":"尽管青年人口不断减少，大学入学人数仍保持稳定。",
+"Japan's minimal domestic mineral resources keep this sector negligible.":"日本国内矿产资源匮乏，使该行业几乎可忽略不计。",
+"Private tutoring and university spending stayed a stable household expense.":"私人补习和大学教育支出仍是家庭稳定的开支项目。",
+"Limited domestic mineral resources kept mining a marginal contributor.":"国内矿产资源有限，使采矿业贡献始终较为有限。",
+"Corporate clients delayed discretionary consulting spend amid the export downturn.":"在出口下滑背景下，企业客户推迟了非必要的咨询支出。",
+"Domestic mining output stayed minimal given scarce mineral resources.":"由于矿产资源匮乏，国内采矿产出始终维持极低水平。",
+"Business services demand held up despite the broader chip-sector slump.":"尽管芯片行业整体低迷，商业服务需求仍保持稳健。",
+"South Korea's limited domestic mineral resources keep this sector marginal.":"韩国国内矿产资源有限，使该行业贡献始终较为边缘化。",
+"Consulting and legal services grew steadily alongside corporate restructuring activity.":"随着企业重组活动增加，咨询与法律服务持续稳步增长。",
+"Singapore's land constraints keep domestic mining output negligible.":"新加坡土地资源受限，使国内采矿产出几乎可忽略不计。",
+"Limited arable land continues to constrain domestic agricultural output.":"有限的可耕地持续制约着国内农业产出。",
+"Domestic mining remains negligible given Singapore's lack of mineral resources.":"由于缺乏矿产资源，新加坡国内采矿业始终微不足道。",
+"Government-backed urban farming initiatives gave the sector a small boost.":"政府支持的城市农业项目为该行业带来小幅提振。",
+"Singapore has virtually no domestic mineral resources; this sector remains negligible.":"新加坡几乎没有国内矿产资源，该行业始终微不足道。",
+"Land scarcity keeps domestic agriculture and fisheries a marginal contributor to output.":"土地稀缺使国内农业与渔业对产出的贡献始终有限。",
+"Lignite mining output declined further as coal-fired plants continued closing.":"随着燃煤电厂持续关闭，褐煤开采产量进一步下滑。",
+"Education spending held steady even as the broader economy faced the energy shock.":"即便整体经济面临能源冲击，教育支出仍保持稳定。",
+"Coal-mining output kept shrinking as Germany advanced its phase-out timeline.":"随着德国推进煤炭退出时间表，煤炭开采产量持续萎缩。",
+"University and vocational training enrolment remained stable through the slowdown.":"在经济放缓期间，大学与职业培训入学人数仍保持稳定。",
+"Germany's ongoing coal phase-out continued to shrink domestic mining output.":"德国持续推进的煤炭退出政策使国内采矿产出不断萎缩。",
+"Public and vocational education spending stayed resilient despite budget pressures.":"尽管财政压力存在，公共与职业教育支出仍保持韧性。",
+"North Sea oil and gas output continued its long-run structural decline.":"北海石油天然气产量持续呈长期结构性下滑。",
+"Logistics activity held up despite broader cost-of-living pressures.":"尽管生活成本压力持续，物流行业活动仍保持稳健。",
+"Maturing North Sea fields continued to weigh on domestic oil and gas production.":"北海油气田日趋成熟，持续拖累国内油气产量。",
+"Softer trade volumes with the EU weighed on freight and logistics activity.":"与欧盟贸易量走软，拖累了货运与物流行业活动。",
+"North Sea oil and gas output kept declining as fields matured further.":"随着油气田进一步成熟，北海石油天然气产量持续下滑。",
+"Freight and logistics activity grew steadily alongside resilient consumer demand.":"随着消费需求保持韧性，货运与物流行业活动持续稳步增长。",
+"Limited domestic mineral resources kept mining a marginal contributor to output.":"国内矿产资源有限，使采矿业对产出的贡献始终较为边缘。",
+"Public education spending remained resilient amid the broader energy-price shock.":"在整体能源价格冲击背景下，公共教育支出仍保持韧性。",
+"Domestic mining output stayed minimal given France's scarce mineral resources.":"由于法国矿产资源匮乏，国内采矿产出始终维持极低水平。",
+"Education spending held steady despite broader fiscal pressure on the public sector.":"尽管公共部门面临财政压力，教育支出仍保持稳定。",
+"France's limited domestic mineral resources keep this sector a marginal contributor.":"法国国内矿产资源有限，使该行业贡献始终较为边缘化。",
+"Public education spending remained a stable pillar of France's large public sector.":"公共教育支出仍是法国庞大公共部门体系中的稳定支柱。"
+});
+
+Object.assign(NOTE_ZH, {
+"A stable monsoon season supported solid crop and livestock output.":"稳定的季风季节支撑了农作物与畜牧产出保持稳健。",
+"Factory output rebounded strongly as global supply chains normalised.":"随着全球供应链恢复正常，工厂产出强劲反弹。",
+"Consumer spending rebounded sharply after pandemic-era restrictions eased.":"疫情限制措施放宽后，消费支出大幅反弹。",
+"Residential and infrastructure projects picked up pace through the year.":"全年住宅与基础设施项目建设步伐加快。",
+"Property sales recovered strongly from pandemic-era lows.":"房产销售从疫情期间的低谷强劲复苏。",
+"IT-services exports grew steadily on strong global digital demand.":"受全球数字化需求强劲推动，IT服务出口持续稳步增长。",
+"Bank lending growth accelerated as economic activity normalised.":"随着经济活动恢复正常，银行信贷增长加速。",
+"Public infrastructure spending stayed elevated through the fiscal year.":"整个财政年度公共基础设施支出维持高位。",
+"Freight and passenger transport rebounded as mobility restrictions eased.":"随着出行限制放宽，货运与客运均出现反弹。",
+"Demand for outsourced technology and consulting services stayed strong.":"外包技术与咨询服务需求持续保持强劲。",
+"Healthcare infrastructure investment continued expanding post-pandemic.":"疫情后医疗基础设施投资持续扩大。",
+"Schools and universities returned to full in-person operation.":"中小学与大学全面恢复线下教学。",
+"Coal production rose to support strong industrial power demand.":"煤炭产量提升以支持强劲的工业用电需求。",
+"Hospitality revenue rebounded sharply as travel restrictions were lifted.":"随着旅行限制解除，酒店餐饮收入大幅反弹。",
+"Uneven monsoon rainfall weighed on yields in several key states.":"季风降雨分布不均，拖累了多个主要邦的农作物产量。",
+"Capital-goods and electronics manufacturing led a broad investment surge.":"资本品与电子产品制造业带动了广泛的投资热潮。",
+"Consumer spending stayed resilient across both urban and rural markets.":"城乡消费支出均保持韧性。",
+"Construction activity hit a multi-year high on strong public investment.":"受强劲公共投资推动，建筑业活动创下多年新高。",
+"IT services exports grew despite softer demand from Western clients.":"尽管西方客户需求走软，IT服务出口仍保持增长。",
+"Residential sales volumes hit multi-year highs in major cities.":"主要城市住宅销售量创下多年新高。",
+"Retail credit growth accelerated as more households accessed formal banking.":"随着更多家庭接入正规银行体系，零售信贷增长加速。",
+"Election-year spending lifted public administration output temporarily.":"选举年支出短暂推高了公共行政部门产出。",
+"Port and highway capacity expansion supported freight-volume growth.":"港口与高速公路运力扩张支撑了货运量增长。",
+"Multinational firms kept expanding India-based technology and analytics hubs.":"跨国公司持续扩大在印度的技术与数据分析中心。",
+"Hospital capacity expanded to serve a growing middle class.":"医院产能扩张以服务不断壮大的中产阶级群体。",
+"Private tutoring and higher-education enrolment continued rising steadily.":"私人补习与高等教育入学人数持续稳步增长。",
+"Coal and iron-ore output rose to meet strong industrial demand.":"煤炭与铁矿石产量提升以满足强劲的工业需求。",
+"Domestic leisure travel continued its steady post-pandemic recovery.":"国内休闲旅游持续从疫情中稳步复苏。",
+"A favourable monsoon lifted crop yields across most farming regions.":"有利的季风季节提升了大多数农业地区的作物产量。",
+"Production-linked incentive schemes kept drawing new factory investment.":"生产挂钩激励计划持续吸引新的工厂投资。",
+"Rising urban incomes kept consumer spending on a steady upward path.":"城市收入的上升使消费支出保持稳步上行。",
+"Government infrastructure spending kept construction activity elevated.":"政府基础设施支出使建筑业活动维持高位。",
+"Software and IT-services exports remained a major foreign-exchange earner.":"软件与IT服务出口仍是重要的外汇创收来源。",
+"Urban housing demand stayed strong across major metropolitan markets.":"主要大都市的城市住房需求持续强劲。",
+"Government spending on welfare programmes kept administrative output elevated.":"政府在福利项目上的支出使行政部门产出维持高位。",
+"Bank credit growth stayed strong as digital payments adoption widened.":"随着数字支付普及率扩大，银行信贷增长保持强劲。",
+"Logistics investment expanded alongside rapid e-commerce growth.":"随着电子商务快速增长，物流投资随之扩大。",
+"Global capability centres kept expanding their India-based operations.":"全球能力中心持续扩大其在印度的业务规模。",
+"Private hospital investment expanded to meet rising urban demand.":"私立医院投资扩大以满足不断增长的城市需求。",
+"Private-sector education and ed-tech investment kept growing steadily.":"私营教育与教育科技投资持续稳步增长。",
+"Domestic coal production rose to reduce reliance on imports.":"国内煤炭产量提升以减少对进口的依赖。",
+"Domestic tourism and hospitality spending kept climbing steadily.":"国内旅游与酒店餐饮消费持续稳步攀升。"
+});
+Object.assign(NOTE_ZH, {
+"Property activity held up before rate hikes began to bite.":"加息影响显现之前，房地产活动保持坚挺。",
+"Generous renovation tax credits drove a residential building boom.":"慷慨的装修税收抵免政策带动了住宅建筑热潮。",
+"Tourism rebounded strongly as international travel fully reopened.":"随着国际旅行全面重启，旅游业强劲反弹。",
+"Business services stayed a relative bright spot amid the energy shock.":"在能源冲击背景下，商业服务相对而言表现亮眼。",
+"Healthcare spending kept rising steadily, largely insulated from the energy shock.":"医疗支出持续稳步增长，基本未受能源冲击影响。",
+"Higher fuel costs squeezed freight and logistics margins.":"燃料成本上升压缩了货运与物流利润率。",
+"Telecom investment held up despite the broader energy-driven slowdown.":"尽管能源驱动的整体经济放缓，电信投资仍保持坚挺。",
+"Machinery exporters stayed resilient despite soft eurozone demand.":"尽管欧元区需求疲软，机械出口商仍保持韧性。",
+"Property transaction volumes fell to a multi-year low.":"房地产成交量降至多年来最低水平。",
+"International visitor numbers kept climbing toward record levels.":"国际游客人数持续攀升，接近历史纪录水平。",
+"Consulting and engineering services outgrew the broader stagnant economy.":"咨询与工程服务增速超过整体停滞的经济。",
+"The winding-down of renovation tax credits slowed new project starts.":"装修税收抵免政策逐步退出，拖慢了新项目开工。",
+"Tourism-linked passenger transport demand stayed resilient.":"与旅游相关的客运需求保持韧性。",
+"Digital infrastructure investment continued at a steady pace.":"数字基础设施投资持续以稳定步伐推进。",
+"Drought conditions in parts of the south weighed on crop yields.":"南部部分地区的干旱条件拖累了农作物产量。",
+"Luxury goods and precision machinery exporters kept output growing.":"奢侈品与精密机械出口商持续保持产出增长。",
+"Design, engineering and consulting services stayed a relative bright spot.":"设计、工程与咨询服务相对而言表现亮眼。",
+"Record international visitor numbers drove strong hospitality revenue.":"创纪录的国际游客人数带动酒店餐饮收入强劲增长。",
+"Construction cooled as pandemic-era renovation incentives expired.":"随着疫情期间装修激励政策到期，建筑业活动降温。",
+"Passenger transport benefited from strong inbound tourism demand.":"客运受益于强劲的入境旅游需求。",
+"Telecom and digital services investment continued expanding steadily.":"电信与数字服务投资持续稳步扩大。",
+"Public education spending remained a stable pillar of the budget.":"公共教育支出仍是预算中的稳定支柱。",
+"Rising input costs continued to squeeze farm profitability.":"生产投入成本上升持续压缩农业利润。"
+});
+Object.assign(NOTE_ZH, {
+"Rapid rate rises sharply cooled a previously red-hot housing market.":"快速加息使此前异常火热的住房市场大幅降温。",
+"Elevated global energy prices lifted oil-sands sector revenue.":"全球能源价格高企提升了油砂行业收入。",
+"Consumer spending stayed strong through the post-pandemic reopening.":"疫情后重新开放期间，消费支出保持强劲。",
+"Export-oriented manufacturers benefited from strong US demand.":"出口导向型制造商受益于美国需求强劲。",
+"Builders worked through a large pipeline of pre-approved projects.":"建筑商正在消化大量已获批的项目储备。",
+"Global banking-sector stress briefly weighed on financial confidence.":"全球银行业压力短暂打击了金融市场信心。",
+"Healthcare demand kept rising steadily as the population aged.":"随着人口老龄化，医疗需求持续稳步增长。",
+"Pandemic-era relief spending continued flowing through into 2023.":"疫情时期的救助支出持续影响2023年经济。",
+"Business investment in consulting and technical services held up well.":"企业在咨询和技术服务方面的投资保持稳健。",
+"Freight volumes stayed firm amid a strong cross-border trade cycle.":"在强劲的跨境贸易周期中，货运量保持坚挺。",
+"International student enrolment rebounded strongly post-pandemic.":"疫情后国际学生入学人数强劲反弹。",
+"Tech-sector investment stayed resilient despite global rate hikes.":"尽管全球加息，科技行业投资仍保持韧性。",
+"Strong global grain prices supported solid farm export revenue.":"全球谷物价格坚挺支撑了农业出口收入稳健增长。",
+"Home sales volumes fell sharply as mortgage rates stayed elevated.":"随着抵押贷款利率维持高位，住房销售量大幅下滑。",
+"Oil-sands production continued at near-record levels through the year.":"全年油砂产量持续维持在接近历史最高水平。",
+"High household debt levels kept a lid on discretionary spending.":"高企的家庭债务水平持续抑制了非必要消费支出。",
+"Softer US demand weighed on export-oriented manufacturing output.":"美国需求走软拖累了出口导向型制造业产出。",
+"High interest rates continued to slow new housing starts.":"高利率持续拖慢新建住宅开工。",
+"Higher interest rates continued supporting bank net interest margins.":"较高利率持续支撑银行净息差。",
+"Public spending stayed a stabilising force amid the housing slowdown.":"在住房市场放缓期间，公共支出持续发挥稳定作用。",
+"Business services demand held up despite the broader economic cooling.":"尽管整体经济降温，商业服务需求仍保持稳健。",
+"International student numbers stayed a resilient source of revenue.":"国际学生人数持续成为稳健的收入来源。",
+"Telecom infrastructure investment continued at a steady pace.":"电信基础设施投资持续以稳定步伐推进。",
+"Dry conditions on the Prairies weighed on grain yields.":"大草原地区干旱条件拖累了谷物产量。",
+"Inbound tourism continued recovering toward pre-pandemic levels.":"入境旅游持续向疫情前水平恢复。",
+"Higher borrowing costs kept weighing on home sales and refinancing.":"较高的借贷成本持续对住房销售和再融资构成压力。",
+"Oil-sands output rose alongside firmer global energy prices.":"随着全球能源价格走强，油砂产量随之上升。",
+"Consumer spending held up despite elevated household debt levels.":"尽管家庭债务水平较高，消费支出仍保持坚挺。",
+"Tariff uncertainty with the US weighed on export-oriented manufacturers.":"对美关税不确定性拖累了出口导向型制造商。",
+"The big banks stayed profitable despite a cooling housing market.":"尽管住房市场降温，各大银行仍保持盈利。",
+"Higher interest rates continued to slow new residential construction.":"较高利率持续拖慢新建住宅建设。",
+"Federal and provincial spending stayed a stabilising force.":"联邦与省级政府支出持续发挥稳定作用。",
+"Consulting and technical services kept growing faster than GDP.":"咨询与技术服务的增速持续超过GDP增速。",
+"Cross-border freight volumes grew alongside resilient trade flows.":"随着贸易流保持韧性，跨境货运量随之增长。",
+"International student enrolment remained a key source of education revenue.":"国际学生入学人数仍是教育收入的重要来源。",
+"Telecom and tech investment continued expanding at a steady pace.":"电信与科技投资持续以稳定步伐扩大。",
+"Grain and canola exports stayed strong on solid global demand.":"受全球需求稳健支撑，谷物与油菜籽出口保持强劲。",
+"Domestic and inbound tourism spending held up through the year.":"全年国内及入境旅游消费保持坚挺。"
+});
+Object.assign(NOTE_ZH, {
+"Public spending stayed elevated to support social welfare programmes.":"公共支出维持高位，以支持社会福利项目。",
+"High benchmark interest rates weighed on consumer credit and spending.":"高企的基准利率拖累了消费信贷与支出。",
+"Elevated borrowing costs weighed on industrial investment and output.":"高企的借贷成本拖累了工业投资与产出。",
+"An exceptionally strong soybean harvest lifted farm export revenue.":"异常丰收的大豆季提升了农业出口收入。",
+"Property demand held up despite the high interest-rate environment.":"尽管处于高利率环境，房地产需求仍保持坚挺。",
+"Record-high benchmark rates lifted bank net interest margins.":"创纪录的高基准利率提升了银行净息差。",
+"Strong global iron-ore prices lifted mining-sector export revenue.":"全球铁矿石价格坚挺提升了矿业出口收入。",
+"Healthcare demand kept rising steadily as coverage expanded.":"随着医保覆盖面扩大，医疗需求持续稳步增长。",
+"Export logistics investment expanded to support record grain shipments.":"出口物流投资扩大以支持创纪录的谷物出运量。",
+"High interest rates continued to slow new construction starts.":"高利率持续拖慢新建工程开工。",
+"Private education enrolment continued its steady post-pandemic recovery.":"私立教育入学人数持续从疫情中稳步恢复。",
+"Demand for outsourced business services held up through the slowdown.":"在经济放缓期间，外包商业服务需求仍保持稳健。",
+"Digital payments adoption continued expanding rapidly nationwide.":"全国数字支付普及率持续快速扩大。",
+"Tourism spending rebounded as pandemic-era restrictions fully lifted.":"随着疫情限制措施全面解除，旅游消费出现反弹。",
+"Social-spending programmes kept public administration output elevated.":"社会支出项目使公共行政部门产出维持高位。",
+"Household spending stayed resilient despite elevated interest rates.":"尽管利率较高，家庭支出仍保持韧性。",
+"Import competition, especially from China, kept pressuring domestic factories.":"以中国为主的进口竞争持续给国内工厂带来压力。",
+"A record grain harvest lifted farm output to an all-time high.":"创纪录的谷物丰收使农业产出达到历史新高。",
+"Property demand held firm in São Paulo and other major cities.":"圣保罗及其他主要城市的房地产需求保持坚挺。",
+"High benchmark interest rates continued boosting bank net interest income.":"高企的基准利率持续提升银行净利息收入。",
+"Healthcare spending continued its steady structural rise.":"医疗支出持续保持稳定的结构性增长。",
+"Logistics investment expanded to handle the record grain harvest.":"物流投资扩大以应对创纪录的谷物丰收。",
+"Residential construction picked up alongside improving credit conditions.":"随着信贷条件改善，住宅建筑活动有所回升。",
+"Iron-ore prices softened on weaker Chinese steel demand.":"受中国钢铁需求走弱影响，铁矿石价格有所回落。",
+"Business services demand held up despite high interest rates.":"尽管利率较高，商业服务需求仍保持稳健。",
+"Private-sector education enrolment continued its steady expansion.":"私营教育入学人数持续稳步扩大。",
+"Digital banking and fintech adoption continued growing rapidly.":"数字银行与金融科技的普及持续快速增长。",
+"Domestic tourism spending stayed resilient through the year.":"全年国内旅游消费保持韧性。",
+"A large public sector kept administrative spending a major GDP contributor.":"庞大的公共部门使行政支出持续成为GDP的重要贡献部分。",
+"Resilient consumer spending supported steady retail-sector growth.":"消费支出保持韧性，支撑零售业持续稳步增长。",
+"Cheaper imports continued to pressure domestic manufacturers.":"低价进口产品持续对国内制造商构成压力。",
+"Urban housing demand stayed firm across major metropolitan areas.":"主要大都市地区的城市住房需求保持坚挺。",
+"A record soybean harvest kept Brazil the world's top exporter.":"创纪录的大豆丰收使巴西继续保持全球最大出口国地位。",
+"High domestic interest rates continued supporting bank profitability.":"国内高利率持续支撑银行盈利能力。",
+"Grain-export logistics investment expanded to serve record harvests.":"谷物出口物流投资扩大以服务创纪录的丰收。",
+"Public and private healthcare spending both continued rising steadily.":"公共与私立医疗支出均持续稳步增长。",
+"Infrastructure and housing projects kept construction activity elevated.":"基础设施与住房项目使建筑业活动维持高位。",
+"Softer global iron-ore prices weighed on mining-sector revenue.":"全球铁矿石价格走软拖累了矿业收入。",
+"Consulting and outsourcing services grew alongside corporate digitalisation.":"随着企业数字化推进，咨询与外包服务同步增长。",
+"Private education enrolment continued expanding in major cities.":"私立教育入学人数在主要城市持续扩大。",
+"Fintech and digital-services investment kept growing at a rapid pace.":"金融科技与数字服务投资持续快速增长。",
+"Domestic tourism spending continued climbing steadily through the year.":"全年国内旅游消费持续稳步攀升。"
+});
+Object.assign(NOTE_ZH, {
+"Initial sanctions and export bans sharply cut energy-sector revenue.":"最初的制裁和出口禁令大幅削减了能源行业收入。",
+"A rapid pivot toward defence production began reshaping the sector.":"向国防生产的快速转型开始重塑该行业格局。",
+"Supply-chain disruption and import bans weighed on retail availability.":"供应链中断和进口禁令影响了零售商品的供应。",
+"Military spending drove a sharp rise in public administration output.":"军事支出推动公共行政部门产出大幅上升。",
+"Government mortgage subsidies kept housing demand elevated.":"政府抵押贷款补贴使住房需求维持高位。",
+"Sanctions forced a costly rerouting of trade through new corridors.":"制裁迫使贸易通过新通道进行代价高昂的改道。",
+"State-funded construction projects continued largely unaffected.":"国家资助的建筑项目基本未受影响，持续推进。",
+"A record grain harvest partly offset losses elsewhere in the economy.":"创纪录的谷物丰收部分抵消了经济其他领域的损失。",
+"Exclusion from Western payment systems disrupted financial-sector operations.":"被排除在西方支付系统之外扰乱了金融业运作。",
+"Public healthcare spending continued rising despite fiscal pressures.":"尽管财政压力存在，公共医疗支出仍持续增长。",
+"Education spending remained broadly stable through the disruption.":"在动荡期间，教育支出总体保持稳定。",
+"A wave of emigration among skilled workers hit services output hard.":"技术工人的大规模外流严重打击了服务业产出。",
+"The exit of foreign tech firms disrupted digital-services availability.":"外国科技企业的退出扰乱了数字服务的可用性。",
+"International visitor numbers collapsed following the invasion of Ukraine.":"入侵乌克兰后，国际游客数量骤降。",
+"Western price caps on oil exports continued to compress energy revenue.":"西方对石油出口的限价措施持续压缩能源收入。",
+"Military production drove a sharp rise in manufacturing output.":"军工生产推动制造业产出大幅上升。",
+"Rapid wage growth in defence-linked sectors lifted consumer spending.":"国防相关行业工资快速增长带动了消费支出。",
+"Military and administrative spending kept the public sector expanding.":"军事与行政支出使公共部门持续扩张。",
+"Subsidised mortgages continued driving strong residential demand.":"补贴性抵押贷款持续推动住宅需求保持强劲。",
+"Sanctions-driven trade rerouting continued adding cost to logistics.":"制裁驱动的贸易改道持续增加物流成本。",
+"State-funded infrastructure projects kept construction activity high.":"国家资助的基础设施项目使建筑业活动维持高位。",
+"Domestic lending expanded as banks adapted to sanctions constraints.":"随着银行适应制裁约束，国内信贷投放有所扩大。",
+"Strong grain output kept Russia among the world's top wheat exporters.":"强劲的谷物产量使俄罗斯继续保持全球主要小麦出口国地位。",
+"Public healthcare spending continued its steady structural rise.":"公共医疗支出持续保持稳定的结构性增长。",
+"Education spending remained stable amid broader fiscal pressures.":"在整体财政压力下，教育支出仍保持稳定。",
+"Continued emigration of skilled professionals weighed on services output.":"技术人才的持续外流拖累了服务业产出。",
+"Limited access to foreign technology constrained sector growth.":"获取国外技术的渠道受限，制约了该行业的增长。",
+"International visitor numbers stayed well below pre-2022 levels.":"国际游客数量仍远低于2022年前水平。",
+"Export sanctions and price caps continued weighing on energy-sector revenue.":"出口制裁和限价措施持续拖累能源行业收入。",
+"Defence-related manufacturing output kept rising sharply.":"国防相关制造业产出持续大幅上升。",
+"Consumer spending held up on the back of rising wages.":"在工资上涨的支撑下，消费支出保持坚挺。",
+"Government spending stayed elevated amid continued military expenditure.":"在持续的军事支出背景下，政府开支维持高位。",
+"Subsidised mortgage programmes kept housing demand elevated.":"补贴性抵押贷款项目使住房需求维持高位。",
+"Rerouted trade flows continued to add cost and complexity to logistics.":"改道后的贸易流持续增加物流的成本与复杂性。",
+"State-backed construction projects kept activity elevated.":"国家支持的建筑项目使行业活动维持高位。",
+"Domestic banks adapted to sanctions by expanding local-currency lending.":"国内银行通过扩大本币贷款业务以适应制裁限制。",
+"A strong grain harvest kept Russia a leading global wheat exporter.":"谷物丰收使俄罗斯继续保持全球主要小麦出口国地位。",
+"Public healthcare spending continued rising steadily.":"公共医疗支出持续稳步增长。",
+"Emigration of skilled workers continued to weigh on services output.":"技术工人外流持续拖累服务业产出。",
+"Public education spending remained stable despite fiscal pressures.":"尽管财政压力存在，公共教育支出仍保持稳定。",
+"Restricted access to foreign technology continued to constrain the sector.":"受限的国外技术获取渠道持续制约该行业发展。",
+"Reduced inbound international travel continued to weigh on hospitality revenue.":"入境国际旅行减少持续拖累酒店餐饮业收入。"
+});
+Object.assign(NOTE_ZH, {
+"Early nearshoring investment began flowing into export manufacturing.":"早期近岸外包投资开始流入出口制造业。",
+"Consumer spending held up despite persistent inflationary pressures.":"尽管通胀压力持续存在，消费支出仍保持坚挺。",
+"Industrial land demand began rising sharply in border regions.":"边境地区工业用地需求开始大幅上升。",
+"New factory construction picked up pace through the year.":"全年新工厂建设步伐加快。",
+"Cross-border freight volumes grew alongside recovering trade flows.":"随着贸易流量复苏，跨境货运量随之增长。",
+"Public spending stayed elevated to support infrastructure development.":"公共支出维持高位以支持基础设施建设。",
+"Ageing oil fields continued to weigh on Pemex production volumes.":"老化的油田持续拖累墨西哥国家石油公司（Pemex）的产量。",
+"Elevated interest rates lifted bank profitability through the year.":"全年高企的利率提升了银行盈利能力。",
+"Demand for industrial and logistics consulting kept growing.":"工业与物流咨询服务需求持续增长。",
+"Fresh produce exports to the US continued their steady expansion.":"对美生鲜农产品出口持续稳步扩大。",
+"Private education enrolment grew steadily in major cities.":"主要城市私立教育入学人数持续稳步增长。",
+"Healthcare spending continued its gradual post-pandemic recovery.":"医疗支出持续从疫情中逐步恢复。",
+"Tourism revenue rebounded strongly as international travel fully resumed.":"随着国际旅行全面恢复，旅游收入强劲反弹。",
+"Telecom investment continued expanding at a steady pace.":"电信投资持续以稳定步伐扩大。",
+"Record foreign direct investment flowed into export-oriented factories.":"创纪录的外国直接投资流入出口导向型工厂。",
+"Strong remittance inflows continued supporting household consumption.":"强劲的侨汇流入持续支撑家庭消费。",
+"Industrial real estate demand surged in northern border states.":"北部边境各州工业地产需求激增。",
+"Industrial park construction accelerated to meet nearshoring demand.":"工业园区建设加速以满足近岸外包需求。",
+"Mexico became the top US trading partner as freight volumes surged.":"随着货运量激增，墨西哥成为美国最大贸易伙伴。",
+"Public infrastructure spending supported the broader nearshoring push.":"公共基础设施支出为整体近岸外包推进提供了支持。",
+"High benchmark rates continued boosting bank net interest income.":"高企的基准利率持续提升银行净利息收入。",
+"Industrial consulting and logistics services demand kept rising.":"工业咨询与物流服务需求持续上升。",
+"State oil company Pemex continued facing declining crude output.":"国有石油公司Pemex的原油产量持续下滑。",
+"Avocado and berry exports to the US kept growing steadily.":"对美牛油果与浆果出口持续稳步增长。",
+"Private education enrolment continued expanding in industrial hubs.":"工业中心地区私立教育入学人数持续扩大。",
+"Healthcare investment grew alongside the expanding industrial workforce.":"随着产业工人队伍扩大，医疗投资随之增长。",
+"Coastal tourism destinations recorded strong international visitor numbers.":"沿海旅游目的地录得强劲的国际游客数量。",
+"Digital infrastructure investment expanded alongside industrial growth.":"随着工业增长，数字基础设施投资同步扩大。",
+"Nearshoring investment kept driving strong growth in export manufacturing.":"近岸外包投资持续推动出口制造业强劲增长。",
+"Consumer spending stayed resilient on the back of remittance inflows.":"在侨汇流入的支撑下，消费支出保持韧性。",
+"Industrial and residential property demand grew alongside nearshoring.":"随着近岸外包推进，工业与住宅地产需求同步增长。",
+"New industrial park construction expanded to meet nearshoring demand.":"新工业园区建设扩大以满足近岸外包需求。",
+"Cross-border freight volumes grew alongside record trade with the US.":"随着对美贸易创下新高，跨境货运量随之增长。",
+"Bank lending growth accelerated as nearshoring boosted corporate credit demand.":"随着近岸外包提振企业信贷需求，银行贷款增长加速。",
+"Public infrastructure spending stayed elevated to support nearshoring.":"公共基础设施支出维持高位以支持近岸外包发展。",
+"Demand for logistics and industrial consulting services kept rising.":"物流与工业咨询服务需求持续上升。",
+"Ageing oil fields kept domestic petroleum output on a declining trend.":"老化的油田使国内石油产量持续呈下降趋势。",
+"Fruit and vegetable exports to the US continued growing steadily.":"对美果蔬出口持续稳步增长。",
+"Private education enrolment expanded in major industrial hubs.":"主要工业中心地区私立教育入学人数持续扩大。",
+"Healthcare investment expanded to serve a growing industrial workforce.":"医疗投资扩大以服务不断增长的产业工人队伍。",
+"Tourism revenue stayed strong across major coastal destinations.":"主要沿海旅游目的地的旅游收入持续保持强劲。",
+"Telecom and digital-services investment grew alongside industrial expansion.":"随着工业扩张，电信与数字服务投资同步增长。"
+});
+Object.assign(NOTE_ZH, {
+"International tourism rebounded strongly as travel restrictions fully lifted.":"随着旅行限制全面解除，国际旅游业强劲反弹。",
+"Consumer spending benefited from the broad post-pandemic reopening.":"消费支出受益于疫情后的广泛重新开放。",
+"Residential construction picked up as pandemic-era delays cleared.":"随着疫情期间的延误逐步消化，住宅建筑活动有所回升。",
+"Air travel demand rebounded sharply as international tourism recovered.":"随着国际旅游业复苏，航空出行需求大幅反弹。",
+"Severe drought conditions sharply cut crop yields across the south.":"严重的干旱条件使南部地区农作物产量大幅下降。",
+"Higher mortgage rates began cooling residential transaction volumes.":"抵押贷款利率上升开始使住宅成交量降温。",
+"Automotive exporters benefited from resilient European demand.":"汽车出口商受益于欧洲需求的韧性。",
+"International visitor numbers hit a fresh record for the second year running.":"国际游客人数连续第二年创下新纪录。",
+"Strong tourism-linked employment growth supported consumer spending.":"与旅游相关的强劲就业增长支撑了消费支出。",
+"Business services growth outpaced the broader eurozone average.":"商业服务增速超过欧元区整体平均水平。",
+"Housing demand stayed strong despite rising construction costs.":"尽管建筑成本上升，住房需求仍保持强劲。",
+"Air travel demand hit new highs on record tourist arrivals.":"受创纪录的游客到访量推动，航空出行需求创下新高。",
+"Public education spending held steady despite broader fiscal constraints.":"尽管整体财政受限，公共教育支出仍保持稳定。",
+"Telecom investment continued at a steady pace through the year.":"全年电信投资持续以稳定步伐推进。",
+"Ongoing drought conditions continued to weigh on southern farm output.":"持续的干旱条件持续拖累南部地区农业产出。",
+"Foreign buyer demand kept coastal and urban property markets strong.":"外国买家需求使沿海及城市房地产市场保持强劲。",
+"Automotive and food-processing exporters kept output growing steadily.":"汽车与食品加工出口商持续保持产出稳步增长。",
+"Consumer spending benefited from strong tourism-linked employment growth.":"消费支出受益于与旅游相关的强劲就业增长。",
+"Public spending stayed elevated to support healthcare and pensions.":"公共支出维持高位以支持医疗保健和养老金体系。",
+"A record number of international visitors drove strong hospitality revenue.":"创纪录的国际游客数量带动酒店餐饮收入强劲增长。",
+"Business services growth continued to outpace the broader eurozone.":"商业服务增速持续超过欧元区整体水平。",
+"Strong housing demand kept new construction activity elevated.":"强劲的住房需求使新建工程活动维持高位。",
+"Tourism-linked passenger transport demand stayed strong through the year.":"全年与旅游相关的客运需求保持强劲。",
+"Digital infrastructure investment continued expanding steadily.":"数字基础设施投资持续稳步扩大。",
+"Persistent drought conditions weighed on crop yields in southern regions.":"持续的干旱条件拖累了南部地区的农作物产量。"
+});
+
+Object.assign(NOTE_ZH, {
+"High energy costs weighed on energy-intensive manufacturing output.":"高企的能源成本拖累了高耗能制造业的产出。",
+"Government energy-relief measures lifted public-sector spending.":"政府能源纾困措施带动了公共部门支出增长。",
+"Soaring energy bills cut sharply into household discretionary spending.":"飙升的能源账单大幅削减了家庭可自由支配支出。",
+"Education spending remained resilient amid the broader energy-price shock.":"在整体能源价格冲击下，教育支出仍保持韧性。",
+"Domestic mineral resources remain limited, keeping this sector marginal.":"国内矿产资源有限，使该行业贡献始终较为边缘。",
+"Healthcare demand continued its steady structural rise.":"医疗需求持续保持稳定的结构性增长。",
+"Elevated interest rates continued supporting bank net interest income.":"高企的利率持续支撑银行净利息收入。",
+"Education spending held steady despite broader fiscal constraints.":"尽管整体财政受限，教育支出仍保持稳定。",
+"Higher mortgage rates continued to weigh on residential transactions.":"较高的抵押贷款利率持续对住宅交易构成压力。",
+"Public spending stayed elevated to support an ageing population.":"公共支出维持高位以支持人口老龄化带来的需求。",
+"Cautious household spending kept retail growth below the EU average.":"家庭消费趋于谨慎，使零售增长低于欧盟平均水平。",
+"An ageing population kept structurally lifting healthcare spending.":"人口老龄化持续从结构上推高医疗支出。",
+"Softer trade volumes weighed on freight and logistics activity.":"贸易量走软拖累了货运与物流行业活动。",
+"Property demand held up well before rate hikes began to bite.":"在加息影响显现之前，房地产需求保持坚挺。"
+});
+
+Object.assign(NOTE_ZH, {
+"A weak yen kept imported LNG costs elevated for utility companies.":"日元贬值使公用事业公司的进口液化天然气成本居高不下。",
+"Additional nuclear reactor restarts helped ease reliance on costly LNG imports.":"更多核反应堆重启有助于缓解对高价液化天然气进口的依赖。",
+"Ageing coal plants began retiring as renewable capacity kept expanding.":"随着可再生能源产能持续扩大，老旧燃煤电厂开始陆续退役。",
+"Below-average rainfall kept hydroelectric reservoir levels under pressure.":"低于平均水平的降雨使水电水库水位持续承压。",
+"Coal-fired capacity still expanded even as renewables grew even faster.":"尽管可再生能源增长更快，燃煤发电产能仍在扩大。",
+"Cross-border electricity imports from regional grid links continued expanding.":"通过区域电网互联的跨境电力进口持续扩大。",
+"Declining domestic gas field output continued to strain electricity supply security.":"国内气田产量下降持续对电力供应安全构成压力。",
+"Domestic energy security priorities kept utility-sector investment elevated.":"国内能源安全优先事项使公用事业行业投资维持高位。",
+"EDF's nuclear reactor maintenance programme continued restoring generation capacity.":"法国电力公司（EDF）的核反应堆维护计划持续恢复发电产能。",
+"Elevated LNG import costs continued weighing on state utility finances.":"高企的液化天然气进口成本持续拖累国有电力公司财务状况。",
+"Extended nuclear reactor outages forced increased reliance on imported power.":"核反应堆长期停机迫使该国更加依赖进口电力。",
+"Gas supply shortages forced greater reliance on coal-fired backup generation.":"天然气供应短缺迫使该国更依赖燃煤备用发电。",
+"Grid modernization investment expanded to support growing nearshoring-linked demand.":"电网现代化投资扩大以支持近岸外包带动的需求增长。",
+"High energy costs from the gas-price shock weighed on household bills.":"天然气价格冲击导致的高能源成本拖累了家庭账单。",
+"High global LNG prices continued weighing on utility-sector margins.":"全球液化天然气价格高企持续拖累公用事业行业利润率。",
+"High global energy prices kept pressuring the state-owned utility's balance sheet.":"全球能源价格高企持续给国有电力公司的资产负债表带来压力。",
+"Hydro and geothermal generation continued supplying the majority of electricity.":"水力与地热发电继续供应大部分电力。",
+"Hydroelectric-heavy provinces kept investing in interprovincial grid connections.":"以水电为主的省份持续投资于省际电网互联。",
+"Improved nuclear-fleet availability lifted electricity exports to neighbouring countries.":"核电机组可用率提升带动了对邻国的电力出口增长。",
+"Large-scale solar and wind projects kept adding new generation capacity.":"大型太阳能与风电项目持续新增发电产能。",
+"Major grid upgrades continued to support the shift toward renewable generation.":"重大电网升级持续支持向可再生能源发电的转型。",
+"New LNG import agreements helped diversify the city-state's energy supply.":"新的液化天然气进口协议有助于使这一城市国家的能源供应多元化。",
+"New LNG import terminals helped replace lost Russian pipeline gas supply.":"新建液化天然气进口终端有助于替代已失去的俄罗斯管道天然气供应。",
+"New gas-import diversification reduced reliance on any single supplier.":"天然气进口来源多元化降低了对单一供应商的依赖。",
+"New interconnection capacity with France helped export surplus renewable power.":"与法国新建的互联输电能力有助于出口过剩的可再生能源电力。",
+"New nuclear reactor construction continued as part of the country's energy strategy.":"作为国家能源战略的一部分，新核反应堆建设持续推进。",
+"New pipeline capacity redirected gas exports from Europe toward Asian markets.":"新增管道产能将天然气出口从欧洲转向亚洲市场。",
+"New transmission projects continued connecting remote hydro generation to demand centres.":"新建输电项目持续将偏远水电站与需求中心连接起来。",
+"Offshore wind capacity additions continued at a steady pace around the coastline.":"沿海海上风电产能新增持续以稳定步伐推进。",
+"Peak summer demand repeatedly tested grid capacity in major states.":"夏季用电高峰多次考验主要邦的电网承载能力。",
+"Record LNG export capacity additions lifted the broader utilities sector.":"创纪录的液化天然气出口产能增长带动了整个公用事业行业。",
+"Record renewable-energy auctions kept attracting new solar and wind investment.":"创纪录的可再生能源拍卖持续吸引新的太阳能与风电投资。",
+"Regulatory price caps continued to squeeze household energy-supplier margins.":"监管限价措施持续压缩家庭能源供应商的利润率。",
+"Renewable capacity additions continued at a record pace nationwide.":"全国范围内可再生能源产能新增持续保持创纪录的速度。",
+"Renewed renewable-energy auctions began attracting fresh solar and wind investment.":"重启的可再生能源拍卖开始吸引新一轮太阳能与风电投资。",
+"Rooftop and floating solar installations continued expanding despite limited land.":"尽管土地资源有限，屋顶与浮动太阳能装机容量仍持续扩大。",
+"Soaring electricity demand from industry and air-conditioning kept capacity expanding.":"工业用电与空调用电需求飙升使发电产能持续扩大。",
+"Solar and wind capacity additions again outpaced the rest of the world combined.":"太阳能与风电新增装机容量再次超过世界其他地区的总和。",
+"Solar capacity additions continued at a rapid pace across southern regions.":"南部地区太阳能装机容量新增持续保持快速步伐。",
+"Spain retained its position as the EU's leading solar-capacity market.":"西班牙继续保持欧盟最大太阳能装机市场的地位。",
+"State utility CFE continued expanding capacity to meet rising industrial demand.":"国有电力公司CFE持续扩大产能以满足不断增长的工业需求。",
+"Strong hydro reservoir levels supported stable electricity export revenue.":"充沛的水电水库水位支撑了电力出口收入的稳定。",
+"Strong rainfall replenished hydroelectric reservoirs after several dry years.":"经过数年干旱后，强降雨补充了水电水库的蓄水量。",
+"The completed nuclear phase-out shifted more generation onto gas and renewables.":"核电全面退出后，更多发电转向天然气与可再生能源。",
+"The costly Energiewende transition kept household electricity prices elevated.":"耗资巨大的能源转型政策（Energiewende）使家庭电价持续维持高位。",
+"The energy-price crisis kept household bills and supplier costs elevated.":"能源价格危机使家庭账单与供应商成本持续维持高位。",
+"The loss of European pipeline markets sharply disrupted gas-export revenue.":"失去欧洲管道市场使天然气出口收入受到严重冲击。",
+"Ultra-high-voltage grid expansion continued connecting renewable-rich western regions.":"特高压电网扩建持续将可再生能源资源丰富的西部地区连接起来。",
+"Utilities kept investing heavily in grid modernization and data-centre power demand.":"公用事业公司持续加大投资于电网现代化及数据中心用电需求。",
+"Wind and solar capacity additions continued at one of the fastest paces in Europe.":"风电与太阳能装机容量新增速度继续位居欧洲最快之列。",
+"Wind and solar capacity additions kept diversifying the hydro-heavy grid.":"风电与太阳能装机容量新增持续使以水电为主的电网更加多元化。"
+});
+
 function trNote(note){
   if(LANG === 'zh') return NOTE_ZH[note] || note;
   return note;
@@ -2376,6 +3588,87 @@ const STAT_LABEL_ZH = {
 function trStatLabel(label){
   if(LANG === 'zh') return STAT_LABEL_ZH[label] || label;
   return label;
+}
+
+const OVERVIEW_BODY = {
+  AU: {
+    en: `Services broadly account for roughly three-quarters of GDP, but the sharpest recent growth has come from a narrower band: <b style="color:var(--paper)">professional & technical services, construction and administrative services</b> drove private-sector wage growth, while <b style="color:var(--paper)">mining</b> stayed the largest single export earner despite falling profits. Manufacturing has been losing GDP share for three decades, and agriculture, though only 2–3% of GDP, still swings state-level growth on the back of a single good harvest.`,
+    zh: `服务业大致占GDP的四分之三，但近期增长最快的其实是更窄的一部分：<b style="color:var(--paper)">专业技术服务、建筑业和行政服务</b>带动了私营部门的薪资增长，而<b style="color:var(--paper)">矿业</b>虽然利润下滑，仍是最大的单一出口创汇产业。制造业占GDP比重已连续三十年下滑，农业虽仅占GDP的2%–3%，却常因一次丰收就能左右地区增长数据。`
+  },
+  US: {
+    en: `<b style="color:var(--paper)">Real estate, professional & business services and government</b> together account for well over a third of GDP, reflecting a mature, services-heavy economy. <b style="color:var(--paper)">Manufacturing</b> remains a top-three sector by output even as its GDP share has slid for decades, while health care has been the fastest-growing major employer for years running. Agriculture is a small share of GDP but a disproportionately large source of export revenue.`,
+    zh: `<b style="color:var(--paper)">房地产、专业与商业服务以及政府部门</b>三者合计占GDP比重超过三分之一，体现出美国经济成熟且以服务业为主导的特征。<b style="color:var(--paper)">制造业</b>虽然GDP占比已连续下滑数十年，但按产值仍位居前三大行业，而医疗保健业多年来一直是增长最快的主要雇主行业。农业占GDP比重虽小，却是出口收入的重要来源。`
+  },
+  CN: {
+    en: `<b style="color:var(--paper)">Manufacturing</b> alone accounts for over a quarter of GDP, cementing China's position as the world's dominant production hub, while a multi-year <b style="color:var(--paper)">property-sector correction</b> has weighed heavily on construction and real estate. Agriculture still employs close to a quarter of the workforce despite a shrinking share of output, and services — finance, retail and technology — continue to expand as policymakers push for consumption-led growth.`,
+    zh: `仅<b style="color:var(--paper)">制造业</b>一项就占GDP比重超过四分之一，巩固了中国作为全球主要生产基地的地位，而持续多年的<b style="color:var(--paper)">房地产行业调整</b>严重拖累了建筑业和房地产业。农业尽管产出占比不断缩小，却仍吸纳着近四分之一的劳动力，而金融、零售和科技等服务业则在政策推动消费拉动型增长的背景下持续扩张。`
+  },
+  NZ: {
+    en: `<b style="color:var(--paper)">Real estate and manufacturing</b> (especially dairy processing) anchor New Zealand's small, trade-exposed economy, while <b style="color:var(--paper)">agriculture</b> — though only around 5–6% of GDP — dominates export earnings through dairy alone. Tourism-linked hospitality and construction swing sharply with interest rates and visitor numbers, and health care remains one of the steadiest sources of new jobs.`,
+    zh: `<b style="color:var(--paper)">房地产与制造业</b>（尤其是乳制品加工）是新西兰这一小型贸易导向型经济体的支柱，而<b style="color:var(--paper)">农业</b>尽管占GDP比重仅约5%–6%，却仅凭乳制品一项就主导了出口收入。与旅游相关的酒店餐饮业和建筑业会随利率和游客人数大幅波动，医疗保健业则始终是最稳定的新增就业来源之一。`
+  },
+  JP: {
+    en: `<b style="color:var(--paper)">Manufacturing</b> remains Japan's largest single sector, buoyed in recent years by a weak yen that has kept exporters highly competitive. Real estate and wholesale & retail trade round out the largest contributors, while the world's oldest population keeps structurally lifting <b style="color:var(--paper)">health-care spending</b> even as a shrinking farm workforce weighs on agriculture.`,
+    zh: `<b style="color:var(--paper)">制造业</b>仍是日本最大的单一产业，近年来受益于日元贬值，使出口企业保持高度竞争力。房地产及批发零售贸易紧随其后，成为主要贡献行业，而作为全球老龄化程度最深的国家，人口结构持续从根本上推高<b style="color:var(--paper)">医疗保健支出</b>，与此同时不断萎缩的农业劳动力则拖累着农业产出。`
+  },
+  KR: {
+    en: `<b style="color:var(--paper)">Manufacturing</b> — led by semiconductors — dominates South Korea's economy, accounting for well over a quarter of GDP and swinging sharply with the global chip cycle. <b style="color:var(--paper)">Construction</b> has been under pressure from project-financing stress, while an ageing population and high household debt are reshaping demand across health care and retail.`,
+    zh:`以半导体为核心的<b style="color:var(--paper)">制造业</b>主导着韩国经济，占GDP比重超过四分之一，并随全球芯片周期剧烈波动。<b style="color:var(--paper)">建筑业</b>持续承受项目融资压力，而人口老龄化和高企的家庭债务正在重塑医疗保健与零售领域的需求格局。`
+  },
+  SG: {
+    en: `As a trade, finance and logistics hub, Singapore's economy is unusually balanced across <b style="color:var(--paper)">manufacturing, wholesale trade, business services and financial services</b>, each contributing a meaningful share of GDP. The port and entrepot trade remain central to the economy, while the city-state continues attracting regional headquarters, tech investment and wealth-management inflows.`,
+    zh: `作为贸易、金融和物流枢纽，新加坡经济在<b style="color:var(--paper)">制造业、批发贸易、商业服务和金融服务</b>之间保持着罕见的均衡分布，各行业均对GDP贡献可观份额。港口与转口贸易始终是经济的核心，而这一城市国家持续吸引着区域总部、科技投资与财富管理资金流入。`
+  },
+  DE: {
+    en: `<b style="color:var(--paper)">Manufacturing</b> — anchored by autos and machinery — remains Germany's largest sector, though it has been under sustained pressure from high energy costs and the costly shift to electric vehicles. Real estate and public administration round out the largest contributors, while <b style="color:var(--paper)">construction</b> has struggled under high interest rates for several years running.`,
+    zh: `以汽车和机械制造为支柱的<b style="color:var(--paper)">制造业</b>仍是德国最大的产业，但持续受到高能源成本及向电动汽车转型的高昂成本压力。房地产和公共行政管理紧随其后成为主要贡献行业，而<b style="color:var(--paper)">建筑业</b>已连续数年在高利率环境下艰难维持。`
+  },
+  GB: {
+    en: `<b style="color:var(--paper)">Real estate and financial services</b> anchor the UK economy, with London reinforcing its position as Europe's largest financial-services hub. Professional & technical services have consistently outgrown the broader economy, while post-Brexit trade friction has weighed on <b style="color:var(--paper)">manufacturing</b> exports to the EU and NHS backlogs keep health-care demand elevated.`,
+    zh: `<b style="color:var(--paper)">房地产与金融服务</b>是英国经济的支柱，伦敦持续巩固其作为欧洲最大金融服务中心的地位。专业与技术服务的增速持续超过整体经济，而脱欧后的贸易摩擦拖累了<b style="color:var(--paper)">制造业</b>对欧盟的出口，NHS的诊疗积压则持续推高医疗保健需求。`
+  },
+  FR: {
+    en: `<b style="color:var(--paper)">Manufacturing</b> — particularly aerospace and luxury goods — remains a major pillar of the French economy alongside a sizeable public sector that reflects the country's high public-spending share of GDP. Real estate and professional services round out the largest contributors, while <b style="color:var(--paper)">agriculture</b>, though a small share of GDP, has been a flashpoint for nationwide farmer protests over EU trade rules.`,
+    zh: `以航空航天和奢侈品为代表的<b style="color:var(--paper)">制造业</b>仍是法国经济的重要支柱，同时庞大的公共部门也体现出该国公共支出占GDP比重居高不下的特点。房地产和专业服务紧随其后成为主要贡献行业，而<b style="color:var(--paper)">农业</b>尽管占GDP比重较小，却因欧盟贸易规则问题引发了全国性的农民抗议活动。`
+  }
+};
+
+Object.assign(OVERVIEW_BODY, {
+  IN: {
+    en: `<b style="color:var(--paper)">Agriculture and manufacturing</b> together still employ well over half the workforce even as <b style="color:var(--paper)">IT services and software exports</b> drive a disproportionate share of foreign-exchange earnings. Construction and real estate are expanding rapidly alongside urbanisation, while a fast-growing financial sector is bringing millions of new households into formal banking.`,
+    zh: `<b style="color:var(--paper)">农业与制造业</b>合计仍吸纳着超过一半的劳动力，而<b style="color:var(--paper)">IT服务与软件出口</b>则为外汇收入贡献了不成比例的巨大份额。随着城市化推进，建筑业和房地产业正快速扩张，快速增长的金融业也正将数百万新家庭纳入正规银行体系。`
+  },
+  IT: {
+    en: `<b style="color:var(--paper)">Manufacturing</b> — from precision machinery to luxury goods — remains Italy's largest sector, while <b style="color:var(--paper)">tourism</b> makes accommodation and food services an outsized employer given the country's status as a top global destination. A large public sector and an ageing population keep public administration and health care as major contributors.`,
+    zh: `<b style="color:var(--paper)">制造业</b>——从精密机械到奢侈品——仍是意大利最大的产业，而<b style="color:var(--paper)">旅游业</b>凭借该国全球顶级旅游目的地的地位，使住宿与餐饮业成为规模庞大的就业行业。庞大的公共部门和人口老龄化则使公共行政与医疗保健持续成为重要贡献行业。`
+  },
+  CA: {
+    en: `<b style="color:var(--paper)">Real estate and mining</b> (led by Alberta's oil sands) anchor a resource-rich, trade-exposed economy closely tied to the United States. <b style="color:var(--paper)">Manufacturing</b> exporters remain sensitive to cross-border trade policy, while financial services and healthcare round out the largest contributors to a services-heavy economy.`,
+    zh: `<b style="color:var(--paper)">房地产与矿业</b>（以阿尔伯塔省油砂开采为主）是这一资源丰富、高度依赖对美贸易经济体的支柱。<b style="color:var(--paper)">制造业</b>出口商对跨境贸易政策的变化较为敏感，而金融服务与医疗保健则是这一以服务业为主导经济体的另外两大重要贡献行业。`
+  },
+  BR: {
+    en: `A globally dominant <b style="color:var(--paper)">agribusiness sector</b> — soybeans, beef and coffee — anchors Brazil's export earnings, while a notably large <b style="color:var(--paper)">public administration</b> sector reflects the country's sizeable state apparatus. Manufacturing faces stiff import competition even as retail and financial services benefit from a large, young consumer base.`,
+    zh: `在全球占据主导地位的<b style="color:var(--paper)">农业综合企业</b>——大豆、牛肉与咖啡——是巴西出口收入的支柱，而规模显著庞大的<b style="color:var(--paper)">公共行政</b>部门则反映出该国庞大的国家机构体系。尽管制造业面临激烈的进口竞争，零售与金融服务业仍受益于庞大且年轻的消费群体。`
+  },
+  RU: {
+    en: `<b style="color:var(--paper)">Oil and gas extraction</b> dominates the economy by far, even as Western sanctions have compressed energy export revenue and pushed <b style="color:var(--paper)">defence-related manufacturing</b> to the forefront of growth. Trade logistics have been reshaped by sanctions-driven rerouting, while emigration of skilled workers has weighed on professional services.`,
+    zh: `<b style="color:var(--paper)">石油天然气开采</b>在经济中占据绝对主导地位，尽管西方制裁已压缩了能源出口收入，并将<b style="color:var(--paper)">国防相关制造业</b>推至增长前沿。受制裁驱动的贸易路线调整重塑了物流格局，而技术人才外流也持续拖累专业服务业。`
+  },
+  MX: {
+    en: `A <b style="color:var(--paper)">nearshoring boom</b> is reshaping Mexican manufacturing as companies relocate supply chains closer to the US market, lifting real estate and construction in northern border states. Agriculture remains a major export earner through fresh produce, while an ageing state oil company continues to weigh on mining output.`,
+    zh: `<b style="color:var(--paper)">近岸外包浪潮</b>正在重塑墨西哥制造业，随着企业将供应链迁移至更靠近美国市场的区域，北部边境各州的房地产与建筑业也随之增长。农业依然是重要的出口创汇来源（以生鲜农产品为主），而日益老化的国有石油公司则持续拖累矿业产出。`
+  },
+  ES: {
+    en: `As one of the world's <b style="color:var(--paper)">most-visited countries</b>, tourism makes accommodation and food services a major economic pillar, alongside a large real estate sector and a sizeable public sector supporting an ageing population. Manufacturing — led by autos — and a growing professional-services sector round out the largest contributors.`,
+    zh: `作为全球<b style="color:var(--paper)">游客到访量最高的国家</b>之一，旅游业使住宿与餐饮业成为重要的经济支柱，与规模庞大的房地产业以及支持人口老龄化的庞大公共部门并列。以汽车制造为主的制造业和不断壮大的专业服务业则是另外两大重要贡献行业。`
+  }
+});
+
+function updateOverviewBody(code){
+  const el = document.getElementById('overviewBody');
+  if(!el) return;
+  const entry = OVERVIEW_BODY[code] || OVERVIEW_BODY.AU;
+  el.innerHTML = entry[LANG] || entry.en;
 }
 
 function heroTitleSingle(countryName){
@@ -2516,6 +3809,7 @@ function renderSingleYear(code, year){
   const data = country.years[year];
   const industries = [...data.industries].sort((a,b)=>b.gdp-a.gdp);
   const countryName = trCountry(code);
+  updateOverviewBody(code);
 
   // Hero text
   document.getElementById('heroEyebrow').textContent = data.eyebrow;
@@ -2678,6 +3972,7 @@ function renderCompare(code){
   const latestYear = years[years.length-1];
   const latest = country.years[latestYear];
   const countryName = trCountry(code);
+  updateOverviewBody(code);
 
   // Hero text — use latest year framing, note it's a comparison
   document.getElementById('heroEyebrow').textContent = `${countryName} · ${t('comparing_prefix')} FY ${YEAR_LABEL[years[0]]} – FY ${YEAR_LABEL[latestYear]}`;
@@ -2808,6 +4103,7 @@ function renderCountryCompare(codes, year){
   const yr = (year === 'all') ? '2025' : year;
   const selected = codes.filter(c=> countryData[c]);
   if(selected.length === 0){ return; }
+  updateOverviewBody(selected[0]);
 
   // Hero
   const names = selected.map(c=> trCountry(c));
@@ -2882,7 +4178,8 @@ function renderCountryCompare(codes, year){
 
   const countryColors = {
     AU:'#b9702a', US:'#2f8f6d', CN:'#b3492e', NZ:'#5c6a63',
-    JP:'#8a6a3e', KR:'#3d5b52', SG:'#c98f52', DE:'#4a9d82', GB:'#a85f42', FR:'#7d8f89'
+    JP:'#8a6a3e', KR:'#3d5b52', SG:'#c98f52', DE:'#4a9d82', GB:'#a85f42', FR:'#7d8f89',
+    IN:'#c9962f', IT:'#5a8f6f', CA:'#a13d3d', BR:'#3f7d4a', RU:'#6b4c8a', MX:'#c15a3f', ES:'#4c7a9d'
   };
 
   countryCompareBarInstance = new Chart(document.getElementById('countryCompareBarChart'), {
